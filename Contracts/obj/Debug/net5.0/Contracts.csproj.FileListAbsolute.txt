@@ -1,0 +1,15 @@
+C:\Users\mhd\Documents\Eric\API\Contracts\bin\Debug\net5.0\Contracts.deps.json
+C:\Users\mhd\Documents\Eric\API\Contracts\bin\Debug\net5.0\Contracts.dll
+C:\Users\mhd\Documents\Eric\API\Contracts\bin\Debug\net5.0\ref\Contracts.dll
+C:\Users\mhd\Documents\Eric\API\Contracts\bin\Debug\net5.0\Contracts.pdb
+C:\Users\mhd\Documents\Eric\API\Contracts\bin\Debug\net5.0\Entities.dll
+C:\Users\mhd\Documents\Eric\API\Contracts\bin\Debug\net5.0\Entities.pdb
+C:\Users\mhd\Documents\Eric\API\Contracts\obj\Debug\net5.0\Contracts.csproj.AssemblyReference.cache
+C:\Users\mhd\Documents\Eric\API\Contracts\obj\Debug\net5.0\Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mhd\Documents\Eric\API\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfoInputs.cache
+C:\Users\mhd\Documents\Eric\API\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfo.cs
+C:\Users\mhd\Documents\Eric\API\Contracts\obj\Debug\net5.0\Contracts.csproj.CoreCompileInputs.cache
+C:\Users\mhd\Documents\Eric\API\Contracts\obj\Debug\net5.0\Contracts.csproj.CopyComplete
+C:\Users\mhd\Documents\Eric\API\Contracts\obj\Debug\net5.0\Contracts.dll
+C:\Users\mhd\Documents\Eric\API\Contracts\obj\Debug\net5.0\ref\Contracts.dll
+C:\Users\mhd\Documents\Eric\API\Contracts\obj\Debug\net5.0\Contracts.pdb
