@@ -98,7 +98,7 @@ namespace API.Controllers
         [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
         public async Task<IActionResult> DeleteRequestItemForRequestHeader(Guid RequestHeaderId, Guid id)
         {
-            var RequestItemForRequestHeader = HttpContext.Items["RequestItem"] as RequestItem;
+            var RequestItemForRequestHeader = HttpContext.Items["requestItem"] as RequestItem;
 
             _repository.RequestItem.DeleteRequestItem(RequestItemForRequestHeader);
             await _repository.SaveAsync();
@@ -111,7 +111,7 @@ namespace API.Controllers
         [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
         public async Task<IActionResult> UpdateRequestItemForRequestHeader(Guid RequestHeaderId, Guid id, [FromBody] RequestItemForUpdateDto RequestItem)
         {
-            var RequestItemEntity = HttpContext.Items["RequestItem"] as RequestItem;
+            var RequestItemEntity = HttpContext.Items["requestItem"] as RequestItem;
 
             _mapper.Map(RequestItem, RequestItemEntity);
             await _repository.SaveAsync();
@@ -129,7 +129,7 @@ namespace API.Controllers
                 return BadRequest("patchDoc object is null");
             }
 
-            var RequestItemEntity = HttpContext.Items["RequestItem"] as RequestItem;
+            var RequestItemEntity = HttpContext.Items["requestItem"] as RequestItem;
 
             var RequestItemToPatch = _mapper.Map<RequestItemForUpdateDto>(RequestItemEntity);
 

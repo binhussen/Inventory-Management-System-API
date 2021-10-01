@@ -24,7 +24,7 @@ namespace API.ActionFilters
             var method = context.HttpContext.Request.Method;
             var trackChanges = (method.Equals("PUT") || method.Equals("PATCH")) ? true : false;
 
-            var requestId = (Guid)context.ActionArguments["id"];
+            var requestId = (Guid)context.ActionArguments["requestHeaderId"];
             var request = await _repository.RequestHeader.GetRequestHeaderAsync(requestId, false);
 
             if (request == null)
@@ -44,7 +44,7 @@ namespace API.ActionFilters
             }
             else
             {
-                context.HttpContext.Items.Add("item", item);
+                context.HttpContext.Items.Add("requestItem", item);
                 await next();
             }
         }

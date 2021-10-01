@@ -330,3 +330,4 @@ System.Object -> Entities.Models.RequestHeader
 2021-10-01 16:30:29.5172 INFO store with id: 5a2f1a7e-7643-4445-f786-08d984ccc3fb doesn't exist in the database.
 2021-10-01 16:33:20.9487 INFO StoreItem with id: 5a2f1a7e-7643-4445-f786-08d984ccc3fb doesn't exist in the database.
 2021-10-01 16:34:19.7553 INFO StoreItem with id: b536e9c9-f753-432d-b917-08d9828041be doesn't exist in the database.
+2021-10-01 16:38:29.8761 INFO RequestHeader with id: 00000000-0000-0000-0000-000000000000 doesn't exist in the database.
