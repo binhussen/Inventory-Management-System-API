@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Entities.DataTransferObjects;
 using Entities.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace API
 {
@@ -49,6 +50,7 @@ namespace API
 
             CreateMap<RequestHeaderForUpdateDto, RequestHeader>();
             /**/
+            CreateMap<IdentityUser, UserDto>();
         }
     }
 }

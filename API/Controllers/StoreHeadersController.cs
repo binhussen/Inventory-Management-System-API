@@ -38,7 +38,7 @@ namespace API.Controllers
             return Ok(storeHeaderDtos);
         }
 
-        [HttpGet("{id}", Name = "StoreHeaderById")]
+        [HttpGet("{id}", Name = "StoreHeaderById"), Authorize]
         public async Task<IActionResult> GetStoreHeader(Guid id)
         {
             var storeHeader = await _repository.StoreHeader.GetStoreHeaderAsync(id, trackChanges: false);
@@ -54,7 +54,7 @@ namespace API.Controllers
             }
         }
 
-        [HttpGet("collection/({ids})", Name = "StoreHeaderCollection")]
+        [HttpGet("collection/({ids})", Name = "StoreHeaderCollection"), Authorize]
         public async Task<IActionResult> GetStoreHeaderCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))]IEnumerable<Guid> ids)
         {
             if(ids == null)
@@ -83,7 +83,7 @@ namespace API.Controllers
         /// <response code="201">Returns the newly created item</response>
         /// <response code="400">If the item is null</response>
         /// <response code="422">If the model is invalid</response>
-        [HttpPost(Name = "CreateStoreHeader")]
+        [HttpPost(Name = "CreateStoreHeader"), Authorize]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(422)]
@@ -100,7 +100,7 @@ namespace API.Controllers
             return CreatedAtRoute("StoreHeaderById", new { id = storeHeaderToReturn.Id }, storeHeaderToReturn);
         }
 
-        [HttpPost("collection")]
+        [HttpPost("collection"), Authorize]
         public async Task<IActionResult> CreateStoreHeaderCollection([FromBody] IEnumerable<StoreHeaderForCreationDto> storeHeaderCollection)
         {
             if(storeHeaderCollection == null)
@@ -123,7 +123,7 @@ namespace API.Controllers
             return CreatedAtRoute("StoreHeaderCollection", new { ids }, storeHeaderCollectionToReturn);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         [ServiceFilter(typeof(ValidateStoreExistsAttribute))]
         public async Task<IActionResult> DeleteStoreHeader(Guid id)
         {
@@ -135,7 +135,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateStoreExistsAttribute))]
         public async Task<IActionResult> UpdateStoreHeader(Guid id, [FromBody] StoreHeaderForUpdateDto storeHeader)
@@ -148,7 +148,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpOptions]
+        [HttpOptions, Authorize]
         public IActionResult GetCompaniesOptions()
         {
             Response.Headers.Add("Allow", "GET, OPTIONS, POST");

@@ -11,6 +11,7 @@ using Entities.RequestFeatures;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
@@ -29,7 +30,7 @@ namespace API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<IActionResult> GetRequestItemsForRequestHeader(Guid RequestHeaderId, [FromQuery] RequestItemParameters RequestItemParameters)
         {
             /*if (!RequestItemParameters.ValidAgeRange)
@@ -51,7 +52,7 @@ namespace API.Controllers
             return Ok(RequestItemsDto);
         }
 
-        [HttpGet("{id}", Name = "GetRequestItemForRequestHeader")]
+        [HttpGet("{id}", Name = "GetRequestItemForRequestHeader"), Authorize]
         public async Task<IActionResult> GetRequestItemForRequestHeader(Guid RequestHeaderId, Guid id)
         {
             var RequestHeader = await _repository.RequestHeader.GetRequestHeaderAsync(RequestHeaderId, trackChanges: false);
@@ -73,7 +74,7 @@ namespace API.Controllers
             return Ok(RequestItem);
         }
 
-        [HttpPost]
+        [HttpPost, Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateRequestItemForRequestHeader(Guid RequestHeaderId, [FromBody] RequestItemForCreationDto RequestItem)
         {
@@ -94,7 +95,7 @@ namespace API.Controllers
             return CreatedAtRoute("GetRequestItemForRequestHeader", new { RequestHeaderId, id = RequestItemToReturn.Id }, RequestItemToReturn);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
         public async Task<IActionResult> DeleteRequestItemForRequestHeader(Guid RequestHeaderId, Guid id)
         {
@@ -106,7 +107,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
         public async Task<IActionResult> UpdateRequestItemForRequestHeader(Guid RequestHeaderId, Guid id, [FromBody] RequestItemForUpdateDto RequestItem)
@@ -119,7 +120,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPatch("{id}")]
+        [HttpPatch("{id}"), Authorize]
         [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
         public async Task<IActionResult> PartiallyUpdateRequestItemForRequestHeader(Guid RequestHeaderId, Guid id, [FromBody] JsonPatchDocument<RequestItemForUpdateDto> patchDoc)
         {

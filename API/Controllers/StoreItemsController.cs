@@ -11,6 +11,7 @@ using Entities.RequestFeatures;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
@@ -29,7 +30,7 @@ namespace API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         [HttpHead]
         public async Task<IActionResult> GetStoreItemsForStoreHeader(Guid storeHeaderId, [FromQuery] StoreItemParameters storeItemParameters)
         {
@@ -52,7 +53,7 @@ namespace API.Controllers
             return Ok(storeItemsDto);
         }
 
-        [HttpGet("{id}", Name = "GetStoreItemForStoreHeader")]
+        [HttpGet("{id}", Name = "GetStoreItemForStoreHeader"), Authorize]
         public async Task<IActionResult> GetStoreItemForStoreHeader(Guid storeHeaderId, Guid id)
         {
             var storeHeader = await _repository.StoreHeader.GetStoreHeaderAsync(storeHeaderId, trackChanges: false);
@@ -74,7 +75,7 @@ namespace API.Controllers
             return Ok(storeItem);
         }
 
-        [HttpPost]
+        [HttpPost, Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateStoreItemForStoreHeader(Guid storeHeaderId, [FromBody] StoreItemForCreationDto storeItem)
         {
@@ -95,7 +96,7 @@ namespace API.Controllers
             return CreatedAtRoute("GetStoreItemForStoreHeader", new { storeHeaderId, id = storeItemToReturn.Id }, storeItemToReturn);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         [ServiceFilter(typeof(ValidateItemForStoreExistsAttribute))]
         public async Task<IActionResult> DeleteStoreItemForStoreHeader(Guid storeHeaderId, Guid id)
         {
@@ -107,7 +108,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateItemForStoreExistsAttribute))]
         public async Task<IActionResult> UpdateStoreItemForStoreHeader(Guid storeHeaderId, Guid id, [FromBody] StoreItemForUpdateDto storeItem)
@@ -120,7 +121,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPatch("{id}")]
+        [HttpPatch("{id}"), Authorize]
         [ServiceFilter(typeof(ValidateItemForStoreExistsAttribute))]
         public async Task<IActionResult> PartiallyUpdateStoreItemForStoreHeader(Guid storeHeaderId, Guid id, [FromBody] JsonPatchDocument<StoreItemForUpdateDto> patchDoc)
         {

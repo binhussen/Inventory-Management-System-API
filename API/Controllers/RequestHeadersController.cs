@@ -38,7 +38,7 @@ namespace API.Controllers
             return Ok(requestHeaderDtos);
         }
 
-        [HttpGet("{id}", Name = "RequestHeaderById")]
+        [HttpGet("{id}", Name = "RequestHeaderById"), Authorize]
         public async Task<IActionResult> GetRequestHeader(Guid id)
         {
             var requestheader = await _repository.RequestHeader.GetRequestHeaderAsync(id, trackChanges: false);
@@ -54,7 +54,7 @@ namespace API.Controllers
             }
         }
 
-        [HttpGet("collection/({ids})", Name = "RequestHeaderCollection")]
+        [HttpGet("collection/({ids})", Name = "RequestHeaderCollection"), Authorize]
         public async Task<IActionResult> GetRequestHeaderCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))]IEnumerable<Guid> ids)
         {
             if(ids == null)
@@ -83,12 +83,12 @@ namespace API.Controllers
         /// <response code="201">Returns the newly created item</response>
         /// <response code="400">If the item is null</response>
         /// <response code="422">If the model is invalid</response>
-        [HttpPost(Name = "CreateRequestHeader")]
+        [HttpPost(Name = "CreateRequestHeader"), Authorize]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(422)]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<IActionResult> CreateRequestHeader([FromBody]StoreHeaderForCreationDto requestHeader)
+        public async Task<IActionResult> CreateRequestHeader([FromBody]RequestHeaderForCreationDto requestHeader)
         {
             var requestHeaderEntity = _mapper.Map<RequestHeader>(requestHeader);
 
@@ -99,8 +99,8 @@ namespace API.Controllers
 
             return CreatedAtRoute("RequestHeaderById", new { id = requestHeaderToReturn.Id }, requestHeaderToReturn);
         }
-        [HttpPost("collection")]
-        public async Task<IActionResult> CreateRequestHeaderCollection([FromBody] IEnumerable<StoreHeaderForCreationDto> requestHeaderCollection)
+        [HttpPost("collection"), Authorize]
+        public async Task<IActionResult> CreateRequestHeaderCollection([FromBody] IEnumerable<RequestHeaderForCreationDto> requestHeaderCollection)
         {
             if(requestHeaderCollection == null)
             {
@@ -122,7 +122,7 @@ namespace API.Controllers
             return CreatedAtRoute("RequestHeaderCollection", new { ids }, requestHeaderCollectionToReturn);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}"), Authorize]
         [ServiceFilter(typeof(ValidateRequestExistsAttribute))]
         public async Task<IActionResult> DeleteRequestHeader(Guid id)
         {
@@ -134,10 +134,10 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateRequestExistsAttribute))]
-        public async Task<IActionResult> UpdateRequestHeader(Guid id, [FromBody] StoreHeaderForUpdateDto requestHeader)
+        public async Task<IActionResult> UpdateRequestHeader(Guid id, [FromBody] RequestHeaderForUpdateDto requestHeader)
         {
             var requestHeaderEntity = HttpContext.Items["requestHeader"] as RequestHeader;
 
@@ -147,7 +147,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpOptions]
+        [HttpOptions, Authorize]
         public IActionResult GetCompaniesOptions()
         {
             Response.Headers.Add("Allow", "GET, OPTIONS, POST");
