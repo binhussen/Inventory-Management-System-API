@@ -10,8 +10,5 @@ namespace Contracts
     public interface ICurrentUser
     {
         string GetCurrentUsername();
-
-       /* BaseEntity AuditCreate();
-        BaseEntity AuditUpdate();*/
     }
 }
