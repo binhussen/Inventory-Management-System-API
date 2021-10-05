@@ -129,5 +129,7 @@ namespace API.Extensions
                 });
             });
         }
+        public static void CurrentUser(this IServiceCollection services) =>
+           services.AddScoped<ICurrentUser, CurrentUser>();
     }
 }

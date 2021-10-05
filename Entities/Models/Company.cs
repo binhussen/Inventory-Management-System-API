@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Entities.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.Models
 {
-    public class Company
+    public class Company:BaseEntity
     {
         [Column("CompanyId")]
         public Guid Id { get; set; }

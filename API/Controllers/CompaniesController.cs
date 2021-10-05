@@ -20,12 +20,14 @@ namespace API.Controllers
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
+        private readonly ICurrentUser _currentUser;
 
-        public CompaniesController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
+        public CompaniesController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper,ICurrentUser currentUser)
         {
             _repository = repository;
             _logger = logger;
             _mapper = mapper;
+            _currentUser = currentUser;
         }
 
         [HttpGet(Name = "GetCompanies"), Authorize]
@@ -80,6 +82,8 @@ namespace API.Controllers
         public async Task<IActionResult> CreateCompany([FromBody]CompanyForCreationDto company)
         {
             var companyEntity = _mapper.Map<Company>(company);
+
+            companyEntity.CreatedByUser = _currentUser.GetCurrentUsername();
 
             _repository.Company.CreateCompany(companyEntity);
             await _repository.SaveAsync();

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Entities.Common;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entities.Models
 {
-    public class Employee
+    public class Employee:BaseEntity
     {
         [Column("EmployeeId")]
         public Guid Id { get; set; }

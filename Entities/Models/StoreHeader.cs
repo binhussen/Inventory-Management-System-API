@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entities.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Entities.Models
 {
-    public class StoreHeader
+    public class StoreHeader:BaseEntity
     {
         [Column("StoreHeaderId")]
         public Guid Id { get; set; }
