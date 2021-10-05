@@ -23,20 +23,20 @@ namespace API.Controllers
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
         private readonly RepositoryContext _repositoryContext;
-        private readonly ICurrentUser _currentUser;
-        public AccountController(ILoggerManager logger, IMapper mapper, UserManager<User> userManager, RepositoryContext repositoryContext, ICurrentUser currentUser)
+        private readonly IPasswordHasher<User> _passwordHash;
+        public AccountController(ILoggerManager logger, IMapper mapper, UserManager<User> userManager, RepositoryContext repositoryContext, IPasswordHasher<User> passwordHash)
         {
             _logger = logger;
             _mapper = mapper;
             _userManager = userManager;
             _repositoryContext = repositoryContext;
-            _currentUser = currentUser;
+            _passwordHash = passwordHash;
         }
 
         [HttpGet(Name = "users"), Authorize]
         public async Task<IActionResult> GetListUsers()
         {
-            var users = (from user in _repositoryContext.Users
+            /*var users = (from user in _repositoryContext.Users
                          join userRoles in _repositoryContext.UserRoles on user.Id equals userRoles.UserId
                          join role in _repositoryContext.Roles on userRoles.RoleId equals role.Id
                          select new { Id = user.Id,
@@ -47,16 +47,29 @@ namespace API.Controllers
                              PhoneNumber = user.PhoneNumber,
                              Roles = role.Name,
                              status = role.Name
-                         }).ToList();
-            /*var users = _repositoryContext.Users.ToList();*/
+                         }).ToList();*/
+            var users = _repositoryContext.Users.ToList();
             /*var userDto = _mapper.Map<IEnumerable<UserDto>>(users);*/
             return Ok(users);
         }
 
-        [HttpGet("username")]
-        public async Task<IActionResult> GetVurrentUser()
+        [HttpPut("{id}"), Authorize]
+        public async Task<IActionResult> UpdateUser(Guid id, [FromBody] UserForUpdate userForUpdate)
         {
-            return Ok(_currentUser.GetCurrentUsername());
+            var users = await _userManager.FindByIdAsync(id.ToString());
+            if (users == null)
+            {
+                _logger.LogInfo($"User with id: {id} doesn't exist in the database.");
+                return BadRequest();
+            }
+            var user = _mapper.Map(userForUpdate,users);
+
+            IdentityResult result = await _userManager.UpdateAsync(user);
+            if (result.Succeeded)
+            {
+                return Ok();
+            }
+            return BadRequest();
         }
     }
 }

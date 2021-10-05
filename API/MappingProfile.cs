@@ -50,7 +50,9 @@ namespace API
 
             CreateMap<RequestHeaderForUpdateDto, RequestHeader>();
             /**/
-            CreateMap<User, UserDto>();
+            CreateMap<UserDto, User>();
+
+            CreateMap<UserForUpdate, User>();
         }
     }
 }
