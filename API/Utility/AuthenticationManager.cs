@@ -25,21 +25,27 @@ namespace API.Utility
             _userManager = userManager;
             _configuration = configuration;
         }
-
         public async Task<bool> ValidateUser(UserForAuthenticationDto userForAuth)
         {
             _user = await _userManager.FindByNameAsync(userForAuth.UserName);
 
-            return (_user != null && await _userManager.CheckPasswordAsync(_user, userForAuth.Password));
+            return (_user != null && await _userManager.
+                CheckPasswordAsync(_user, userForAuth.Password));
         }
 
-        public async Task<string> CreateToken()
+        public async Task<object> CreateToken()
         {
             var signingCredentials = GetSigningCredentials();
             var claims = await GetClaims();
             var tokenOptions = GenerateTokenOptions(signingCredentials, claims);
 
-            return new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+            /*return new JwtSecurityTokenHandler().WriteToken(tokenOptions);*/
+
+            return (new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(tokenOptions),
+                expiration = tokenOptions.ValidTo
+            });
         }
 
         private SigningCredentials GetSigningCredentials()

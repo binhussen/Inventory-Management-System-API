@@ -21,6 +21,9 @@ namespace Entities.Models
         [MaxLength(20, ErrorMessage = "Maximum length for the Position is 20 characters.")]
         public string Position { get; set; }
 
+        public string PhoneNo { get; set; }
+        public string Email { get; set; }
+        public string Department { get; set; }
         [ForeignKey(nameof(Company))]
         public Guid CompanyId { get; set; }
         public Company Company { get; set; }

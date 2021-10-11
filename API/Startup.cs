@@ -2,11 +2,13 @@ using API.ActionFilters;
 using API.Extensions;
 using API.Utility;
 using Contracts;
+using Entities.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +17,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using NLog;
+using Repository;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -58,6 +61,7 @@ namespace API
             services.ConfigureJWT(Configuration);
 
             services.AddScoped<IAuthenticationManager, AuthenticationManager>();
+            /*services.AddScoped<ISignInManagerCore, SignInManagerCore>();*/
 
             services.ConfigureSwagger();
 

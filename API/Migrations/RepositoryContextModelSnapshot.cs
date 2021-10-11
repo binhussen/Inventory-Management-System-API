@@ -40,6 +40,15 @@ namespace API.Migrations
                     b.Property<DateTimeOffset>("CreatedDate")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Fax")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ModifiedByUser")
                         .HasColumnType("nvarchar(max)");
 
@@ -50,6 +59,12 @@ namespace API.Migrations
                         .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
+
+                    b.Property<string>("PhoneNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Website")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -95,6 +110,12 @@ namespace API.Migrations
                     b.Property<DateTimeOffset>("CreatedDate")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<string>("Department")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ModifiedByUser")
                         .HasColumnType("nvarchar(max)");
 
@@ -105,6 +126,9 @@ namespace API.Migrations
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("PhoneNo")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Position")
                         .IsRequired()
@@ -425,9 +449,6 @@ namespace API.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
@@ -435,50 +456,48 @@ namespace API.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("AspNetRoles");
 
                     b.HasData(
                         new
                         {
-                            Id = "b53e1faf-e2cd-42b8-9971-7a31cc49e22e",
-                            ConcurrencyStamp = "db405c22-3b89-48f3-8f14-bc338dfb3a06",
+                            Id = "c243a5f7-8826-47cf-a526-7d13d984ee41",
+                            ConcurrencyStamp = "66fe444b-8c7a-4967-b916-17965d1625b5",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "d15b87d7-de3d-4045-816b-a46c38773e82",
-                            ConcurrencyStamp = "c5d8034c-b153-494f-9381-ffe440926f7c",
+                            Id = "d2ee57b6-b0f6-4051-9957-2f369a57895c",
+                            ConcurrencyStamp = "8a3eb7ea-e0eb-497e-8f3b-8ec69982c6e4",
                             Name = "Purchaser",
                             NormalizedName = "PURCHASER"
                         },
                         new
                         {
-                            Id = "5068c2a5-f209-4c7c-b9fa-67ac9bab11d5",
-                            ConcurrencyStamp = "7da7aae6-49fc-4056-a6ac-10e3b90694c8",
+                            Id = "bd223492-dd4f-4b32-beeb-b0f1d3e93878",
+                            ConcurrencyStamp = "f057bab6-56b4-4f0a-ab7e-2f9e1149c37c",
                             Name = "StoreMan",
                             NormalizedName = "STOREMAN"
                         },
                         new
                         {
-                            Id = "16f94ee5-f49a-4f25-bd38-ba8c4b80b751",
-                            ConcurrencyStamp = "4da10746-c90e-4dbb-a773-657a7c8dda19",
+                            Id = "f656125f-bf8a-42c6-8c6b-561b7d9113a4",
+                            ConcurrencyStamp = "4524e808-83c5-4062-bf8a-da3f090daeeb",
                             Name = "DepartmentHead",
                             NormalizedName = "DEPARTMENTHEAD"
                         },
                         new
                         {
-                            Id = "42f54630-69a0-4392-b3f1-4df0ddb4a7e6",
-                            ConcurrencyStamp = "5d141978-9349-4258-97a1-86f97c56ce96",
+                            Id = "21383867-3b02-47a5-b4d2-d57be8cd156b",
+                            ConcurrencyStamp = "80af7845-f697-4c56-8715-255cfdc63be1",
                             Name = "FinanceManager",
                             NormalizedName = "FINANCEMANAGER"
                         },
                         new
                         {
-                            Id = "045bc82b-523c-43cb-ab42-4b20e38a56c6",
-                            ConcurrencyStamp = "3a99060f-0a78-497e-9295-55620981edb8",
+                            Id = "a21affca-08c0-4818-8418-7c58281d1743",
+                            ConcurrencyStamp = "cd1247ab-3e83-42bf-9dfc-18b3f6353972",
                             Name = "ProcurementManager",
                             NormalizedName = "PROCUREMENTMANAGER"
                         });
@@ -621,13 +640,6 @@ namespace API.Migrations
                     b.Navigation("StoreHeader");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.HasOne("Entities.Models.User", null)
-                        .WithMany("Roles")
-                        .HasForeignKey("UserId");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -692,11 +704,6 @@ namespace API.Migrations
             modelBuilder.Entity("Entities.Models.StoreHeader", b =>
                 {
                     b.Navigation("StoreItems");
-                });
-
-            modelBuilder.Entity("Entities.Models.User", b =>
-                {
-                    b.Navigation("Roles");
                 });
 #pragma warning restore 612, 618
         }

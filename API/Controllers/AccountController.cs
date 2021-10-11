@@ -71,5 +71,25 @@ namespace API.Controllers
             }
             return BadRequest();
         }
+
+        [HttpPut("lock/{id}"), Authorize]
+        public async Task<IActionResult> AccountLockedOut(Guid id)
+        {
+            var users = await _userManager.FindByIdAsync(id.ToString());
+            if (users == null)
+            {
+                _logger.LogInfo($"User with id: {id} doesn't exist in the database.");
+                return BadRequest();
+            }
+
+            users.LockoutEnabled = !users.LockoutEnabled;
+
+            IdentityResult result = await _userManager.UpdateAsync(users);
+            if (result.Succeeded)
+            {
+                return Ok($"active : {users.LockoutEnabled}");
+            }
+            return BadRequest();
+        }
     }
 }

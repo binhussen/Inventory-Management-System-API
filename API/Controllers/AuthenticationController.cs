@@ -50,8 +50,8 @@ namespace API.Controllers
 
             if (!userForRegistration.Roles.Any())
             {
-                _logger.LogInfo("Roles doesn't exist in the registration DTO object, adding the default one.");
-                await _userManager.AddToRoleAsync(user, "Manager");
+                _logger.LogInfo("Roles doesn't exist in the registration DTO object, you have to Add later.");
+                /*await _userManager.AddToRoleAsync(user, "Manager");*/
             }
             else
             { 
@@ -65,13 +65,13 @@ namespace API.Controllers
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto user)
         {
+
             if (!await _authManager.ValidateUser(user))
             {
                 _logger.LogWarn($"{nameof(Authenticate)}: Authentication failed. Wrong user name or password.");
                 return Unauthorized();
             }
-
-            return Ok(new { Token = await _authManager.CreateToken() });
+            return Ok(await _authManager.CreateToken());
         }
     }
 }

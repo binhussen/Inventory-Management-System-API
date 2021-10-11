@@ -351,3 +351,7 @@ System.Object -> System.Collections.Generic.IEnumerable`1[[Entities.Models.User,
    at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
+2021-10-05 16:04:44.0186 WARN Authenticate: Authentication failed. Wrong user name or password.
+2021-10-05 16:05:32.5574 WARN Authenticate: Authentication failed. Wrong user name or password.
+2021-10-05 16:05:34.6886 WARN Authenticate: Authentication failed. Wrong user name or password.
+2021-10-05 16:05:40.2837 WARN Authenticate: Authentication failed. Wrong user name or password.
