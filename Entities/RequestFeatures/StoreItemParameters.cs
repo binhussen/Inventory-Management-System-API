@@ -6,8 +6,8 @@
         {
             OrderBy = "Name";
         }
-        public uint min { get; set; }
-        public uint max { get; set; }
+
+        public int Status { get; set; }
 
         public string SearchTerm { get; set; }
     }

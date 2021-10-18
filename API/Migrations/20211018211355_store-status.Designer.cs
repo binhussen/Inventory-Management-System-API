@@ -4,14 +4,16 @@ using Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20211018211355_store-status")]
+    partial class storestatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -244,9 +246,6 @@ namespace API.Migrations
                     b.Property<Guid>("RequestHeaderId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
                     b.Property<int>("TotalPrice")
                         .HasColumnType("int");
 
@@ -467,43 +466,43 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "af69ef81-6f7d-4e31-a590-aa08b3ccdf9d",
-                            ConcurrencyStamp = "ba59cd62-bd35-4a9f-a59b-52c4200c9805",
+                            Id = "85a47be8-3d6b-464b-8b01-72c4eea49397",
+                            ConcurrencyStamp = "e0779d75-bea5-4a24-89a4-b5c43a7bca1a",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "d1f6f84d-06b8-44f2-b156-af50484f3567",
-                            ConcurrencyStamp = "86589978-d403-4f7a-bcb2-3c0b549c8221",
+                            Id = "3b13210e-a630-4b4f-8afd-ad38fa40f016",
+                            ConcurrencyStamp = "2d60f5cf-6111-442b-aab6-0af8daad2054",
                             Name = "Purchaser",
                             NormalizedName = "PURCHASER"
                         },
                         new
                         {
-                            Id = "e4ae7e7b-9554-46f3-919a-9492577fcd66",
-                            ConcurrencyStamp = "1dbdac15-6f6b-456a-8721-df0ae42ebef3",
+                            Id = "f83d52c0-96a1-4c5d-94f0-2787b4700a93",
+                            ConcurrencyStamp = "fc0c83f2-9ac4-495f-a470-35c2b1b7e605",
                             Name = "StoreMan",
                             NormalizedName = "STOREMAN"
                         },
                         new
                         {
-                            Id = "ab2a7833-902c-49c1-8019-5d8f431cff43",
-                            ConcurrencyStamp = "2ed0d1e9-02e6-455c-834a-490d3a2e6aa2",
+                            Id = "7c88cd02-d23c-4997-9c13-1879f379c8bc",
+                            ConcurrencyStamp = "3cc156e2-0f63-4a2e-b485-65560351e6b7",
                             Name = "DepartmentHead",
                             NormalizedName = "DEPARTMENTHEAD"
                         },
                         new
                         {
-                            Id = "7146b384-0433-4447-bec6-4c5f8e3d896b",
-                            ConcurrencyStamp = "4ad9d258-ce14-4b01-a58b-28ccf6398d67",
+                            Id = "ba78bd69-3b7d-43f6-b73a-33759245e64a",
+                            ConcurrencyStamp = "0ab16e60-6d27-4e2b-aa4e-a32fa35594f5",
                             Name = "FinanceManager",
                             NormalizedName = "FINANCEMANAGER"
                         },
                         new
                         {
-                            Id = "44cf48ff-6568-4c42-84a2-6bff60439f74",
-                            ConcurrencyStamp = "f4cca900-4559-4f8f-97c5-bca74d75a50b",
+                            Id = "050051e2-1547-4832-a49b-e9f5d8568f3f",
+                            ConcurrencyStamp = "4fe03599-3a34-4b51-9e6b-d9a212e72384",
                             Name = "ProcurementManager",
                             NormalizedName = "PROCUREMENTMANAGER"
                         });

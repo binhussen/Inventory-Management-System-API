@@ -17,16 +17,15 @@ namespace Repository
         {
         }
 
-        public async Task<PagedList<RequestItem>> GetRequestItemsAsync(Guid RequestHeaderId, RequestItemParameters storeItemParameters, bool trackChanges)
+        public async Task<PagedList<RequestItem>> GetRequestItemsAsync(Guid RequestHeaderId, RequestItemParameters requestItemParameters, bool trackChanges)
         {
-            var storeItems = await FindByCondition(e => e.RequestHeaderId.Equals(RequestHeaderId), trackChanges)
+            var storeItems = await FindByCondition(e =>  e.RequestHeaderId.Equals(RequestHeaderId) && e.Status.Equals(requestItemParameters.Status), trackChanges)
                 /*.FilterRequestItems(storeItemParameters.min, storeItemParameters.max)*/
-                .Search(storeItemParameters.SearchTerm)
-                .Sort(storeItemParameters.OrderBy)
+                .Search(requestItemParameters.SearchTerm)
+                .Sort(requestItemParameters.OrderBy)
                 .ToListAsync();
-
             return PagedList<RequestItem>
-                .ToPagedList(storeItems, storeItemParameters.PageNumber, storeItemParameters.PageSize);
+                .ToPagedList(storeItems, requestItemParameters.PageNumber, requestItemParameters.PageSize);
         }
         
         public async Task<RequestItem> GetRequestItemAsync(Guid RequestHeaderId, Guid id, bool trackChanges) =>

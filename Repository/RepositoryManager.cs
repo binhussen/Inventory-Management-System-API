@@ -13,6 +13,7 @@ namespace Repository
         private IRequestItemRepository _requestItemRepository;
         private IStoreHeaderRepository _storeHeaderRepository;
         private IStoreItemRepository _storeItemRepository;
+        private IStoreRepository _storeRepository;
 
         public RepositoryManager(RepositoryContext repositoryContext)
         {
@@ -80,6 +81,17 @@ namespace Repository
                     _storeItemRepository = new StoreItemRepository(_repositoryContext);
 
                 return _storeItemRepository;
+            }
+        }
+
+        public IStoreRepository Store
+        {
+            get
+            {
+                if (_storeRepository == null)
+                    _storeRepository = new StoreRepository(_repositoryContext);
+
+                return _storeRepository;
             }
         }
         public Task SaveAsync() => _repositoryContext.SaveChangesAsync();

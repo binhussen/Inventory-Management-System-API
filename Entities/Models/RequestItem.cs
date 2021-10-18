@@ -20,6 +20,7 @@ namespace Entities.Models
         public int UnitPrice { get; set; }
         public int TotalPrice { get; set; }
         public string BudgetCode { get; set; }
+        public int Status { get; set; }
         [ForeignKey(nameof(RequestHeader))]
         public Guid RequestHeaderId { get; set; }
         public RequestHeader RequestHeader { get; set; }

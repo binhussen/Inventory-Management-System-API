@@ -19,6 +19,7 @@ namespace Entities.Models
         public int QtyRecived { get; set; }
         public int UnitPrice { get; set; }
         public int TotalPrice { get; set; }
+        public int Status { get; set; }
         [ForeignKey(nameof(StoreHeader))]
         public Guid StoreHeaderId { get; set; }
         public StoreHeader StoreHeader { get; set; }

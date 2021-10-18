@@ -14,5 +14,6 @@ namespace Entities.DataTransferObjects
         public int QtyRecived { get; set; }
         public int UnitPrice { get; set; }
         public int TotalPrice { get; set; }
+        public int Status { get; set; }
     }
 }

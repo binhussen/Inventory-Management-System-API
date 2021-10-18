@@ -7,5 +7,6 @@ namespace Entities.DataTransferObjects
 {
     public class RequestItemForUpdateDto : RequestItemForManipulationDto
     { 
+        public int Status { get; set; }
     }
 }

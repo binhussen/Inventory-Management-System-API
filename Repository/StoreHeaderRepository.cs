@@ -17,7 +17,7 @@ namespace Repository
         {
         }
 
-        public async Task<PagedList<StoreHeader>> GetStoresAsync(StoreParameters storeParameters, bool trackChanges)
+        public async Task<PagedList<StoreHeader>> GetStoresAsync(StoreItemParameters storeParameters, bool trackChanges)
         {
             var stores = await FindAll(trackChanges)
            .OrderBy(c => c.SupplierId)

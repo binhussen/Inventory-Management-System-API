@@ -10,6 +10,7 @@ namespace Contracts
         IRequestItemRepository RequestItem { get; }
         IStoreHeaderRepository StoreHeader { get; }
         IStoreItemRepository StoreItem { get; }
+        IStoreRepository Store { get;}
         Task SaveAsync();
     }
 }

@@ -31,7 +31,7 @@ namespace API.Controllers
         }
 
         [HttpGet(Name = "GetStoreHeaders"), Authorize]
-        public async Task<IActionResult> GetStoreHeaders([FromQuery] StoreParameters storeParameters)
+        public async Task<IActionResult> GetStoreHeaders([FromQuery] StoreItemParameters storeParameters)
         {
             var storeHeaders = await _repository.StoreHeader.GetStoresAsync(storeParameters,trackChanges:false);
 
