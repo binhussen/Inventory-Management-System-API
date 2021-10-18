@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
-    [Route("api/storeItems/{storeHeaderId}/storeItems")]
+    [Route("api/storeitems/{storeheaderid}/storeitems")]
     [ApiController]
     public class StoreItemsController : ControllerBase
     {
@@ -32,19 +32,19 @@ namespace API.Controllers
 
         [HttpGet, Authorize]
         [HttpHead]
-        public async Task<IActionResult> GetStoreItemsForStoreHeader(Guid storeHeaderId, [FromQuery] StoreItemParameters storeItemParameters)
+        public async Task<IActionResult> GetStoreItemsForStoreHeader(Guid storeheaderid, [FromQuery] StoreItemParameters storeItemParameters)
         {
             /*if (!storeItemParameters.ValidAgeRange)
                 return BadRequest("Max age can't be less than min age.");*/
 
-            var storeHeader = await _repository.StoreHeader.GetStoreHeaderAsync(storeHeaderId, trackChanges: false);
+            var storeHeader = await _repository.StoreHeader.GetStoreHeaderAsync(storeheaderid, trackChanges: false);
             if (storeHeader == null)
             {
-                _logger.LogInfo($"StoreHeader with id: {storeHeaderId} doesn't exist in the database.");
+                _logger.LogInfo($"StoreHeader with id: {storeheaderid} doesn't exist in the database.");
                 return NotFound();
             }
 
-            var storeItemsFromDb = await _repository.StoreItem.GetStoreItemsAsync(storeHeaderId, storeItemParameters, trackChanges: false);
+            var storeItemsFromDb = await _repository.StoreItem.GetStoreItemsAsync(storeheaderid, storeItemParameters, trackChanges: false);
 
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(storeItemsFromDb.MetaData));
 
@@ -54,16 +54,16 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}", Name = "GetStoreItemForStoreHeader"), Authorize]
-        public async Task<IActionResult> GetStoreItemForStoreHeader(Guid storeHeaderId, Guid id)
+        public async Task<IActionResult> GetStoreItemForStoreHeader(Guid storeheaderid, Guid id)
         {
-            var storeHeader = await _repository.StoreHeader.GetStoreHeaderAsync(storeHeaderId, trackChanges: false);
+            var storeHeader = await _repository.StoreHeader.GetStoreHeaderAsync(storeheaderid, trackChanges: false);
             if (storeHeader == null)
             {
-                _logger.LogInfo($"StoreHeader with id: {storeHeaderId} doesn't exist in the database.");
+                _logger.LogInfo($"StoreHeader with id: {storeheaderid} doesn't exist in the database.");
                 return NotFound();
             }
 
-            var storeItemDb = await _repository.StoreItem.GetStoreItemAsync(storeHeaderId, id, trackChanges: false);
+            var storeItemDb = await _repository.StoreItem.GetStoreItemAsync(storeheaderid, id, trackChanges: false);
             if (storeItemDb == null)
             {
                 _logger.LogInfo($"StoreItem with id: {id} doesn't exist in the database.");
@@ -77,28 +77,28 @@ namespace API.Controllers
 
         [HttpPost, Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<IActionResult> CreateStoreItemForStoreHeader(Guid storeHeaderId, [FromBody] StoreItemForCreationDto storeItem)
+        public async Task<IActionResult> CreateStoreItemForStoreHeader(Guid storeheaderid, [FromBody] StoreItemForCreationDto storeItem)
         {
-            var storeHeader = await _repository.StoreHeader.GetStoreHeaderAsync(storeHeaderId, trackChanges: false);
+            var storeHeader = await _repository.StoreHeader.GetStoreHeaderAsync(storeheaderid, trackChanges: false);
             if(storeHeader == null)
             {
-                _logger.LogInfo($"StoreHeader with id: {storeHeaderId} doesn't exist in the database.");
+                _logger.LogInfo($"StoreHeader with id: {storeheaderid} doesn't exist in the database.");
                 return NotFound();
             }
 
             var storeItemEntity = _mapper.Map<StoreItem>(storeItem);
             
-            _repository.StoreItem.CreateStoreItemForStoreHeader(storeHeaderId, storeItemEntity);
+            _repository.StoreItem.CreateStoreItemForStoreHeader(storeheaderid, storeItemEntity);
             await _repository.SaveAsync();
 
             var storeItemToReturn = _mapper.Map<StoreItemDto>(storeItemEntity);
 
-            return CreatedAtRoute("GetStoreItemForStoreHeader", new { storeHeaderId, id = storeItemToReturn.Id }, storeItemToReturn);
+            return CreatedAtRoute("GetStoreItemForStoreHeader", new { storeheaderid, id = storeItemToReturn.Id }, storeItemToReturn);
         }
 
         [HttpDelete("{id}"), Authorize]
         [ServiceFilter(typeof(ValidateItemForStoreExistsAttribute))]
-        public async Task<IActionResult> DeleteStoreItemForStoreHeader(Guid storeHeaderId, Guid id)
+        public async Task<IActionResult> DeleteStoreItemForStoreHeader(Guid storeheaderid, Guid id)
         {
             var storeItemForStoreHeader = HttpContext.Items["storeItem"] as StoreItem;
 
@@ -111,7 +111,7 @@ namespace API.Controllers
         [HttpPut("{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateItemForStoreExistsAttribute))]
-        public async Task<IActionResult> UpdateStoreItemForStoreHeader(Guid storeHeaderId, Guid id, [FromBody] StoreItemForUpdateDto storeItem)
+        public async Task<IActionResult> UpdateStoreItemForStoreHeader(Guid storeheaderid, Guid id, [FromBody] StoreItemForUpdateDto storeItem)
         {
             var storeItemEntity = HttpContext.Items["storeItem"] as StoreItem;
 
@@ -123,7 +123,7 @@ namespace API.Controllers
 
         [HttpPatch("{id}"), Authorize]
         [ServiceFilter(typeof(ValidateItemForStoreExistsAttribute))]
-        public async Task<IActionResult> PartiallyUpdateStoreItemForStoreHeader(Guid storeHeaderId, Guid id, [FromBody] JsonPatchDocument<StoreItemForUpdateDto> patchDoc)
+        public async Task<IActionResult> PartiallyUpdateStoreItemForStoreHeader(Guid storeheaderid, Guid id, [FromBody] JsonPatchDocument<StoreItemForUpdateDto> patchDoc)
         {
             if(patchDoc == null)
             {

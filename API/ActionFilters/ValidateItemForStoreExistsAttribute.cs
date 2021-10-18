@@ -24,7 +24,7 @@ namespace API.ActionFilters
             var method = context.HttpContext.Request.Method;
             var trackChanges = (method.Equals("PUT") || method.Equals("PATCH")) ? true : false;
 
-            var storeId = (Guid)context.ActionArguments["storeHeaderId"];
+            var storeId = (Guid)context.ActionArguments["storeheaderid"];
             var store = await _repository.StoreHeader.GetStoreHeaderAsync(storeId, false);
 
             if (store == null)

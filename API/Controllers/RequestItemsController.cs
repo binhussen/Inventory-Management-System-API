@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
-    [Route("api/RequestItems/{RequestHeaderId}/RequestItems")]
+    [Route("api/requestitems/{requestheaderid}/requestitems")]
     [ApiController]
     public class RequestItemsController : ControllerBase
     {
@@ -31,19 +31,19 @@ namespace API.Controllers
         }
 
         [HttpGet, Authorize]
-        public async Task<IActionResult> GetRequestItemsForRequestHeader(Guid RequestHeaderId, [FromQuery] RequestItemParameters RequestItemParameters)
+        public async Task<IActionResult> GetRequestItemsForRequestHeader(Guid requestheaderid, [FromQuery] RequestItemParameters requestItemParameters)
         {
             /*if (!RequestItemParameters.ValidAgeRange)
                 return BadRequest("Max age can't be less than min age.");*/
 
-            var RequestHeader = await _repository.RequestHeader.GetRequestHeaderAsync(RequestHeaderId, trackChanges: false);
+            var RequestHeader = await _repository.RequestHeader.GetRequestHeaderAsync(requestheaderid, trackChanges: false);
             if (RequestHeader == null)
             {
-                _logger.LogInfo($"RequestHeader with id: {RequestHeaderId} doesn't exist in the database.");
+                _logger.LogInfo($"RequestHeader with id: {requestheaderid} doesn't exist in the database.");
                 return NotFound();
             }
 
-            var RequestItemsFromDb = await _repository.RequestItem.GetRequestItemsAsync(RequestHeaderId, RequestItemParameters, trackChanges: false);
+            var RequestItemsFromDb = await _repository.RequestItem.GetRequestItemsAsync(requestheaderid, requestItemParameters, trackChanges: false);
 
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(RequestItemsFromDb.MetaData));
 
@@ -53,16 +53,16 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}", Name = "GetRequestItemForRequestHeader"), Authorize]
-        public async Task<IActionResult> GetRequestItemForRequestHeader(Guid RequestHeaderId, Guid id)
+        public async Task<IActionResult> GetRequestItemForRequestHeader(Guid requestheaderid, Guid id)
         {
-            var RequestHeader = await _repository.RequestHeader.GetRequestHeaderAsync(RequestHeaderId, trackChanges: false);
+            var RequestHeader = await _repository.RequestHeader.GetRequestHeaderAsync(requestheaderid, trackChanges: false);
             if (RequestHeader == null)
             {
-                _logger.LogInfo($"RequestHeader with id: {RequestHeaderId} doesn't exist in the database.");
+                _logger.LogInfo($"RequestHeader with id: {requestheaderid} doesn't exist in the database.");
                 return NotFound();
             }
 
-            var RequestItemDb = await _repository.RequestItem.GetRequestItemAsync(RequestHeaderId, id, trackChanges: false);
+            var RequestItemDb = await _repository.RequestItem.GetRequestItemAsync(requestheaderid, id, trackChanges: false);
             if (RequestItemDb == null)
             {
                 _logger.LogInfo($"RequestItem with id: {id} doesn't exist in the database.");
@@ -76,28 +76,28 @@ namespace API.Controllers
 
         [HttpPost, Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
-        public async Task<IActionResult> CreateRequestItemForRequestHeader(Guid RequestHeaderId, [FromBody] RequestItemForCreationDto RequestItem)
+        public async Task<IActionResult> CreateRequestItemForRequestHeader(Guid requestheaderid, [FromBody] RequestItemForCreationDto RequestItem)
         {
-            var RequestHeader = await _repository.RequestHeader.GetRequestHeaderAsync(RequestHeaderId, trackChanges: false);
+            var RequestHeader = await _repository.RequestHeader.GetRequestHeaderAsync(requestheaderid, trackChanges: false);
             if(RequestHeader == null)
             {
-                _logger.LogInfo($"RequestHeader with id: {RequestHeaderId} doesn't exist in the database.");
+                _logger.LogInfo($"RequestHeader with id: {requestheaderid} doesn't exist in the database.");
                 return NotFound();
             }
 
             var RequestItemEntity = _mapper.Map<RequestItem>(RequestItem);
             
-            _repository.RequestItem.CreateRequestItemForRequestHeader(RequestHeaderId, RequestItemEntity);
+            _repository.RequestItem.CreateRequestItemForRequestHeader(requestheaderid, RequestItemEntity);
             await _repository.SaveAsync();
 
             var RequestItemToReturn = _mapper.Map<RequestItemDto>(RequestItemEntity);
 
-            return CreatedAtRoute("GetRequestItemForRequestHeader", new { RequestHeaderId, id = RequestItemToReturn.Id }, RequestItemToReturn);
+            return CreatedAtRoute("GetRequestItemForRequestHeader", new { requestheaderid, id = RequestItemToReturn.Id }, RequestItemToReturn);
         }
 
         [HttpDelete("{id}"), Authorize]
         [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
-        public async Task<IActionResult> DeleteRequestItemForRequestHeader(Guid RequestHeaderId, Guid id)
+        public async Task<IActionResult> DeleteRequestItemForRequestHeader(Guid requestheaderid, Guid id)
         {
             var RequestItemForRequestHeader = HttpContext.Items["requestItem"] as RequestItem;
 
@@ -122,7 +122,7 @@ namespace API.Controllers
 
         [HttpPatch("{id}"), Authorize]
         [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
-        public async Task<IActionResult> PartiallyUpdateRequestItemForRequestHeader(Guid RequestHeaderId, Guid id, [FromBody] JsonPatchDocument<RequestItemForUpdateDto> patchDoc)
+        public async Task<IActionResult> PartiallyUpdateRequestItemForRequestHeader(Guid requestheaderid, Guid id, [FromBody] JsonPatchDocument<RequestItemForUpdateDto> patchDoc)
         {
             if(patchDoc == null)
             {

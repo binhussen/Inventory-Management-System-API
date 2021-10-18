@@ -24,7 +24,7 @@ namespace API.ActionFilters
             var method = context.HttpContext.Request.Method;
             var trackChanges = (method.Equals("PUT") || method.Equals("PATCH")) ? true : false;
 
-            var requestId = (Guid)context.ActionArguments["requestHeaderId"];
+            var requestId = (Guid)context.ActionArguments["requestheaderid"];
             var request = await _repository.RequestHeader.GetRequestHeaderAsync(requestId, false);
 
             if (request == null)
