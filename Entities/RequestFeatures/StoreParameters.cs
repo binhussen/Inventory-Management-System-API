@@ -1,10 +1,10 @@
 ﻿namespace Entities.RequestFeatures
 {
-    public class CompanyParameters : RequestParameters
+    public class StoreParameters : RequestParameters
     {
-        public CompanyParameters()
+        public StoreParameters()
         {
-            OrderBy = "name";
+            OrderBy = "Name";
         }
 
         public string SearchTerm { get; set; }

@@ -20,7 +20,7 @@ namespace Repository
         public async Task<PagedList<RequestItem>> GetRequestItemsAsync(Guid RequestHeaderId, RequestItemParameters storeItemParameters, bool trackChanges)
         {
             var storeItems = await FindByCondition(e => e.RequestHeaderId.Equals(RequestHeaderId), trackChanges)
-                .FilterRequestItems(storeItemParameters.min, storeItemParameters.max)
+                /*.FilterRequestItems(storeItemParameters.min, storeItemParameters.max)*/
                 .Search(storeItemParameters.SearchTerm)
                 .Sort(storeItemParameters.OrderBy)
                 .ToListAsync();

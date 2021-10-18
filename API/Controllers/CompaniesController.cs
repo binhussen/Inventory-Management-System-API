@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Entities.RequestFeatures;
+using Newtonsoft.Json;
 
 namespace API.Controllers
 {
@@ -32,9 +34,11 @@ namespace API.Controllers
         }
 
         [HttpGet(Name = "GetCompanies"), Authorize]
-        public async Task<IActionResult> GetCompanies()
+        public async Task<IActionResult> GetCompanies([FromQuery] CompanyParameters companyParameters)
         {
-            var companies = await _repository.Company.GetAllCompaniesAsync(trackChanges: false);
+            var companies = await _repository.Company.GetCompaniesAsync(companyParameters,trackChanges: false);
+
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(companies.MetaData));
 
             var companiesDto = _mapper.Map<IEnumerable<CompanyDto>>(companies);
 

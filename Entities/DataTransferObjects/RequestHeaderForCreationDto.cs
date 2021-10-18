@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Entities.DataTransferObjects
 {
-    public class RequestHeaderForCreationDto : RequestHeaderForManipulationDto
+    public class RequestHeaderForCreationDto
     {
         public IEnumerable<RequestItemForCreationDto> RequestItems { get; set; }
     }

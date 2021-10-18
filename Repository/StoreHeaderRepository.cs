@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using Entities;
 using Entities.Models;
+using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,10 +17,19 @@ namespace Repository
         {
         }
 
-        public async Task<IEnumerable<StoreHeader>> GetAllStoreHeadersAsync(bool trackChanges) =>
+        public async Task<PagedList<StoreHeader>> GetStoresAsync(StoreParameters storeParameters, bool trackChanges)
+        {
+            var stores = await FindAll(trackChanges)
+           .OrderBy(c => c.SupplierId)
+           .ToListAsync();
+
+            return PagedList<StoreHeader>
+                .ToPagedList(stores, storeParameters.PageNumber, storeParameters.PageSize);
+        }
+        /*public async Task<IEnumerable<StoreHeader>> GetAllStoreHeadersAsync(bool trackChanges) =>
            await FindAll(trackChanges)
            .OrderBy(c => c.Id)
-           .ToListAsync();
+           .ToListAsync();*/
 
         public async Task<StoreHeader> GetStoreHeaderAsync(Guid storeHeaderId, bool trackChanges) =>
             await FindByCondition(c => c.Id.Equals(storeHeaderId), trackChanges)

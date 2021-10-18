@@ -60,7 +60,8 @@ namespace API.Utility
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, _user.UserName)
+                new Claim(ClaimTypes.Name, _user.UserName),
+                new Claim(ClaimTypes.Role, "Manager")
             };
 
             var roles = await _userManager.GetRolesAsync(_user);

@@ -1,0 +1,6 @@
+2021-10-16 12:59:05.4163 INFO StoreHeader with id: 00000000-0000-0000-0000-000000000000 doesn't exist in the database.
+2021-10-16 12:59:05.4163 INFO StoreHeader with id: 00000000-0000-0000-0000-000000000000 doesn't exist in the database.
+2021-10-16 12:59:32.3252 INFO StoreHeader with id: 00000000-0000-0000-0000-000000000000 doesn't exist in the database.
+2021-10-16 12:59:32.3306 INFO StoreHeader with id: 00000000-0000-0000-0000-000000000000 doesn't exist in the database.
+2021-10-16 13:18:02.4678 ERROR Object sent from client is null. Controller: StoreHeaders, action: CreateStoreHeader
+2021-10-16 13:18:14.5815 ERROR Object sent from client is null. Controller: StoreHeaders, action: CreateStoreHeader

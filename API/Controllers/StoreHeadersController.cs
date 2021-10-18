@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Entities.RequestFeatures;
+using Newtonsoft.Json;
 
 namespace API.Controllers
 {
@@ -29,9 +31,11 @@ namespace API.Controllers
         }
 
         [HttpGet(Name = "GetStoreHeaders"), Authorize]
-        public async Task<IActionResult> GetStoreHeaders()
+        public async Task<IActionResult> GetStoreHeaders([FromQuery] StoreParameters storeParameters)
         {
-            var storeHeaders = await _repository.StoreHeader.GetAllStoreHeadersAsync(trackChanges:false);
+            var storeHeaders = await _repository.StoreHeader.GetStoresAsync(storeParameters,trackChanges:false);
+
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(storeHeaders.MetaData));
 
             var storeHeaderDtos = _mapper.Map<IEnumerable<StoreHeaderDto>>(storeHeaders);
 

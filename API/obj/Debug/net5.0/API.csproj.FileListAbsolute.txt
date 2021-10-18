@@ -145,7 +145,6 @@ C:\Users\mhd\Documents\Eric\API\API\obj\Debug\net5.0\API.GeneratedMSBuildEditorC
 C:\Users\mhd\Documents\Eric\API\API\obj\Debug\net5.0\API.AssemblyInfoInputs.cache
 C:\Users\mhd\Documents\Eric\API\API\obj\Debug\net5.0\API.AssemblyInfo.cs
 C:\Users\mhd\Documents\Eric\API\API\obj\Debug\net5.0\API.csproj.CoreCompileInputs.cache
-C:\Users\mhd\Documents\Eric\API\API\obj\Debug\net5.0\API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\mhd\Documents\Eric\API\API\obj\Debug\net5.0\API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\mhd\Documents\Eric\API\API\obj\Debug\net5.0\staticwebassets\API.StaticWebAssets.Manifest.cache
 C:\Users\mhd\Documents\Eric\API\API\obj\Debug\net5.0\staticwebassets\API.StaticWebAssets.xml

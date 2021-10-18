@@ -1,6 +1,7 @@
 ﻿using Contracts;
 using Entities;
 using Entities.Models;
+using Entities.RequestFeatures;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,10 +17,19 @@ namespace Repository
         {
         }
 
-        public async Task<IEnumerable<RequestHeader>> GetAllRequestHeadersAsync(bool trackChanges) =>
+        public async Task<PagedList<RequestHeader>> GetRequestsAsync(OrderParameters orderParameters, bool trackChanges)
+        {
+            var request = await FindAll(trackChanges)
+           .OrderBy(c => c.CheckedBy)
+           .ToListAsync();
+
+            return PagedList<RequestHeader>
+                .ToPagedList(request, orderParameters.PageNumber, orderParameters.PageSize);
+        }
+        /*public async Task<IEnumerable<RequestHeader>> GetAllRequestHeadersAsync(bool trackChanges) =>
            await FindAll(trackChanges)
            .OrderBy(c => c.Id)
-           .ToListAsync();
+           .ToListAsync();*/
 
         public async Task<RequestHeader> GetRequestHeaderAsync(Guid RequestHeaderId, bool trackChanges) =>
             await FindByCondition(c => c.Id.Equals(RequestHeaderId), trackChanges)
