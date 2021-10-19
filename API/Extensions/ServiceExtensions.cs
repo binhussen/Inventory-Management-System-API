@@ -55,7 +55,7 @@ namespace API.Extensions
 
         public static void ConfigureIdentity(this IServiceCollection services)
         {
-            var builder = services.AddIdentityCore<User>(o =>
+            /*var builder = services.AddIdentityCore<User>(o =>
             {
                 o.Password.RequireDigit = true;
                 o.Password.RequireLowercase = false;
@@ -67,10 +67,31 @@ namespace API.Extensions
                 o.Lockout.AllowedForNewUsers = true;
                 o.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
                 o.Lockout.MaxFailedAccessAttempts = 3;
-            });
+            });*/
 
-            builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), builder.Services);
+            /*builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), builder.Services);
             builder.AddEntityFrameworkStores<RepositoryContext>()
+                .AddDefaultTokenProviders();*/
+            services.AddIdentity<User, IdentityRole>(opt =>
+            {
+                // Password settings.
+                opt.Password.RequireDigit = true;
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequiredLength = 10;
+                opt.User.RequireUniqueEmail = true;
+                opt.Password.RequiredUniqueChars = 1;
+
+                //TokenOption
+                opt.Tokens.EmailConfirmationTokenProvider = "emailconfirmation";
+
+                // Lockout settings.
+                opt.Lockout.AllowedForNewUsers = true;
+                opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                opt.Lockout.MaxFailedAccessAttempts = 3;
+            })
+                .AddEntityFrameworkStores<RepositoryContext>()
                 .AddDefaultTokenProviders();
         }
         public static void ConfigureJWT(this IServiceCollection services, IConfiguration configuration)
@@ -133,7 +154,5 @@ namespace API.Extensions
                 });
             });
         }
-        public static void CurrentUser(this IServiceCollection services) =>
-           services.AddScoped<ICurrentUser, CurrentUser>();
     }
 }

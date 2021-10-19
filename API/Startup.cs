@@ -54,14 +54,12 @@ namespace API
             services.AddScoped<ValidateItemForStoreExistsAttribute>();
 
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.CurrentUser();
 
             services.AddAuthentication();
             services.ConfigureIdentity();
             services.ConfigureJWT(Configuration);
 
             services.AddScoped<IAuthenticationManager, AuthenticationManager>();
-            /*services.AddScoped<ISignInManagerCore, SignInManagerCore>();*/
 
             services.ConfigureSwagger();
 

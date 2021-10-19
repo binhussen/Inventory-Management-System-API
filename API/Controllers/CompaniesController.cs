@@ -22,15 +22,13 @@ namespace API.Controllers
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
-        private readonly ICurrentUser _currentUser;
         private DateTimeOffset currentTime = DateTimeOffset.UtcNow;
 
-        public CompaniesController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper,ICurrentUser currentUser)
+        public CompaniesController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
         {
             _repository = repository;
             _logger = logger;
             _mapper = mapper;
-            _currentUser = currentUser;
         }
 
         [HttpGet(Name = "GetCompanies"), Authorize]
@@ -88,9 +86,6 @@ namespace API.Controllers
         {
             var companyEntity = _mapper.Map<Company>(company);
 
-            companyEntity.CreatedByUser = _currentUser.GetCurrentUsername();
-            companyEntity.CreatedDate = currentTime;
-
             _repository.Company.CreateCompany(companyEntity);
             await _repository.SaveAsync();
 
@@ -143,9 +138,6 @@ namespace API.Controllers
             var companyEntity = HttpContext.Items["company"] as Company;
 
             var companys=_mapper.Map(company, companyEntity);
-
-            companys.ModifiedByUser = _currentUser.GetCurrentUsername();
-            companys.ModifiedDate = currentTime;
 
             await _repository.SaveAsync();
 

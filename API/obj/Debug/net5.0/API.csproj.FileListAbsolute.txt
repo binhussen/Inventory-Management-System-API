@@ -155,3 +155,4 @@ C:\Users\mhd\Documents\Eric\API\API\obj\Debug\net5.0\API.dll
 C:\Users\mhd\Documents\Eric\API\API\obj\Debug\net5.0\ref\API.dll
 C:\Users\mhd\Documents\Eric\API\API\obj\Debug\net5.0\API.pdb
 C:\Users\mhd\Documents\Eric\API\API\obj\Debug\net5.0\API.genruntimeconfig.cache
+C:\Users\mhd\Documents\Eric\API\API\obj\Debug\net5.0\API.MvcApplicationPartsAssemblyInfo.cs

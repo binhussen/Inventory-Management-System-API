@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 using Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace API.Controllers
 {
@@ -66,12 +67,30 @@ namespace API.Controllers
         public async Task<IActionResult> Authenticate([FromBody] UserForAuthenticationDto user)
         {
 
-            if (!await _authManager.ValidateUser(user))
+            /*if (!await _authManager.ValidateUser(user))
             {
                 _logger.LogWarn($"{nameof(Authenticate)}: Authentication failed. Wrong user name or password.");
                 return Unauthorized();
             }
-            return Ok(await _authManager.CreateToken());
+            return Ok(await _authManager.CreateToken());*/
+
+            var result = await _authManager.Login(user);
+
+            if (result.Succeeded)
+            {
+                return Ok(await _authManager.CreateToken());
+            }
+            if (result.IsLockedOut)
+            {
+
+                _logger.LogWarn($"{nameof(Authenticate)}: Your account is locked out.");
+                return StatusCode(423, "The account is locked out for 5 minuts");
+            }
+            else
+            {
+                _logger.LogWarn($"{nameof(Authenticate)}: Authentication failed. Wrong user name or password.");
+                return Unauthorized();
+            }
         }
     }
 }

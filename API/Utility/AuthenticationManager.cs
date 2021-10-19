@@ -16,13 +16,15 @@ namespace API.Utility
     public class AuthenticationManager : IAuthenticationManager
     {
         private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
         private readonly IConfiguration _configuration;
 
         private User _user;
 
-        public AuthenticationManager(UserManager<User> userManager, IConfiguration configuration)
+        public AuthenticationManager(UserManager<User> userManager, IConfiguration configuration, SignInManager<User> signInManager)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
             _configuration = configuration;
         }
         public async Task<bool> ValidateUser(UserForAuthenticationDto userForAuth)
@@ -87,6 +89,13 @@ namespace API.Utility
             );
 
             return tokenOptions;
+        }
+
+        public async Task<SignInResult> Login(UserForAuthenticationDto user)
+        {
+            _user = await _userManager.FindByNameAsync(user.UserName);
+            var result = await _signInManager.PasswordSignInAsync(user.UserName, user.Password, false, true);
+            return result;
         }
     }
 }
