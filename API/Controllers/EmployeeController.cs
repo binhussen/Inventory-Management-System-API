@@ -31,15 +31,15 @@ namespace API.Controllers
 
         [HttpGet, Authorize]
         [HttpHead]
-        public async Task<IActionResult> GetEmployees([FromQuery] StoreItemParameters storeItemParameters)
+        public async Task<IActionResult> GetEmployees()
         {
-            var storesFromDb = await _repository.Store.GetStoresAsync(storeItemParameters, trackChanges: false);
+            /*var storesFromDb = await _repository.Store.GetStoresAsync(storeItemParameters, trackChanges: false);
 
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(storesFromDb.MetaData));
 
-            var storeItemsDto = _mapper.Map<IEnumerable<StoreItemDto>>(storesFromDb);
+            var storeItemsDto = _mapper.Map<IEnumerable<StoreItemDto>>(storesFromDb);*/
 
-            return Ok(storeItemsDto);
+            return Ok();
         }
     }
 }
