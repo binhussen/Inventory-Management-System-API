@@ -53,6 +53,14 @@ namespace API
             CreateMap<UserDto, User>();
 
             CreateMap<UserForUpdate, User>();
+
+            /**/
+            CreateMap<RequestItemForApprovementDto, RequestItem>();
+
+            CreateMap<RequestItemForBudgetCodeDto,RequestItem>();
+
+            CreateMap<RequestItemForRejectDto,RequestItem>();
+            /**/
         }
     }
 }

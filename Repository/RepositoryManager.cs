@@ -14,6 +14,7 @@ namespace Repository
         private IStoreHeaderRepository _storeHeaderRepository;
         private IStoreItemRepository _storeItemRepository;
         private IStoreRepository _storeRepository;
+        private IRequestRepository _requestRepository;
 
         public RepositoryManager(RepositoryContext repositoryContext)
         {
@@ -94,6 +95,18 @@ namespace Repository
                 return _storeRepository;
             }
         }
+
+        public IRequestRepository Request
+        {
+            get
+            {
+                if (_requestRepository == null)
+                    _requestRepository = new RequestRepository(_repositoryContext);
+
+                return _requestRepository;
+            }
+        }
+
         public Task SaveAsync() => _repositoryContext.SaveChangesAsync();
     }
 }

@@ -82,7 +82,6 @@ namespace API.Controllers
             }
             if (result.IsLockedOut)
             {
-
                 _logger.LogWarn($"{nameof(Authenticate)}: Your account is locked out.");
                 return StatusCode(423, "The account is locked out for 5 minuts");
             }

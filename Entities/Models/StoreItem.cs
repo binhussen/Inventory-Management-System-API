@@ -20,6 +20,7 @@ namespace Entities.Models
         public int UnitPrice { get; set; }
         public int TotalPrice { get; set; }
         public int Status { get; set; }
+        public int RemainQuantity { get; set; }
         [ForeignKey(nameof(StoreHeader))]
         public Guid StoreHeaderId { get; set; }
         public StoreHeader StoreHeader { get; set; }

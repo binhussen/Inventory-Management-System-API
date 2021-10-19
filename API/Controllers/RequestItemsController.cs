@@ -33,9 +33,6 @@ namespace API.Controllers
         [HttpGet, Authorize]
         public async Task<IActionResult> GetRequestItemsForRequestHeader(Guid requestheaderid, [FromQuery] RequestItemParameters requestItemParameters)
         {
-            /*if (!RequestItemParameters.ValidAgeRange)
-                return BadRequest("Max age can't be less than min age.");*/
-
             var RequestHeader = await _repository.RequestHeader.GetRequestHeaderAsync(requestheaderid, trackChanges: false);
             if (RequestHeader == null)
             {

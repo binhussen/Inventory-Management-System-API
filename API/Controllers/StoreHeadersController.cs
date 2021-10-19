@@ -58,7 +58,7 @@ namespace API.Controllers
             }
         }
 
-        [HttpGet("collection/({ids})", Name = "StoreHeaderCollection"), Authorize]
+        [HttpGet("collection/{ids}", Name = "StoreHeaderCollection"), Authorize]
         public async Task<IActionResult> GetStoreHeaderCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))]IEnumerable<Guid> ids)
         {
             if(ids == null)
