@@ -398,6 +398,9 @@ namespace API.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool?>("IsEnabled")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
@@ -476,43 +479,43 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "33c36851-0b83-452b-958e-aa7e3aa94b68",
-                            ConcurrencyStamp = "588c39c8-f06f-443c-83e5-d1cfb4db74cc",
+                            Id = "24d613e8-c1cc-4064-af1c-ead99cb3e580",
+                            ConcurrencyStamp = "33cc57c6-5e7b-480a-8c75-616aede09930",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "b96826b3-93ce-4198-b2d1-7b17d800c383",
-                            ConcurrencyStamp = "f50fee06-d89e-4c5e-9906-a00e9bb2993e",
+                            Id = "7b86485b-db69-4955-bf83-e97cebfc23ba",
+                            ConcurrencyStamp = "b281acc0-bd4f-4588-92e2-e60be31a503d",
                             Name = "Purchaser",
                             NormalizedName = "PURCHASER"
                         },
                         new
                         {
-                            Id = "5b8ca985-da25-45be-a0d8-0f044ea263b0",
-                            ConcurrencyStamp = "330ccc4e-c3d9-4d6f-84cb-a8e375cc13fb",
+                            Id = "93855cb8-3c98-45a6-8604-f56883a752cb",
+                            ConcurrencyStamp = "1047556a-75fa-4d64-bac8-1b218871c582",
                             Name = "StoreMan",
                             NormalizedName = "STOREMAN"
                         },
                         new
                         {
-                            Id = "fc0c9aa7-3722-4dda-989a-19de1e59558a",
-                            ConcurrencyStamp = "b84904be-460b-4196-a34e-a793c40b9df5",
+                            Id = "0ce8acf5-da74-4ad8-b5c6-7204444313a3",
+                            ConcurrencyStamp = "b2329e88-1da3-4cdf-a833-66e6de5e3d3d",
                             Name = "DepartmentHead",
                             NormalizedName = "DEPARTMENTHEAD"
                         },
                         new
                         {
-                            Id = "3cd88934-a1fa-4ac3-baa7-21d220154057",
-                            ConcurrencyStamp = "a9f34084-2275-412b-8767-79c4e64daf25",
+                            Id = "62c3ca30-8d7f-412c-b0ef-57a0d86eb0d9",
+                            ConcurrencyStamp = "429d11a2-4d7b-41a1-b580-fcc8e4a5f8d1",
                             Name = "FinanceManager",
                             NormalizedName = "FINANCEMANAGER"
                         },
                         new
                         {
-                            Id = "57f7ee13-8d24-4807-9708-929bfbcac5f0",
-                            ConcurrencyStamp = "dd704767-b53b-4559-bc81-db2554c94c25",
+                            Id = "e7c47599-e93a-41ff-b7c6-07bd8c7cdbc1",
+                            ConcurrencyStamp = "8d07d5b2-fb02-40f3-bbde-c647784ff782",
                             Name = "ProcurementManager",
                             NormalizedName = "PROCUREMENTMANAGER"
                         });

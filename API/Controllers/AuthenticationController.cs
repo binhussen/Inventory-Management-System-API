@@ -85,6 +85,11 @@ namespace API.Controllers
                 _logger.LogWarn($"{nameof(Authenticate)}: Your account is locked out.");
                 return StatusCode(423, "The account is locked out for 5 minuts");
             }
+            if (result.IsNotAllowed)
+            {
+                _logger.LogWarn($"{nameof(Authenticate)}: Your account is locked Permanently.");
+                return StatusCode(423, "The account is locked Permanently check Administrator");
+            }
             else
             {
                 _logger.LogWarn($"{nameof(Authenticate)}: Authentication failed. Wrong user name or password.");

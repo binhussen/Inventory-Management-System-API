@@ -43,5 +43,16 @@ namespace Repository
         {
             Delete(employee);
         }
+        /**/
+        public async Task<PagedList<Employee>> GetEmployees(EmployeeParameters employeeParameters, bool trackChanges)
+        {
+            var employees = await FindAll(trackChanges)
+                .Search(employeeParameters.SearchTerm)
+                .Sort(employeeParameters.OrderBy)
+                .ToListAsync();
+
+            return PagedList<Employee>
+                .ToPagedList(employees, employeeParameters.PageNumber, employeeParameters.PageSize);
+        }
     }
 }

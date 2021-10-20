@@ -94,6 +94,10 @@ namespace API.Utility
         public async Task<SignInResult> Login(UserForAuthenticationDto user)
         {
             _user = await _userManager.FindByNameAsync(user.UserName);
+            if ((_user.IsEnabled.HasValue && !_user.IsEnabled.Value) || !_user.IsEnabled.HasValue)
+            {
+                return SignInResult.NotAllowed;
+            }
             var result = await _signInManager.PasswordSignInAsync(user.UserName, user.Password, false, true);
             return result;
         }

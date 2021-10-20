@@ -39,17 +39,32 @@ namespace API.Controllers
             /*var users = (from user in _repositoryContext.Users
                          join userRoles in _repositoryContext.UserRoles on user.Id equals userRoles.UserId
                          join role in _repositoryContext.Roles on userRoles.RoleId equals role.Id
-                         select new { Id = user.Id,
+                         select new
+                         {
+                             Id = user.Id,
                              FirstName = user.FirstName,
                              LastName = user.LastName,
                              UserName = user.UserName,
                              Email = user.Email,
                              PhoneNumber = user.PhoneNumber,
-                             Roles = role.Name,
-                             status = role.Name
+                            *//* Roles = role.Name,
+                             status = user.IsEnabled,
+                             LockoutEnd = user.LockoutEnd,
+                             AccessFailedCount = user.AccessFailedCount*//*
                          }).ToList();*/
             var users = _repositoryContext.Users.ToList();
-            /*var userDto = _mapper.Map<IEnumerable<UserDto>>(users);*/
+            foreach (var user in users)
+            {
+                var role = await _userManager.GetRolesAsync(user);
+                var x="";
+            }
+            /* var roles = _repositoryContext.Roles(users);
+             users.ForEach((x) =>
+             {
+                 string rolename = await _userManager.GetRolesAsync(users).FirstOrDefault();
+             });
+             string rolename = await _userManager.GetRolesAsync(users).FirstOrDefault();
+             var userDto = _mapper.Map<IEnumerable<UserDto>>(users);*/
             return Ok(users);
         }
 
@@ -62,9 +77,20 @@ namespace API.Controllers
                 _logger.LogInfo($"User with id: {id} doesn't exist in the database.");
                 return BadRequest();
             }
-            var user = _mapper.Map(userForUpdate,users);
+            var userx = _mapper.Map(userForUpdate,users);
 
-            IdentityResult result = await _userManager.UpdateAsync(user);
+            IdentityResult result = await _userManager.UpdateAsync(userx);
+            /*role*/
+            var usery = (from user in _repositoryContext.Users
+                         join userRoles in _repositoryContext.UserRoles on user.Id equals userRoles.UserId
+                         join role in _repositoryContext.Roles on userRoles.RoleId equals role.Id
+                         select new
+                         {
+                             Roles = role.Name
+                         }).ToList();
+            /*await _userManager.RemoveFromRolesAsync(users,usery.Roles);*/
+            await _userManager.AddToRolesAsync(users, userForUpdate.Roles);
+            /**/
             if (result.Succeeded)
             {
                 return Ok();
@@ -81,15 +107,40 @@ namespace API.Controllers
                 _logger.LogInfo($"User with id: {id} doesn't exist in the database.");
                 return BadRequest();
             }
-
-            users.LockoutEnabled = !users.LockoutEnabled;
+            if (users.IsEnabled == null)
+            {
+                users.IsEnabled = true;
+            }
+            else
+            {
+                users.IsEnabled = !users.IsEnabled;
+            }
 
             IdentityResult result = await _userManager.UpdateAsync(users);
             if (result.Succeeded)
             {
-                return Ok($"active : {users.LockoutEnabled}");
+                return Ok($"User Status Activated : {users.IsEnabled}");
             }
             return BadRequest();
         }
+
+        /*public async Task<IActionResult> ChangeRole(Guid id,string role)
+        {
+            var users = await _userManager.FindByIdAsync(id.ToString());
+            if (users == null)
+            {
+                _logger.LogInfo($"User with id: {id} doesn't exist in the database.");
+                return BadRequest();
+            }
+            if (!role.Any())
+            {
+                _logger.LogInfo("Roles doesn't exist in the registration DTO object, you have to Add later.");
+                *//*await _userManager.AddToRoleAsync(user, "Manager");*//*
+            }
+            else
+            {
+                await _userManager.AddToRolesAsync(user, userForRegistration.Roles);
+            }
+        }*/
     }
 }

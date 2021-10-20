@@ -12,5 +12,7 @@ namespace Contracts
         Task<Employee> GetEmployeeAsync(Guid companyId, Guid id, bool trackChanges);
         void CreateEmployeeForCompany(Guid companyId, Employee employee);
         void DeleteEmployee(Employee employee);
+        /*get all employee*/
+        Task<PagedList<Employee>> GetEmployees(EmployeeParameters employeeParameters, bool trackChanges);
     }
 }
