@@ -36,36 +36,24 @@ namespace API.Controllers
         [HttpGet(Name = "users"), Authorize]
         public async Task<IActionResult> GetListUsers()
         {
-            /*var users = (from user in _repositoryContext.Users
-                         join userRoles in _repositoryContext.UserRoles on user.Id equals userRoles.UserId
-                         join role in _repositoryContext.Roles on userRoles.RoleId equals role.Id
-                         select new
-                         {
-                             Id = user.Id,
-                             FirstName = user.FirstName,
-                             LastName = user.LastName,
-                             UserName = user.UserName,
-                             Email = user.Email,
-                             PhoneNumber = user.PhoneNumber,
-                            *//* Roles = role.Name,
-                             status = user.IsEnabled,
-                             LockoutEnd = user.LockoutEnd,
-                             AccessFailedCount = user.AccessFailedCount*//*
-                         }).ToList();*/
             var users = _repositoryContext.Users.ToList();
+            var userDto = _mapper.Map<IEnumerable<UserDto>>(users);
+            /*role*/
             foreach (var user in users)
             {
                 var role = await _userManager.GetRolesAsync(user);
-                var x="";
+                if (role!=null)
+                {
+                    foreach(var Dto in userDto)
+                    {
+                        if (Dto.Id == user.Id)
+                        {
+                            Dto.Roles = role;
+                        }
+                    }
+                }
             }
-            /* var roles = _repositoryContext.Roles(users);
-             users.ForEach((x) =>
-             {
-                 string rolename = await _userManager.GetRolesAsync(users).FirstOrDefault();
-             });
-             string rolename = await _userManager.GetRolesAsync(users).FirstOrDefault();
-             var userDto = _mapper.Map<IEnumerable<UserDto>>(users);*/
-            return Ok(users);
+            return Ok(userDto);
         }
 
         [HttpPut("{id}"), Authorize]
@@ -77,18 +65,15 @@ namespace API.Controllers
                 _logger.LogInfo($"User with id: {id} doesn't exist in the database.");
                 return BadRequest();
             }
-            var userx = _mapper.Map(userForUpdate,users);
+            var user = _mapper.Map(userForUpdate,users);
 
-            IdentityResult result = await _userManager.UpdateAsync(userx);
+            IdentityResult result = await _userManager.UpdateAsync(user);
             /*role*/
-            var usery = (from user in _repositoryContext.Users
-                         join userRoles in _repositoryContext.UserRoles on user.Id equals userRoles.UserId
-                         join role in _repositoryContext.Roles on userRoles.RoleId equals role.Id
-                         select new
-                         {
-                             Roles = role.Name
-                         }).ToList();
-            /*await _userManager.RemoveFromRolesAsync(users,usery.Roles);*/
+            var roles = await _userManager.GetRolesAsync(user);
+            foreach (var role in roles)
+            {
+                await _userManager.RemoveFromRoleAsync(users, role);
+            }
             await _userManager.AddToRolesAsync(users, userForUpdate.Roles);
             /**/
             if (result.Succeeded)
