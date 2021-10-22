@@ -13,5 +13,9 @@ namespace Entities.DataTransferObjects
         public string PhoneNo { get; set; }
         public string Email { get; set; }
         public string Department { get; set; }
+        public string CreatedByUser { get; set; }
+        public DateTimeOffset CreatedDate { get; set; }
+        public string ModifiedByUser { get; set; }
+        public DateTimeOffset ModifiedDate { get; set; }
     }
 }

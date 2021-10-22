@@ -108,24 +108,5 @@ namespace API.Controllers
             }
             return BadRequest();
         }
-
-        /*public async Task<IActionResult> ChangeRole(Guid id,string role)
-        {
-            var users = await _userManager.FindByIdAsync(id.ToString());
-            if (users == null)
-            {
-                _logger.LogInfo($"User with id: {id} doesn't exist in the database.");
-                return BadRequest();
-            }
-            if (!role.Any())
-            {
-                _logger.LogInfo("Roles doesn't exist in the registration DTO object, you have to Add later.");
-                *//*await _userManager.AddToRoleAsync(user, "Manager");*//*
-            }
-            else
-            {
-                await _userManager.AddToRolesAsync(user, userForRegistration.Roles);
-            }
-        }*/
     }
 }

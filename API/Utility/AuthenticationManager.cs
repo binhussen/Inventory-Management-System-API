@@ -41,8 +41,6 @@ namespace API.Utility
             var claims = await GetClaims();
             var tokenOptions = GenerateTokenOptions(signingCredentials, claims);
 
-            /*return new JwtSecurityTokenHandler().WriteToken(tokenOptions);*/
-
             return (new
             {
                 token = new JwtSecurityTokenHandler().WriteToken(tokenOptions),
@@ -62,8 +60,7 @@ namespace API.Utility
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, _user.UserName),
-                new Claim(ClaimTypes.Role, "Manager")
+                new Claim(ClaimTypes.Name, _user.UserName)
             };
 
             var roles = await _userManager.GetRolesAsync(_user);
@@ -94,11 +91,13 @@ namespace API.Utility
         public async Task<SignInResult> Login(UserForAuthenticationDto user)
         {
             _user = await _userManager.FindByNameAsync(user.UserName);
-            if ((_user.IsEnabled.HasValue && !_user.IsEnabled.Value) || !_user.IsEnabled.HasValue)
+
+            var result = await _signInManager.PasswordSignInAsync(user.UserName, user.Password, false, true);
+
+            if (((_user.IsEnabled.HasValue && !_user.IsEnabled.Value) || !_user.IsEnabled.HasValue)&&result.Succeeded||result.IsLockedOut)
             {
                 return SignInResult.NotAllowed;
             }
-            var result = await _signInManager.PasswordSignInAsync(user.UserName, user.Password, false, true);
             return result;
         }
     }

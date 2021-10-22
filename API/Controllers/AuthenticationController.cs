@@ -93,7 +93,7 @@ namespace API.Controllers
             else
             {
                 _logger.LogWarn($"{nameof(Authenticate)}: Authentication failed. Wrong user name or password.");
-                return Unauthorized();
+                return Unauthorized("Authentication failed. Wrong user name or password.");
             }
         }
     }

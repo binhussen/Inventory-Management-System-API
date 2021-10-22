@@ -14,5 +14,9 @@ namespace Entities.DataTransferObjects
         public string Fax { get; set; }
         public string Website { get; set; }
         public string Description { get; set; }
+        public string CreatedByUser { get; set; }
+        public DateTimeOffset CreatedDate { get; set; }
+        public string ModifiedByUser { get; set; }
+        public DateTimeOffset ModifiedDate { get; set; }
     }
 }

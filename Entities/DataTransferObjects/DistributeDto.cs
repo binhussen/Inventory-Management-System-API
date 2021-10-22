@@ -10,5 +10,9 @@ namespace Entities.DataTransferObjects
         public int Quantity { get; set; }
         public Guid EmployeeID { get; set; }
         public Guid StoreItemId { get; set; }
+        public string CreatedByUser { get; set; }
+        public DateTimeOffset CreatedDate { get; set; }
+        public string ModifiedByUser { get; set; }
+        public DateTimeOffset ModifiedDate { get; set; }
     }
 }

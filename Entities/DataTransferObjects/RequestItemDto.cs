@@ -16,5 +16,9 @@ namespace Entities.DataTransferObjects
         public int TotalPrice { get; set; }
         public string BudgetCode { get; set; }
         public int Status { get; set; }
+        public string CreatedByUser { get; set; }
+        public DateTimeOffset CreatedDate { get; set; }
+        public string ModifiedByUser { get; set; }
+        public DateTimeOffset ModifiedDate { get; set; }
     }
 }

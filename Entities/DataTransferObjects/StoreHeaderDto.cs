@@ -15,5 +15,9 @@ namespace Entities.DataTransferObjects
         public Guid CheckedBy { get; set; }
         public Guid AcceptedBy { get; set; }
         public Guid InspectedBy { get; set; }
+        public string CreatedByUser { get; set; }
+        public DateTimeOffset CreatedDate { get; set; }
+        public string ModifiedByUser { get; set; }
+        public DateTimeOffset ModifiedDate { get; set; }
     }
 }
