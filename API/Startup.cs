@@ -47,6 +47,7 @@ namespace API
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<ValidationFilterAttribute>();
             services.AddScoped<ValidateCompanyExistsAttribute>();
+            services.AddScoped<ValidateEmployeeExistsAttribute>();
             services.AddScoped<ValidateEmployeeForCompanyExistsAttribute>();
             services.AddScoped<ValidateStoreExistsAttribute>();
             services.AddScoped<ValidateItemForRequestExistsAttribute>();

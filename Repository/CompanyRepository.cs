@@ -12,6 +12,7 @@ namespace Repository
 {
     public class CompanyRepository : RepositoryBase<Company>, ICompanyRepository
     {
+        Guid specialId = Guid.Parse("c3c53f31-5f35-46b5-6292-08d996e70eb3");
         public CompanyRepository(RepositoryContext repositoryContext)
             : base(repositoryContext)
         {
@@ -19,7 +20,7 @@ namespace Repository
 
         public async Task<PagedList<Company>> GetCompaniesAsync(CompanyParameters companyParameters, bool trackChanges)
         {
-            var companies = await FindAll(trackChanges)
+            var companies = await FindByCondition(c => !c.Id.Equals(specialId), trackChanges)
            .OrderBy(c => c.Name)
            .ToListAsync();
 
@@ -32,7 +33,7 @@ namespace Repository
            .ToListAsync();*/
 
         public async Task<Company> GetCompanyAsync(Guid companyId, bool trackChanges) =>
-            await FindByCondition(c => c.Id.Equals(companyId), trackChanges)
+            await FindByCondition(c => c.Id.Equals(companyId)&& !c.Id.Equals(specialId), trackChanges)
             .SingleOrDefaultAsync();
 
         public async Task<IEnumerable<Company>> GetByIdsAsync(IEnumerable<Guid> ids, bool trackChanges) =>

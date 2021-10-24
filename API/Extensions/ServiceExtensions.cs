@@ -75,11 +75,11 @@ namespace API.Extensions
             services.AddIdentity<User, IdentityRole>(opt =>
             {
                 // Password settings.
-                opt.Password.RequireDigit = true;
+                opt.Password.RequireDigit = false;
                 opt.Password.RequireLowercase = false;
                 opt.Password.RequireUppercase = false;
                 opt.Password.RequireNonAlphanumeric = false;
-                opt.Password.RequiredLength = 10;
+                opt.Password.RequiredLength = 6;
                 opt.User.RequireUniqueEmail = true;
                 opt.Password.RequiredUniqueChars = 1;
 

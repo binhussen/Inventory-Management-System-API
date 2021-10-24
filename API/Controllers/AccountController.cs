@@ -83,6 +83,30 @@ namespace API.Controllers
             return BadRequest();
         }
 
+        [HttpPut("role/{id}"), Authorize]
+        public async Task<IActionResult> UpdateRole(Guid id, [FromBody] ICollection<string> Roles)
+        {
+            var users = await _userManager.FindByIdAsync(id.ToString());
+            if (users == null)
+            {
+                _logger.LogInfo($"User with id: {id} doesn't exist in the database.");
+                return BadRequest();
+            }
+            /*role*/
+            var roles = await _userManager.GetRolesAsync(users);
+            foreach (var role in roles)
+            {
+                await _userManager.RemoveFromRoleAsync(users, role);
+            }
+            var result = await _userManager.AddToRolesAsync(users, Roles);
+            /**/
+            if (result.Succeeded)
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
         [HttpPut("lock/{id}"), Authorize]
         public async Task<IActionResult> AccountLockedOut(Guid id)
         {

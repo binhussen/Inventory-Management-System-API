@@ -12,6 +12,7 @@ namespace Repository
 {
     public class EmployeeRepository : RepositoryBase<Employee>, IEmployeeRepository
     {
+        Guid secialId = Guid.Parse("c3c53f31-5f35-46b5-6292-08d996e70eb3");
         public EmployeeRepository(RepositoryContext repositoryContext)
             : base(repositoryContext)
         {
@@ -46,13 +47,25 @@ namespace Repository
         /**/
         public async Task<PagedList<Employee>> GetEmployees(EmployeeParameters employeeParameters, bool trackChanges)
         {
-            var employees = await FindAll(trackChanges)
+            var employees = await FindByCondition(e => e.CompanyId.Equals(secialId), trackChanges)
                 .Search(employeeParameters.SearchTerm)
                 .Sort(employeeParameters.OrderBy)
                 .ToListAsync();
 
             return PagedList<Employee>
                 .ToPagedList(employees, employeeParameters.PageNumber, employeeParameters.PageSize);
+        }
+
+        public async Task<Employee> GetEmployeeAsync(Guid id, bool trackChanges)
+        {
+            return await FindByCondition(e => e.CompanyId.Equals(secialId) && e.Id.Equals(id), trackChanges)
+             .SingleOrDefaultAsync();
+        }
+
+        public void CreateEmployee(Employee employee)
+        {
+            employee.CompanyId = secialId;
+            Create(employee);
         }
     }
 }

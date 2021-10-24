@@ -41,5 +41,61 @@ namespace API.Controllers
 
             return Ok(employee);
         }
+
+        [HttpGet("{id}", Name = "GetEmployee"), Authorize]
+        public async Task<IActionResult> GetEmployeeForCompany(Guid id)
+        {
+            var employeeDb = await _repository.Employee.GetEmployeeAsync(id, trackChanges: false);
+            if (employeeDb == null)
+            {
+                _logger.LogInfo($"Employee with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+
+            var employee = _mapper.Map<EmployeeDto>(employeeDb);
+
+            return Ok(employee);
+        }
+
+        [HttpPost, Authorize]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        public async Task<IActionResult> CreateEmployee([FromBody] EmployeeForCreationDto employee)
+        {
+            var employeeEntity = _mapper.Map<Employee>(employee);
+
+            _repository.Employee.CreateEmployee(employeeEntity);
+            await _repository.SaveAsync();
+
+            var employeeToReturn = _mapper.Map<EmployeeDto>(employeeEntity);
+
+            return CreatedAtRoute("GetEmployee", new { id = employeeToReturn.Id }, employeeToReturn);
+        }
+
+        [HttpDelete("{id}"), Authorize]
+        [ServiceFilter(typeof(ValidateEmployeeExistsAttribute))]
+        public async Task<IActionResult> DeleteEmployee( Guid id)
+        {
+            var employee = HttpContext.Items["employee"] as Employee;
+
+            _repository.Employee.DeleteEmployee(employee);
+            await _repository.SaveAsync();
+
+            return NoContent();
+        }
+
+        [HttpPut("{id}"), Authorize]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [ServiceFilter(typeof(ValidateEmployeeExistsAttribute))]
+        public async Task<IActionResult> UpdateEmployee(Guid id, [FromBody] EmployeeForUpdateDto employee)
+        {
+            var employeeEntity = HttpContext.Items["employee"] as Employee;
+
+            _mapper.Map(employee, employeeEntity);
+            await _repository.SaveAsync();
+
+            return NoContent();
+        }
+
+        
     }
 }

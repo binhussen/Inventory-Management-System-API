@@ -22,7 +22,7 @@ namespace API.Controllers
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
-        private DateTimeOffset currentTime = DateTimeOffset.UtcNow;
+        Guid specialId = Guid.Parse("c3c53f31-5f35-46b5-6292-08d996e70eb3");
 
         public CompaniesController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
         {
@@ -121,11 +121,12 @@ namespace API.Controllers
         [ServiceFilter(typeof(ValidateCompanyExistsAttribute))]
         public async Task<IActionResult> DeleteCompany(Guid id)
         {
-            var company = HttpContext.Items["company"] as Company;
-
-            _repository.Company.DeleteCompany(company);
-            await _repository.SaveAsync();
-
+            if (id != specialId)
+            {
+                var company = HttpContext.Items["company"] as Company;
+                _repository.Company.DeleteCompany(company);
+                await _repository.SaveAsync();
+            }
             return NoContent();
         }
 
