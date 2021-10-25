@@ -20,7 +20,7 @@ namespace Repository
         public async Task<PagedList<RequestHeader>> GetRequestsAsync(OrderParameters orderParameters, bool trackChanges)
         {
             var request = await FindAll(trackChanges)
-           .OrderBy(c => c.CheckedBy)
+           .OrderBy(c => c.CreatedByUser)
            .ToListAsync();
 
             return PagedList<RequestHeader>

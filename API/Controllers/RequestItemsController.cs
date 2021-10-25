@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace API.Controllers
 {
@@ -19,15 +20,17 @@ namespace API.Controllers
     [ApiController]
     public class RequestItemsController : ControllerBase
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
 
-        public RequestItemsController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
+        public RequestItemsController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _repository = repository;
             _logger = logger;
             _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
         }
 
         [HttpGet, Authorize]
@@ -117,32 +120,62 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPatch("{id}"), Authorize]
+        [HttpPut("distribute/{id}"), Authorize]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
-        public async Task<IActionResult> PartiallyUpdateRequestItemForRequestHeader(Guid requestheaderid, Guid id, [FromBody] JsonPatchDocument<RequestItemForUpdateDto> patchDoc)
+        public async Task<IActionResult> Distribute(Guid RequestHeaderId, Guid id, [FromBody] RequestItemForDistributeDto RequestItem)
         {
-            if(patchDoc == null)
-            {
-                _logger.LogError("patchDoc object sent from client is null.");
-                return BadRequest("patchDoc object is null");
-            }
-
             var RequestItemEntity = HttpContext.Items["requestItem"] as RequestItem;
-
-            var RequestItemToPatch = _mapper.Map<RequestItemForUpdateDto>(RequestItemEntity);
-
-            patchDoc.ApplyTo(RequestItemToPatch, ModelState);
-
-            TryValidateModel(RequestItemToPatch);
-
-            if(!ModelState.IsValid)
+            var currentTime = DateTimeOffset.UtcNow;
+            _mapper.Map(RequestItem, RequestItemEntity);
+            RequestItemEntity.Status = 3;
+            RequestItemEntity.DistributeBy = _httpContextAccessor.HttpContext.User.Identity.Name;
+            RequestItemEntity.DistributeDate = currentTime;
+            /*update store*/
+            var storesFromDb = await _repository.Store.EditStoreItemAsync(RequestItem.StoreItemId, trackChanges: true);
+            if (storesFromDb.QtyRemain != 0)
             {
-                _logger.LogError("Invalid model state for the patch document");
-                return UnprocessableEntity(ModelState);
+                storesFromDb.QtyRemain = storesFromDb.QtyRemain - RequestItemEntity.ApprovedQuantity;
             }
+            else
+            {
+                storesFromDb.QtyRemain = storesFromDb.QtyRecived - RequestItemEntity.ApprovedQuantity;
+            }
+            if (storesFromDb.QtyRemain == 0)
+                storesFromDb.Status = 1;
+            /**/
+            await _repository.SaveAsync();
 
-            _mapper.Map(RequestItemToPatch, RequestItemEntity);
+            return NoContent();
+        }
 
+        [HttpPut("approve/{id}"), Authorize]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
+        public async Task<IActionResult> Approve(Guid RequestHeaderId, Guid id, [FromBody] RequestItemForApprovementDto RequestItem)
+        {
+            var RequestItemEntity = HttpContext.Items["requestItem"] as RequestItem;
+            var currentTime = DateTimeOffset.UtcNow;
+            _mapper.Map(RequestItem, RequestItemEntity);
+            RequestItemEntity.Status = 2;
+            RequestItemEntity.ApprovedBy = _httpContextAccessor.HttpContext.User.Identity.Name;
+            RequestItemEntity.ApprovedDate = currentTime;
+            await _repository.SaveAsync();
+
+            return NoContent();
+        }
+
+        [HttpPut("reject/{id}"), Authorize]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
+        public async Task<IActionResult> Reject(Guid RequestHeaderId, Guid id, [FromBody] RequestItemForRejectDto RequestItem)
+        {
+            var RequestItemEntity = HttpContext.Items["requestItem"] as RequestItem;
+            var currentTime = DateTimeOffset.UtcNow;
+            _mapper.Map(RequestItem, RequestItemEntity);
+            RequestItemEntity.Status = 4;
+            RequestItemEntity.RejectBy = _httpContextAccessor.HttpContext.User.Identity.Name;
+            RequestItemEntity.RejectDate = currentTime;
             await _repository.SaveAsync();
 
             return NoContent();

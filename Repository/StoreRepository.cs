@@ -17,6 +17,9 @@ namespace Repository
         {
         }
 
+        public async Task<StoreItem> EditStoreItemAsync(Guid id, bool trackChanges) =>
+            await FindByCondition(e => e.Id.Equals(id), trackChanges)
+            .SingleOrDefaultAsync();
         public async Task<PagedList<StoreItem>> GetStoresAsync(StoreItemParameters StoreItemParameters, bool trackChanges)
         {
             var StoreItems = await FindByCondition(e => e.Status.Equals(StoreItemParameters.Status), trackChanges)

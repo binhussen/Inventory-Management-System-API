@@ -251,3 +251,10 @@
    at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
    at Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware.<Invoke>g__Awaited|6_0(ExceptionHandlerMiddleware middleware, HttpContext context, Task task)
 2021-10-24 18:17:19.3317 INFO Employee with id: e0ed70d3-88ea-4368-093e-08d996e481dd doesn't exist in the database.
+2021-10-24 18:39:46.5692 INFO Company with id: 22a945e6-fd28-4467-131a-08d99700bfb5 doesn't exist in the database.
+2021-10-24 18:40:27.9091 INFO Company with id: 22a945e6-fd28-4467-131a-08d99700bfb5 doesn't exist in the database.
+2021-10-24 18:40:57.0724 INFO Company with id: 22a945e6-fd28-4467-131a-08d99700bfb5 doesn't exist in the database.
+2021-10-24 18:41:55.9725 INFO Employee with id: dd8a1f35-9f2a-4846-bdfa-08d9970465c7 doesn't exist in the database.
+2021-10-24 18:49:44.5712 ERROR Invalid model state for the object. Controller: Employee, action: UpdateEmployee
+2021-10-24 18:50:29.5273 ERROR Invalid model state for the object. Controller: Employee, action: UpdateEmployee
+2021-10-24 18:50:32.6243 ERROR Invalid model state for the object. Controller: Employee, action: UpdateEmployee

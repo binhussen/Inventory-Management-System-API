@@ -19,9 +19,14 @@ namespace Entities.Models
         public int Quantity { get; set; }
         public int UnitPrice { get; set; }
         public int TotalPrice { get; set; }
-        public string BudgetCode { get; set; }
         public int Status { get; set; }
         public int ApprovedQuantity { get; set; }
+        public string ApprovedBy { get; set; }
+        public DateTimeOffset ApprovedDate { get; set; }
+        public string DistributeBy { get; set; }
+        public DateTimeOffset DistributeDate { get; set; }
+        public string RejectBy { get; set; }
+        public DateTimeOffset RejectDate{ get; set; }
         [ForeignKey(nameof(StoreItem))]
         public Guid StoreItemId { get; set; }
 

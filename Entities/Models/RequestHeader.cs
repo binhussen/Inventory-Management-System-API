@@ -12,10 +12,10 @@ namespace Entities.Models
     {
         [Column("RequestHeaderId")]
         public Guid Id { get; set; }
-        public Guid AskedBy { get; set; }
-        public Guid CheckedBy { get; set; }
-        public Guid ApprovedBy { get; set; }
-        public DateTime Date { get; set; }
+        public string BudgetCode { get; set; }
+        public string BudgetBy { get; set; }
+        public DateTimeOffset BudgetDate { get; set; }
+        public int Status { get; set; }
         public ICollection<RequestItem> RequestItems { get; set; }
     }
 }

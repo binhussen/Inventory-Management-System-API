@@ -11,6 +11,5 @@ namespace Entities.DataTransferObjects
         public string Use { get; set; }
         public int Quantity { get; set; }
         public int UnitPrice { get; set; }
-        public string BudgetCode { get; set; }
     }
 }

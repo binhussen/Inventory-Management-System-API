@@ -181,14 +181,14 @@ namespace API.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("RequestHeaderId");
 
-                    b.Property<Guid>("ApprovedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("BudgetBy")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("AskedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("BudgetCode")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("CheckedBy")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<DateTimeOffset>("BudgetDate")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("CreatedByUser")
                         .HasColumnType("nvarchar(max)");
@@ -196,14 +196,14 @@ namespace API.Migrations
                     b.Property<DateTimeOffset>("CreatedDate")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("ModifiedByUser")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTimeOffset>("ModifiedDate")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -217,11 +217,14 @@ namespace API.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("RequestItemId");
 
+                    b.Property<string>("ApprovedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("ApprovedDate")
+                        .HasColumnType("datetimeoffset");
+
                     b.Property<int>("ApprovedQuantity")
                         .HasColumnType("int");
-
-                    b.Property<string>("BudgetCode")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedByUser")
                         .HasColumnType("nvarchar(max)");
@@ -231,6 +234,12 @@ namespace API.Migrations
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DistributeBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("DistributeDate")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("ModifiedByUser")
                         .HasColumnType("nvarchar(max)");
@@ -243,6 +252,12 @@ namespace API.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
+
+                    b.Property<string>("RejectBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("RejectDate")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<Guid>("RequestHeaderId")
                         .HasColumnType("uniqueidentifier");
@@ -351,7 +366,7 @@ namespace API.Migrations
                     b.Property<int>("QtyRecived")
                         .HasColumnType("int");
 
-                    b.Property<int>("RemainQuantity")
+                    b.Property<int>("QtyRemain")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
@@ -479,43 +494,43 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "24d613e8-c1cc-4064-af1c-ead99cb3e580",
-                            ConcurrencyStamp = "33cc57c6-5e7b-480a-8c75-616aede09930",
+                            Id = "0d7c3c3f-726e-4e50-9090-0116f837b721",
+                            ConcurrencyStamp = "09a59ff5-5666-4ebb-843f-b16a686dd693",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "7b86485b-db69-4955-bf83-e97cebfc23ba",
-                            ConcurrencyStamp = "b281acc0-bd4f-4588-92e2-e60be31a503d",
+                            Id = "3a009e38-e095-4f59-876a-c5a37f1c56c9",
+                            ConcurrencyStamp = "0374532d-9b49-4dfd-b7eb-a38d4ea0abe2",
                             Name = "Purchaser",
                             NormalizedName = "PURCHASER"
                         },
                         new
                         {
-                            Id = "93855cb8-3c98-45a6-8604-f56883a752cb",
-                            ConcurrencyStamp = "1047556a-75fa-4d64-bac8-1b218871c582",
+                            Id = "851a1039-cdc3-4065-8392-f74f0ff833d9",
+                            ConcurrencyStamp = "cef8f178-9f55-432a-92ea-314d183cdc02",
                             Name = "StoreMan",
                             NormalizedName = "STOREMAN"
                         },
                         new
                         {
-                            Id = "0ce8acf5-da74-4ad8-b5c6-7204444313a3",
-                            ConcurrencyStamp = "b2329e88-1da3-4cdf-a833-66e6de5e3d3d",
+                            Id = "e642bd6a-6fef-4594-89ae-4b3c52e791ee",
+                            ConcurrencyStamp = "9bc3cd1f-8e55-4772-9af4-0855c6238c1d",
                             Name = "DepartmentHead",
                             NormalizedName = "DEPARTMENTHEAD"
                         },
                         new
                         {
-                            Id = "62c3ca30-8d7f-412c-b0ef-57a0d86eb0d9",
-                            ConcurrencyStamp = "429d11a2-4d7b-41a1-b580-fcc8e4a5f8d1",
+                            Id = "0e00bf4b-a4d9-4e5a-b71e-dfa65da223c8",
+                            ConcurrencyStamp = "42147f86-e868-49a9-99b7-71b2c2213552",
                             Name = "FinanceManager",
                             NormalizedName = "FINANCEMANAGER"
                         },
                         new
                         {
-                            Id = "e7c47599-e93a-41ff-b7c6-07bd8c7cdbc1",
-                            ConcurrencyStamp = "8d07d5b2-fb02-40f3-bbde-c647784ff782",
+                            Id = "bca3d099-172c-4e70-92ef-bbe3a2a2992e",
+                            ConcurrencyStamp = "f286084b-bb79-44e2-8148-da73e9415e71",
                             Name = "ProcurementManager",
                             NormalizedName = "PROCUREMENTMANAGER"
                         });

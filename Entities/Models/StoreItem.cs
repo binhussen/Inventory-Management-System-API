@@ -17,10 +17,10 @@ namespace Entities.Models
         public int Unit { get; set; }
         public int QtyOrdered { get; set; }
         public int QtyRecived { get; set; }
+        public int QtyRemain { get; set; }
         public int UnitPrice { get; set; }
         public int TotalPrice { get; set; }
         public int Status { get; set; }
-        public int RemainQuantity { get; set; }
         [ForeignKey(nameof(StoreHeader))]
         public Guid StoreHeaderId { get; set; }
         public StoreHeader StoreHeader { get; set; }

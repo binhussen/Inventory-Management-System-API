@@ -31,7 +31,6 @@ namespace API.Controllers
         }
 
         [HttpGet, Authorize]
-        [HttpHead]
         public async Task<IActionResult> GetStoreItems([FromQuery] StoreItemParameters storeItemParameters)
         {
             var storesFromDb = await _repository.Store.GetStoresAsync(storeItemParameters, trackChanges: false);

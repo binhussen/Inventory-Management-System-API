@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Entities.DataTransferObjects
@@ -14,11 +15,18 @@ namespace Entities.DataTransferObjects
         public int Quantity { get; set; }
         public int UnitPrice { get; set; }
         public int TotalPrice { get; set; }
-        public string BudgetCode { get; set; }
         public int Status { get; set; }
+        public string ApprovedBy { get; set; }
+        public DateTimeOffset ApprovedDate { get; set; }
+        public string DistributeBy { get; set; }
+        public DateTimeOffset DistributeDate { get; set; }
+        public int ApprovedQuantity { get; set; }
+        public Guid StoreItemId { get; set; }
         public string CreatedByUser { get; set; }
         public DateTimeOffset CreatedDate { get; set; }
         public string ModifiedByUser { get; set; }
         public DateTimeOffset ModifiedDate { get; set; }
+        public string RejectBy { get; set; }
+        public DateTimeOffset RejectDate { get; set; }
     }
 }

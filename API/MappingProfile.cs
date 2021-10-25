@@ -55,11 +55,13 @@ namespace API
             CreateMap<UserForUpdate, User>();
 
             /**/
+            CreateMap<RequestHeaderForBudgetCodeDto, RequestHeader>();
+
             CreateMap<RequestItemForApprovementDto, RequestItem>();
 
-            CreateMap<RequestItemForBudgetCodeDto,RequestItem>();
-
             CreateMap<RequestItemForRejectDto,RequestItem>();
+
+            CreateMap<RequestItemForDistributeDto, RequestItem>();
             /**/
         }
     }

@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Entities.RequestFeatures;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace API.Controllers
 {
@@ -19,16 +20,19 @@ namespace API.Controllers
     [ApiController]
     public class RequestHeadersController : ControllerBase
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
 
-        public RequestHeadersController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
+        public RequestHeadersController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _repository = repository;
             _logger = logger;
             _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
         }
+
 
         [HttpGet(Name = "GetRequestHeaders"), Authorize]
         public async Task<IActionResult> GetRequestHeaders([FromQuery] OrderParameters orderParameters)
@@ -156,6 +160,23 @@ namespace API.Controllers
             Response.Headers.Add("Allow", "GET, OPTIONS, POST");
 
             return Ok();
+        }
+
+
+        [HttpPut("budget/{id}"), Authorize]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [ServiceFilter(typeof(ValidateRequestExistsAttribute))]
+        public async Task<IActionResult> BudgetCode(Guid id, [FromBody] RequestHeaderForBudgetCodeDto budget)
+        {
+            var requestHeaderEntity = HttpContext.Items["requestHeader"] as RequestHeader;
+            var currentTime = DateTimeOffset.UtcNow;
+            _mapper.Map(budget, requestHeaderEntity);
+            requestHeaderEntity.Status = 2;
+            requestHeaderEntity.BudgetBy = _httpContextAccessor.HttpContext.User.Identity.Name;
+            requestHeaderEntity.BudgetDate = currentTime;
+            await _repository.SaveAsync();
+
+            return NoContent();
         }
     }
 }
