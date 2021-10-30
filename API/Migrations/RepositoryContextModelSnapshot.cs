@@ -226,6 +226,12 @@ namespace API.Migrations
                     b.Property<int>("ApprovedQuantity")
                         .HasColumnType("int");
 
+                    b.Property<string>("BuyBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("BuyDate")
+                        .HasColumnType("datetimeoffset");
+
                     b.Property<string>("CreatedByUser")
                         .HasColumnType("nvarchar(max)");
 
@@ -252,12 +258,6 @@ namespace API.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
-
-                    b.Property<string>("RejectBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset>("RejectDate")
-                        .HasColumnType("datetimeoffset");
 
                     b.Property<Guid>("RequestHeaderId")
                         .HasColumnType("uniqueidentifier");
@@ -494,43 +494,43 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0d7c3c3f-726e-4e50-9090-0116f837b721",
-                            ConcurrencyStamp = "09a59ff5-5666-4ebb-843f-b16a686dd693",
+                            Id = "ee8ecc2b-c819-464c-a593-50ae78296396",
+                            ConcurrencyStamp = "a81e5828-9a02-4630-8cc3-a2022002d670",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "3a009e38-e095-4f59-876a-c5a37f1c56c9",
-                            ConcurrencyStamp = "0374532d-9b49-4dfd-b7eb-a38d4ea0abe2",
+                            Id = "e0e86b6d-ca7b-4873-865a-e5b9dcfb8e1e",
+                            ConcurrencyStamp = "3093867c-6953-4724-88cd-1573905c725d",
                             Name = "Purchaser",
                             NormalizedName = "PURCHASER"
                         },
                         new
                         {
-                            Id = "851a1039-cdc3-4065-8392-f74f0ff833d9",
-                            ConcurrencyStamp = "cef8f178-9f55-432a-92ea-314d183cdc02",
+                            Id = "753a6b4c-befd-44b0-8f1e-4080512124e4",
+                            ConcurrencyStamp = "d5bafe2f-e1d0-4a50-8bf4-30d2aa8aab90",
                             Name = "StoreMan",
                             NormalizedName = "STOREMAN"
                         },
                         new
                         {
-                            Id = "e642bd6a-6fef-4594-89ae-4b3c52e791ee",
-                            ConcurrencyStamp = "9bc3cd1f-8e55-4772-9af4-0855c6238c1d",
+                            Id = "0136bc41-82fd-44a9-83d8-bf3944aa90b5",
+                            ConcurrencyStamp = "dc72e13d-5ce4-45b2-b8bd-7dae668477e1",
                             Name = "DepartmentHead",
                             NormalizedName = "DEPARTMENTHEAD"
                         },
                         new
                         {
-                            Id = "0e00bf4b-a4d9-4e5a-b71e-dfa65da223c8",
-                            ConcurrencyStamp = "42147f86-e868-49a9-99b7-71b2c2213552",
+                            Id = "38053954-d894-4e27-a595-5828f11a748e",
+                            ConcurrencyStamp = "db84052c-77e4-4ff6-8de6-a5bff0336ee2",
                             Name = "FinanceManager",
                             NormalizedName = "FINANCEMANAGER"
                         },
                         new
                         {
-                            Id = "bca3d099-172c-4e70-92ef-bbe3a2a2992e",
-                            ConcurrencyStamp = "f286084b-bb79-44e2-8148-da73e9415e71",
+                            Id = "ece416d0-f36c-41ed-b092-98328b96761c",
+                            ConcurrencyStamp = "e85b04a9-b30e-4579-9862-cbea46567db9",
                             Name = "ProcurementManager",
                             NormalizedName = "PROCUREMENTMANAGER"
                         });

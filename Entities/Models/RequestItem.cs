@@ -25,8 +25,8 @@ namespace Entities.Models
         public DateTimeOffset ApprovedDate { get; set; }
         public string DistributeBy { get; set; }
         public DateTimeOffset DistributeDate { get; set; }
-        public string RejectBy { get; set; }
-        public DateTimeOffset RejectDate{ get; set; }
+        public string BuyBy { get; set; }
+        public DateTimeOffset BuyDate{ get; set; }
         [ForeignKey(nameof(StoreItem))]
         public Guid StoreItemId { get; set; }
 

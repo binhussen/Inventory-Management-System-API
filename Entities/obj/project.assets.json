@@ -864,11 +864,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mhd\\Documents\\Eric\\API\\Entities\\Entities.csproj",
+      "projectUniqueName": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Entities\\Entities.csproj",
       "projectName": "Entities",
-      "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\API\\Entities\\Entities.csproj",
+      "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Entities\\Entities.csproj",
       "packagesPath": "C:\\Users\\mhd\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mhd\\Documents\\Eric\\API\\Entities\\obj\\",
+      "outputPath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Entities\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mhd\\AppData\\Roaming\\NuGet\\NuGet.Config",

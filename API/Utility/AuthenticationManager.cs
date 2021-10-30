@@ -92,6 +92,10 @@ namespace API.Utility
         {
             _user = await _userManager.FindByNameAsync(user.UserName);
 
+            if (_user == null)
+            {
+                return SignInResult.Failed;
+            }
             var result = await _signInManager.PasswordSignInAsync(user.UserName, user.Password, false, true);
 
             if (((_user.IsEnabled.HasValue && !_user.IsEnabled.Value) || !_user.IsEnabled.HasValue)&&result.Succeeded||result.IsLockedOut)

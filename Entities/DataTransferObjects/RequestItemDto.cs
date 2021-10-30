@@ -26,7 +26,7 @@ namespace Entities.DataTransferObjects
         public DateTimeOffset CreatedDate { get; set; }
         public string ModifiedByUser { get; set; }
         public DateTimeOffset ModifiedDate { get; set; }
-        public string RejectBy { get; set; }
-        public DateTimeOffset RejectDate { get; set; }
+        public string BuyBy { get; set; }
+        public DateTimeOffset BuyDate { get; set; }
     }
 }

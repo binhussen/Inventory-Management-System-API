@@ -128,7 +128,7 @@ namespace API.Controllers
             var RequestItemEntity = HttpContext.Items["requestItem"] as RequestItem;
             var currentTime = DateTimeOffset.UtcNow;
             _mapper.Map(RequestItem, RequestItemEntity);
-            RequestItemEntity.Status = 3;
+            RequestItemEntity.Status = 4;
             RequestItemEntity.DistributeBy = _httpContextAccessor.HttpContext.User.Identity.Name;
             RequestItemEntity.DistributeDate = currentTime;
             /*update store*/
@@ -157,7 +157,7 @@ namespace API.Controllers
             var RequestItemEntity = HttpContext.Items["requestItem"] as RequestItem;
             var currentTime = DateTimeOffset.UtcNow;
             _mapper.Map(RequestItem, RequestItemEntity);
-            RequestItemEntity.Status = 2;
+            RequestItemEntity.Status = 1;
             RequestItemEntity.ApprovedBy = _httpContextAccessor.HttpContext.User.Identity.Name;
             RequestItemEntity.ApprovedDate = currentTime;
             await _repository.SaveAsync();
@@ -173,9 +173,40 @@ namespace API.Controllers
             var RequestItemEntity = HttpContext.Items["requestItem"] as RequestItem;
             var currentTime = DateTimeOffset.UtcNow;
             _mapper.Map(RequestItem, RequestItemEntity);
-            RequestItemEntity.Status = 4;
-            RequestItemEntity.RejectBy = _httpContextAccessor.HttpContext.User.Identity.Name;
-            RequestItemEntity.RejectDate = currentTime;
+            RequestItemEntity.ApprovedQuantity = 0;
+            RequestItemEntity.Status = 2;
+            RequestItemEntity.ApprovedBy = _httpContextAccessor.HttpContext.User.Identity.Name;
+            RequestItemEntity.ApprovedDate = currentTime;
+            await _repository.SaveAsync();
+
+            return NoContent();
+        }
+
+        [HttpPut("buy/{id}"), Authorize]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
+        public async Task<IActionResult> Buy(Guid RequestHeaderId, Guid id, [FromBody] RequestItemForRejectDto RequestItem)
+        {
+            var RequestItemEntity = HttpContext.Items["requestItem"] as RequestItem;
+            var currentTime = DateTimeOffset.UtcNow;
+            RequestItemEntity.Status = 3;
+            RequestItemEntity.BuyBy = _httpContextAccessor.HttpContext.User.Identity.Name;
+            RequestItemEntity.BuyDate = currentTime;
+            await _repository.SaveAsync();
+
+            return NoContent();
+        }
+
+        [HttpPut("notbuy/{id}"), Authorize]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
+        public async Task<IActionResult> NotBuy(Guid RequestHeaderId, Guid id, [FromBody] RequestItemForRejectDto RequestItem)
+        {
+            var RequestItemEntity = HttpContext.Items["requestItem"] as RequestItem;
+            var currentTime = DateTimeOffset.UtcNow;
+            RequestItemEntity.Status = 1;
+            RequestItemEntity.BuyBy = _httpContextAccessor.HttpContext.User.Identity.Name;
+            RequestItemEntity.BuyDate = currentTime;
             await _repository.SaveAsync();
 
             return NoContent();

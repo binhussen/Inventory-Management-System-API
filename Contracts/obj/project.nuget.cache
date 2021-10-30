@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vF1JCvJvEo7HQPDpWstjkL9Sbyr4fHDYhQ5eCFqXO5Nk3Qk0Qu02o85zvowcwtm9kjp2atKYqapp+5RJcckftg==",
+  "dgSpecHash": "6URqDy8oOWWE/Y0kNtsUqYsjfPc9gKZbHXT1Pu2DNQfIXQ6RFmg+cQzsjFEPt9jH2ImDyVuD5dhkZruhzEJp3A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mhd\\Documents\\Eric\\API\\Contracts\\Contracts.csproj",
+  "projectFilePath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Contracts\\Contracts.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mhd\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.10\\microsoft.aspnetcore.cryptography.internal.5.0.10.nupkg.sha512",
     "C:\\Users\\mhd\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.10\\microsoft.aspnetcore.cryptography.keyderivation.5.0.10.nupkg.sha512",

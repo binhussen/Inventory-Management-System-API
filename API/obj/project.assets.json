@@ -7956,11 +7956,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mhd\\Documents\\Eric\\API\\API\\API.csproj",
+      "projectUniqueName": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\API\\API\\API.csproj",
+      "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\API\\API.csproj",
       "packagesPath": "C:\\Users\\mhd\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mhd\\Documents\\Eric\\API\\API\\obj\\",
+      "outputPath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\mhd\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7977,11 +7977,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\mhd\\Documents\\Eric\\API\\LoggerService\\LoggerService.csproj": {
-              "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\API\\LoggerService\\LoggerService.csproj"
+            "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\LoggerService\\LoggerService.csproj": {
+              "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\LoggerService\\LoggerService.csproj"
             },
-            "C:\\Users\\mhd\\Documents\\Eric\\API\\Repository\\Repository.csproj": {
-              "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\API\\Repository\\Repository.csproj"
+            "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Repository\\Repository.csproj": {
+              "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Repository\\Repository.csproj"
             }
           }
         }

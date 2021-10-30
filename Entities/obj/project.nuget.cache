@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WXiiZdAJzUGvR6DptCjHLi9maF442Of/85Cm+2lsPex+8uNKfLHkjvMDm6CQPWJoEnv78urbvugtfq9hbrwBiQ==",
+  "dgSpecHash": "bvroSf2BceBrYH7wiFbd2MtmJ4aGBQqtxJeVDwclxqzYUrKpzfRJn4Ig0967zPmtlikpB6/3IZOznQMAz4eKag==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mhd\\Documents\\Eric\\API\\Entities\\Entities.csproj",
+  "projectFilePath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Entities\\Entities.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mhd\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.10\\microsoft.aspnetcore.cryptography.internal.5.0.10.nupkg.sha512",
     "C:\\Users\\mhd\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.10\\microsoft.aspnetcore.cryptography.keyderivation.5.0.10.nupkg.sha512",

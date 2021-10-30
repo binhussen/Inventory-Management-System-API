@@ -171,7 +171,23 @@ namespace API.Controllers
             var requestHeaderEntity = HttpContext.Items["requestHeader"] as RequestHeader;
             var currentTime = DateTimeOffset.UtcNow;
             _mapper.Map(budget, requestHeaderEntity);
+            requestHeaderEntity.Status = 1;
+            requestHeaderEntity.BudgetBy = _httpContextAccessor.HttpContext.User.Identity.Name;
+            requestHeaderEntity.BudgetDate = currentTime;
+            await _repository.SaveAsync();
+
+            return NoContent();
+        }
+
+        [HttpPut("rejectbudget/{id}"), Authorize]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [ServiceFilter(typeof(ValidateRequestExistsAttribute))]
+        public async Task<IActionResult> BudgetReject(Guid id, [FromBody] RequestItemForRejectDto RequestItem)
+        {
+            var requestHeaderEntity = HttpContext.Items["requestHeader"] as RequestHeader;
+            var currentTime = DateTimeOffset.UtcNow;
             requestHeaderEntity.Status = 2;
+            requestHeaderEntity.BudgetCode = "";
             requestHeaderEntity.BudgetBy = _httpContextAccessor.HttpContext.User.Identity.Name;
             requestHeaderEntity.BudgetDate = currentTime;
             await _repository.SaveAsync();

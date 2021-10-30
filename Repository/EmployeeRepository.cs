@@ -12,7 +12,7 @@ namespace Repository
 {
     public class EmployeeRepository : RepositoryBase<Employee>, IEmployeeRepository
     {
-        Guid secialId = Guid.Parse("c3c53f31-5f35-46b5-6292-08d996e70eb3");
+        Guid secialId = Guid.Parse("f3f9725a-f5dc-4dff-2748-08d995ecf82a");
         public EmployeeRepository(RepositoryContext repositoryContext)
             : base(repositoryContext)
         {

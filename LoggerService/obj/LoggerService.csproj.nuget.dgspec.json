@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mhd\\Documents\\Eric\\API\\LoggerService\\LoggerService.csproj": {}
+    "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\LoggerService\\LoggerService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mhd\\Documents\\Eric\\API\\Contracts\\Contracts.csproj": {
+    "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Contracts\\Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mhd\\Documents\\Eric\\API\\Contracts\\Contracts.csproj",
+        "projectUniqueName": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Contracts\\Contracts.csproj",
         "projectName": "Contracts",
-        "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\API\\Contracts\\Contracts.csproj",
+        "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Contracts\\Contracts.csproj",
         "packagesPath": "C:\\Users\\mhd\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mhd\\Documents\\Eric\\API\\Contracts\\obj\\",
+        "outputPath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Contracts\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mhd\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\mhd\\Documents\\Eric\\API\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\API\\Entities\\Entities.csproj"
+              "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Entities\\Entities.csproj"
               }
             }
           }
@@ -70,14 +70,14 @@
         }
       }
     },
-    "C:\\Users\\mhd\\Documents\\Eric\\API\\Entities\\Entities.csproj": {
+    "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mhd\\Documents\\Eric\\API\\Entities\\Entities.csproj",
+        "projectUniqueName": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\API\\Entities\\Entities.csproj",
+        "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Entities\\Entities.csproj",
         "packagesPath": "C:\\Users\\mhd\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mhd\\Documents\\Eric\\API\\Entities\\obj\\",
+        "outputPath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mhd\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -142,14 +142,14 @@
         }
       }
     },
-    "C:\\Users\\mhd\\Documents\\Eric\\API\\LoggerService\\LoggerService.csproj": {
+    "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\LoggerService\\LoggerService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mhd\\Documents\\Eric\\API\\LoggerService\\LoggerService.csproj",
+        "projectUniqueName": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\LoggerService\\LoggerService.csproj",
         "projectName": "LoggerService",
-        "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\API\\LoggerService\\LoggerService.csproj",
+        "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\LoggerService\\LoggerService.csproj",
         "packagesPath": "C:\\Users\\mhd\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mhd\\Documents\\Eric\\API\\LoggerService\\obj\\",
+        "outputPath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\LoggerService\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mhd\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -166,8 +166,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\mhd\\Documents\\Eric\\API\\Contracts\\Contracts.csproj": {
-                "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\API\\Contracts\\Contracts.csproj"
+              "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Contracts\\Contracts.csproj": {
+                "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Contracts\\Contracts.csproj"
               }
             }
           }
