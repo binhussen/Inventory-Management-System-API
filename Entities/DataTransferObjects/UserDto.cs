@@ -17,7 +17,7 @@ namespace Entities.DataTransferObjects
         public string PhoneNumber { get; set; }
         public bool? IsEnabled { get; set; }
         public DateTimeOffset LockoutEnd { get; set; }
-        public bool AccessFailedCount { get; set; }
+        public int AccessFailedCount { get; set; }
         public IEnumerable<string> Roles { get; set; }
     }
 }

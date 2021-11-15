@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Contracts\\Contracts.csproj": {}
+    "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Contracts\\Contracts.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Contracts\\Contracts.csproj": {
+    "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Contracts\\Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Contracts\\Contracts.csproj",
+        "projectUniqueName": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Contracts\\Contracts.csproj",
         "projectName": "Contracts",
-        "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Contracts\\Contracts.csproj",
-        "packagesPath": "C:\\Users\\mhd\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Contracts\\obj\\",
+        "projectPath": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Contracts\\Contracts.csproj",
+        "packagesPath": "C:\\Users\\MHD\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Contracts\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\mhd\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\MHD\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,14 +22,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://packagesource": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Entities\\Entities.csproj"
+              "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Entities\\Entities.csproj"
               }
             }
           }
@@ -70,17 +71,17 @@
         }
       }
     },
-    "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Entities\\Entities.csproj": {
+    "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Entities\\Entities.csproj",
+        "projectUniqueName": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Entities\\Entities.csproj",
-        "packagesPath": "C:\\Users\\mhd\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Entities\\obj\\",
+        "projectPath": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Entities\\Entities.csproj",
+        "packagesPath": "C:\\Users\\MHD\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\mhd\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\MHD\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -88,7 +89,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://packagesource": {}
         },
         "frameworks": {
           "net5.0": {

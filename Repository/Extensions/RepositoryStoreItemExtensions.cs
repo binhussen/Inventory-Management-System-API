@@ -8,7 +8,7 @@ namespace Repository.Extensions
     public static class RepositoryStoreItemExtensions
     {
         public static IQueryable<StoreItem> FilterStoreItems(this IQueryable<StoreItem> storeItems, uint min, uint max) =>
-            storeItems.Where(e => (e.QtyRecived >= max && e.QtyRecived <= max));
+            storeItems.Where(e => (e.QtyReceived >= max && e.QtyReceived <= max));
 
         public static IQueryable<StoreItem> Search(this IQueryable<StoreItem> storeItems, string searchTerm)
         {

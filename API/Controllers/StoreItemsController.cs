@@ -89,6 +89,8 @@ namespace API.Controllers
             var storeItemEntity = _mapper.Map<StoreItem>(storeItem);
             
             _repository.StoreItem.CreateStoreItemForStoreHeader(storeheaderid, storeItemEntity);
+            storeItemEntity.TotalPrice = storeItemEntity.UnitPrice * storeItemEntity.QtyReceived;
+            storeItemEntity.QtyRemain = storeItemEntity.QtyReceived;
             await _repository.SaveAsync();
 
             var storeItemToReturn = _mapper.Map<StoreItemDto>(storeItemEntity);
@@ -116,6 +118,8 @@ namespace API.Controllers
             var storeItemEntity = HttpContext.Items["storeItem"] as StoreItem;
 
             _mapper.Map(storeItem, storeItemEntity);
+            storeItemEntity.TotalPrice = storeItemEntity.UnitPrice * storeItemEntity.QtyReceived;
+            storeItemEntity.QtyRemain = storeItemEntity.QtyReceived;
             await _repository.SaveAsync();
 
             return NoContent();

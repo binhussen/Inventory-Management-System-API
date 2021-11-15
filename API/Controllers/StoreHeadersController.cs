@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Entities.RequestFeatures;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace API.Controllers
 {
@@ -19,15 +20,17 @@ namespace API.Controllers
     [ApiController]
     public class StoreHeadersController : ControllerBase
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
 
-        public StoreHeadersController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
+        public StoreHeadersController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _repository = repository;
             _logger = logger;
             _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
         }
 
         [HttpGet(Name = "GetStoreHeaders"), Authorize]
@@ -158,6 +161,23 @@ namespace API.Controllers
             Response.Headers.Add("Allow", "GET, OPTIONS, POST");
 
             return Ok();
+        }
+
+        /**/
+        [HttpPut("store/{id}"), Authorize]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [ServiceFilter(typeof(ValidateStoreExistsAttribute))]
+        public async Task<IActionResult> Stores(Guid id, [FromBody] StoreHeaderDto storeHeader)
+        {
+            var storeHeaderEntity = HttpContext.Items["storeHeader"] as StoreHeader;
+            var currentTime = DateTimeOffset.UtcNow;
+            _mapper.Map(storeHeader, storeHeaderEntity);
+            storeHeaderEntity.Status = 1;
+            storeHeaderEntity.StoreBy = _httpContextAccessor.HttpContext.User.Identity.Name;
+            storeHeaderEntity.StoreDate = currentTime;
+            await _repository.SaveAsync();
+
+            return NoContent();
         }
     }
 }

@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using API.ActionFilters;
-using API.Utility;
 using Contracts;
 using Entities.DataTransferObjects;
 using Entities.Models;
 using Entities.RequestFeatures;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
@@ -88,6 +86,7 @@ namespace API.Controllers
             var RequestItemEntity = _mapper.Map<RequestItem>(RequestItem);
             
             _repository.RequestItem.CreateRequestItemForRequestHeader(requestheaderid, RequestItemEntity);
+            RequestItemEntity.TotalPrice = RequestItemEntity.UnitPrice * RequestItemEntity.Quantity;
             await _repository.SaveAsync();
 
             var RequestItemToReturn = _mapper.Map<RequestItemDto>(RequestItemEntity);
@@ -113,8 +112,8 @@ namespace API.Controllers
         public async Task<IActionResult> UpdateRequestItemForRequestHeader(Guid RequestHeaderId, Guid id, [FromBody] RequestItemForUpdateDto RequestItem)
         {
             var RequestItemEntity = HttpContext.Items["requestItem"] as RequestItem;
-
             _mapper.Map(RequestItem, RequestItemEntity);
+            RequestItemEntity.TotalPrice = RequestItemEntity.UnitPrice * RequestItemEntity.Quantity;
             await _repository.SaveAsync();
 
             return NoContent();
@@ -128,7 +127,7 @@ namespace API.Controllers
             var RequestItemEntity = HttpContext.Items["requestItem"] as RequestItem;
             var currentTime = DateTimeOffset.UtcNow;
             _mapper.Map(RequestItem, RequestItemEntity);
-            RequestItemEntity.Status = 4;
+            RequestItemEntity.Status = 5;
             RequestItemEntity.DistributeBy = _httpContextAccessor.HttpContext.User.Identity.Name;
             RequestItemEntity.DistributeDate = currentTime;
             /*update store*/
@@ -139,7 +138,7 @@ namespace API.Controllers
             }
             else
             {
-                storesFromDb.QtyRemain = storesFromDb.QtyRecived - RequestItemEntity.ApprovedQuantity;
+                storesFromDb.QtyRemain = storesFromDb.QtyReceived - RequestItemEntity.ApprovedQuantity;
             }
             if (storesFromDb.QtyRemain == 0)
                 storesFromDb.Status = 1;
@@ -204,7 +203,7 @@ namespace API.Controllers
         {
             var RequestItemEntity = HttpContext.Items["requestItem"] as RequestItem;
             var currentTime = DateTimeOffset.UtcNow;
-            RequestItemEntity.Status = 1;
+            RequestItemEntity.Status = 4;
             RequestItemEntity.BuyBy = _httpContextAccessor.HttpContext.User.Identity.Name;
             RequestItemEntity.BuyDate = currentTime;
             await _repository.SaveAsync();

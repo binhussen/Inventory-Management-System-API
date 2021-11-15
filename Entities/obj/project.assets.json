@@ -859,19 +859,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mhd\\.nuget\\packages\\": {}
+    "C:\\Users\\MHD\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Entities\\Entities.csproj",
+      "projectUniqueName": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Entities\\Entities.csproj",
       "projectName": "Entities",
-      "projectPath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Entities\\Entities.csproj",
-      "packagesPath": "C:\\Users\\mhd\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mhd\\Documents\\Eric\\New folder\\API\\Entities\\obj\\",
+      "projectPath": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Entities\\Entities.csproj",
+      "packagesPath": "C:\\Users\\MHD\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Entities\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\mhd\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\MHD\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -879,7 +879,8 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://packagesource": {}
       },
       "frameworks": {
         "net5.0": {
