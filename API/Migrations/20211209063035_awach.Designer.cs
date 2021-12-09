@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20211025181913_reject")]
-    partial class reject
+    [Migration("20211209063035_awach")]
+    partial class awach
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,20 +76,16 @@ namespace API.Migrations
                         new
                         {
                             Id = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
-                            Address = "583 Wall Dr. Gwynn Oak, MD 21207",
-                            Country = "USA",
+                            Address = "Aware around Edna Addis Hotel at Agar Building",
+                            Country = "Ethiopia",
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Description = "SACCOS Company",
+                            Email = "awach@gmail.com",
+                            Fax = "34752",
                             ModifiedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "IT_Solutions Ltd"
-                        },
-                        new
-                        {
-                            Id = new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"),
-                            Address = "312 Forest Avenue, BF 923",
-                            Country = "USA",
-                            CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            ModifiedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Admin_Solutions Ltd"
+                            Name = "Awach SACCOS",
+                            PhoneNo = "+251-118-12-44-44",
+                            Website = "https://www.awach.com"
                         });
                 });
 
@@ -142,38 +138,6 @@ namespace API.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("Employees");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("80abbca8-664d-4b20-b5de-024705497d4a"),
-                            Age = 26,
-                            CompanyId = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
-                            CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            ModifiedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Sam Raiden",
-                            Position = "Software developer"
-                        },
-                        new
-                        {
-                            Id = new Guid("86dba8c0-d178-41e7-938c-ed49778fb52a"),
-                            Age = 30,
-                            CompanyId = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
-                            CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            ModifiedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Jana McLeaf",
-                            Position = "Software developer"
-                        },
-                        new
-                        {
-                            Id = new Guid("021ca3c1-0deb-4afd-ae94-2159a8479811"),
-                            Age = 35,
-                            CompanyId = new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"),
-                            CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            ModifiedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Kane Miller",
-                            Position = "Administrator"
-                        });
                 });
 
             modelBuilder.Entity("Entities.Models.RequestHeader", b =>
@@ -228,6 +192,12 @@ namespace API.Migrations
                     b.Property<int>("ApprovedQuantity")
                         .HasColumnType("int");
 
+                    b.Property<string>("BuyBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("BuyDate")
+                        .HasColumnType("datetimeoffset");
+
                     b.Property<string>("CreatedByUser")
                         .HasColumnType("nvarchar(max)");
 
@@ -254,12 +224,6 @@ namespace API.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
-
-                    b.Property<string>("RejectBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset>("RejectDate")
-                        .HasColumnType("datetimeoffset");
 
                     b.Property<Guid>("RequestHeaderId")
                         .HasColumnType("uniqueidentifier");
@@ -296,26 +260,14 @@ namespace API.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("StoreHeaderId");
 
-                    b.Property<Guid>("AcceptedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CheckedBy")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("CreatedByUser")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTimeOffset>("CreatedDate")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("GraNo")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("InspectedBy")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ModifiedByUser")
                         .HasColumnType("nvarchar(max)");
@@ -323,11 +275,14 @@ namespace API.Migrations
                     b.Property<DateTimeOffset>("ModifiedDate")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("Pox")
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StoreBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ReciverId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<DateTimeOffset>("StoreDate")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<Guid>("SupplierId")
                         .HasColumnType("uniqueidentifier");
@@ -365,10 +320,10 @@ namespace API.Migrations
                     b.Property<int>("QtyOrdered")
                         .HasColumnType("int");
 
-                    b.Property<int>("QtyRecived")
+                    b.Property<int>("QtyReceived")
                         .HasColumnType("int");
 
-                    b.Property<int>("RemainQuantity")
+                    b.Property<int>("QtyRemain")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
@@ -380,8 +335,8 @@ namespace API.Migrations
                     b.Property<int>("TotalPrice")
                         .HasColumnType("int");
 
-                    b.Property<int>("Unit")
-                        .HasColumnType("int");
+                    b.Property<string>("Unit")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("UnitPrice")
                         .HasColumnType("int");
@@ -465,6 +420,28 @@ namespace API.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "bb84a19b-a060-4a14-9e74-d6c0ebb89e49",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1b644a8f - 70ce - 4bdd - 91af - b6a774fe8f15",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Administrator",
+                            IsEnabled = true,
+                            LastName = "Administrator",
+                            LockoutEnabled = true,
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
+                            NormalizedUserName = "ADMINISTRATOR",
+                            PasswordHash = "AQAAAAEAACcQAAAAEI / XRI6ZeV4JdZWqf9cO9 + cy + qchgfTNS8pudCb60OwF4Z77U2r7oU0bIT3KSJ0wPA ==",
+                            PhoneNumber = "+251-944-69-69-69",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "AX4V5FQG663Z44N46VMUANNWRVJRMFHW",
+                            TwoFactorEnabled = false,
+                            UserName = "Administrator"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -496,43 +473,43 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "28971e07-6c4e-40df-910f-057fc9d0cd5b",
-                            ConcurrencyStamp = "20b712a4-7a3c-4df3-b937-9ac3b0d3d72f",
+                            Id = "dbbda86d-0e9a-416a-9e9b-f9d9b6305f58",
+                            ConcurrencyStamp = "28d614fa-93ba-4838-a813-9213368f74db",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "0fa25baa-eecb-4b83-a9f6-e41def8e7725",
-                            ConcurrencyStamp = "af26d15e-c17c-4846-9c15-a175feded6a0",
+                            Id = "b351b3e5-cf3c-4c0b-af70-14ca110b2cde",
+                            ConcurrencyStamp = "ed3f1fb3-db6a-426a-928b-c0ecf42cb534",
                             Name = "Purchaser",
                             NormalizedName = "PURCHASER"
                         },
                         new
                         {
-                            Id = "fb9acd3a-83a3-4f27-b441-540406a1a313",
-                            ConcurrencyStamp = "9ea8b1a1-98b7-4643-a560-52f7d3749439",
+                            Id = "45b1a17b-6959-402c-bc94-8fa5be8013c7",
+                            ConcurrencyStamp = "1f8364c3-12fe-4b95-8cf9-7b627be83056",
                             Name = "StoreMan",
                             NormalizedName = "STOREMAN"
                         },
                         new
                         {
-                            Id = "34a17897-a123-4ecd-931b-6716ee46e4bc",
-                            ConcurrencyStamp = "effa7194-1c31-48ec-a3d8-d625048a32d6",
+                            Id = "8ac00fc1-f248-4e80-b5db-ac6fd2d9ea64",
+                            ConcurrencyStamp = "8610dafa-f276-4c6e-ae10-0184ac193930",
                             Name = "DepartmentHead",
                             NormalizedName = "DEPARTMENTHEAD"
                         },
                         new
                         {
-                            Id = "f416b2c2-078d-40c2-8c38-22426bd2a141",
-                            ConcurrencyStamp = "60af1af4-cc13-4946-a3de-49735956deeb",
+                            Id = "ecdd3b09-b9e5-447c-b7c3-40d4b89d7170",
+                            ConcurrencyStamp = "609f22ae-3be4-40ce-b632-db5d5c18dc9a",
                             Name = "FinanceManager",
                             NormalizedName = "FINANCEMANAGER"
                         },
                         new
                         {
-                            Id = "081db2e8-7517-46c5-b234-532c691ccd58",
-                            ConcurrencyStamp = "a89806b0-d457-41b4-b2f1-0ea2ace31d00",
+                            Id = "4f2d9255-9910-47d1-b063-9f11272f03a3",
+                            ConcurrencyStamp = "26887660-acae-49b2-b277-5f5ba03086c3",
                             Name = "ProcurementManager",
                             NormalizedName = "PROCUREMENTMANAGER"
                         });

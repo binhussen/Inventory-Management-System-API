@@ -98,7 +98,7 @@ namespace API.Utility
             }
             var result = await _signInManager.PasswordSignInAsync(user.UserName, user.Password, false, true);
 
-            if (((_user.IsEnabled.HasValue && !_user.IsEnabled.Value) || !_user.IsEnabled.HasValue)&&result.Succeeded||result.IsLockedOut)
+            if (((_user.IsEnabled.HasValue && !_user.IsEnabled.Value) || !_user.IsEnabled.HasValue)&&(result.Succeeded||result.IsLockedOut))
             {
                 return SignInResult.NotAllowed;
             }

@@ -22,7 +22,8 @@ namespace API.Controllers
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
-        Guid specialId = Guid.Parse("f3f9725a-f5dc-4dff-2748-08d995ecf82a");
+
+        private Guid specialId = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870");
 
         public CompaniesController(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
         {

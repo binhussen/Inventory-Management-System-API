@@ -74,20 +74,16 @@ namespace API.Migrations
                         new
                         {
                             Id = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
-                            Address = "583 Wall Dr. Gwynn Oak, MD 21207",
-                            Country = "USA",
+                            Address = "Aware around Edna Addis Hotel at Agar Building",
+                            Country = "Ethiopia",
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Description = "SACCOS Company",
+                            Email = "awach@gmail.com",
+                            Fax = "34752",
                             ModifiedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "IT_Solutions Ltd"
-                        },
-                        new
-                        {
-                            Id = new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"),
-                            Address = "312 Forest Avenue, BF 923",
-                            Country = "USA",
-                            CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            ModifiedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Admin_Solutions Ltd"
+                            Name = "Awach SACCOS",
+                            PhoneNo = "+251-118-12-44-44",
+                            Website = "https://www.awach.com"
                         });
                 });
 
@@ -140,38 +136,6 @@ namespace API.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("Employees");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("80abbca8-664d-4b20-b5de-024705497d4a"),
-                            Age = 26,
-                            CompanyId = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
-                            CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            ModifiedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Sam Raiden",
-                            Position = "Software developer"
-                        },
-                        new
-                        {
-                            Id = new Guid("86dba8c0-d178-41e7-938c-ed49778fb52a"),
-                            Age = 30,
-                            CompanyId = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
-                            CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            ModifiedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Jana McLeaf",
-                            Position = "Software developer"
-                        },
-                        new
-                        {
-                            Id = new Guid("021ca3c1-0deb-4afd-ae94-2159a8479811"),
-                            Age = 35,
-                            CompanyId = new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"),
-                            CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            ModifiedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
-                            Name = "Kane Miller",
-                            Position = "Administrator"
-                        });
                 });
 
             modelBuilder.Entity("Entities.Models.RequestHeader", b =>
@@ -454,6 +418,28 @@ namespace API.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "bb84a19b-a060-4a14-9e74-d6c0ebb89e49",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1b644a8f - 70ce - 4bdd - 91af - b6a774fe8f15",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Administrator",
+                            IsEnabled = true,
+                            LastName = "Administrator",
+                            LockoutEnabled = true,
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
+                            NormalizedUserName = "ADMINISTRATOR",
+                            PasswordHash = "AQAAAAEAACcQAAAAEI / XRI6ZeV4JdZWqf9cO9 + cy + qchgfTNS8pudCb60OwF4Z77U2r7oU0bIT3KSJ0wPA ==",
+                            PhoneNumber = "+251-944-69-69-69",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "AX4V5FQG663Z44N46VMUANNWRVJRMFHW",
+                            TwoFactorEnabled = false,
+                            UserName = "Administrator"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -485,43 +471,43 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a9901c3a-dde1-4535-8bde-98771dc9f5a8",
-                            ConcurrencyStamp = "d4a5d540-98fe-439c-9e64-4e0e7db1c57a",
+                            Id = "dbbda86d-0e9a-416a-9e9b-f9d9b6305f58",
+                            ConcurrencyStamp = "28d614fa-93ba-4838-a813-9213368f74db",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "ddfed3a4-4b75-414b-a0c5-b547a891c85f",
-                            ConcurrencyStamp = "402a725a-041a-4c77-8c24-7c844fc228e0",
+                            Id = "b351b3e5-cf3c-4c0b-af70-14ca110b2cde",
+                            ConcurrencyStamp = "ed3f1fb3-db6a-426a-928b-c0ecf42cb534",
                             Name = "Purchaser",
                             NormalizedName = "PURCHASER"
                         },
                         new
                         {
-                            Id = "b3ec3890-cf5f-42ea-ba61-86abc4a035fc",
-                            ConcurrencyStamp = "3604937a-aabb-446d-8eda-baa383f989ab",
+                            Id = "45b1a17b-6959-402c-bc94-8fa5be8013c7",
+                            ConcurrencyStamp = "1f8364c3-12fe-4b95-8cf9-7b627be83056",
                             Name = "StoreMan",
                             NormalizedName = "STOREMAN"
                         },
                         new
                         {
-                            Id = "0c0230d6-af19-4c60-bed5-cb48de32db61",
-                            ConcurrencyStamp = "cf24855e-83b4-4298-b9f4-cc9044ad8d9d",
+                            Id = "8ac00fc1-f248-4e80-b5db-ac6fd2d9ea64",
+                            ConcurrencyStamp = "8610dafa-f276-4c6e-ae10-0184ac193930",
                             Name = "DepartmentHead",
                             NormalizedName = "DEPARTMENTHEAD"
                         },
                         new
                         {
-                            Id = "84186bcb-9e88-4fbc-9cfb-12c942cf58e7",
-                            ConcurrencyStamp = "287a3d15-b0d0-4d24-b105-bc78d5e2a5d8",
+                            Id = "ecdd3b09-b9e5-447c-b7c3-40d4b89d7170",
+                            ConcurrencyStamp = "609f22ae-3be4-40ce-b632-db5d5c18dc9a",
                             Name = "FinanceManager",
                             NormalizedName = "FINANCEMANAGER"
                         },
                         new
                         {
-                            Id = "9d70eacf-a1b0-4380-a328-a62bf30e3fd1",
-                            ConcurrencyStamp = "d5d9931d-25cf-422d-9f15-55010013f74e",
+                            Id = "4f2d9255-9910-47d1-b063-9f11272f03a3",
+                            ConcurrencyStamp = "26887660-acae-49b2-b277-5f5ba03086c3",
                             Name = "ProcurementManager",
                             NormalizedName = "PROCUREMENTMANAGER"
                         });

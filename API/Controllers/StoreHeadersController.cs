@@ -167,11 +167,10 @@ namespace API.Controllers
         [HttpPut("store/{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateStoreExistsAttribute))]
-        public async Task<IActionResult> Stores(Guid id, [FromBody] StoreHeaderDto storeHeader)
+        public async Task<IActionResult> Stores(Guid id, [FromBody] BodyDto empity)
         {
             var storeHeaderEntity = HttpContext.Items["storeHeader"] as StoreHeader;
             var currentTime = DateTimeOffset.UtcNow;
-            _mapper.Map(storeHeader, storeHeaderEntity);
             storeHeaderEntity.Status = 1;
             storeHeaderEntity.StoreBy = _httpContextAccessor.HttpContext.User.Identity.Name;
             storeHeaderEntity.StoreDate = currentTime;

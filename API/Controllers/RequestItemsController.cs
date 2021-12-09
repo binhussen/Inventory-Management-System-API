@@ -109,7 +109,7 @@ namespace API.Controllers
         [HttpPut("{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
-        public async Task<IActionResult> UpdateRequestItemForRequestHeader(Guid RequestHeaderId, Guid id, [FromBody] RequestItemForUpdateDto RequestItem)
+        public async Task<IActionResult> UpdateRequestItemForRequestHeader(Guid requestheaderid, Guid id, [FromBody] RequestItemForUpdateDto RequestItem)
         {
             var RequestItemEntity = HttpContext.Items["requestItem"] as RequestItem;
             _mapper.Map(RequestItem, RequestItemEntity);
@@ -122,7 +122,7 @@ namespace API.Controllers
         [HttpPut("distribute/{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
-        public async Task<IActionResult> Distribute(Guid RequestHeaderId, Guid id, [FromBody] RequestItemForDistributeDto RequestItem)
+        public async Task<IActionResult> Distribute(Guid requestheaderid, Guid id, [FromBody] RequestItemForDistributeDto RequestItem)
         {
             var RequestItemEntity = HttpContext.Items["requestItem"] as RequestItem;
             var currentTime = DateTimeOffset.UtcNow;
@@ -151,7 +151,7 @@ namespace API.Controllers
         [HttpPut("approve/{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
-        public async Task<IActionResult> Approve(Guid RequestHeaderId, Guid id, [FromBody] RequestItemForApprovementDto RequestItem)
+        public async Task<IActionResult> Approve(Guid requestheaderid, Guid id, [FromBody] RequestItemForApprovementDto RequestItem)
         {
             var RequestItemEntity = HttpContext.Items["requestItem"] as RequestItem;
             var currentTime = DateTimeOffset.UtcNow;
@@ -167,11 +167,10 @@ namespace API.Controllers
         [HttpPut("reject/{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
-        public async Task<IActionResult> Reject(Guid RequestHeaderId, Guid id, [FromBody] RequestItemForRejectDto RequestItem)
+        public async Task<IActionResult> Reject(Guid requestheaderid, Guid id, [FromBody] BodyDto empity)
         {
             var RequestItemEntity = HttpContext.Items["requestItem"] as RequestItem;
             var currentTime = DateTimeOffset.UtcNow;
-            _mapper.Map(RequestItem, RequestItemEntity);
             RequestItemEntity.ApprovedQuantity = 0;
             RequestItemEntity.Status = 2;
             RequestItemEntity.ApprovedBy = _httpContextAccessor.HttpContext.User.Identity.Name;
@@ -184,7 +183,7 @@ namespace API.Controllers
         [HttpPut("buy/{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
-        public async Task<IActionResult> Buy(Guid RequestHeaderId, Guid id, [FromBody] RequestItemForRejectDto RequestItem)
+        public async Task<IActionResult> Buy(Guid requestheaderid, Guid id, [FromBody] BodyDto empity)
         {
             var RequestItemEntity = HttpContext.Items["requestItem"] as RequestItem;
             var currentTime = DateTimeOffset.UtcNow;
@@ -199,7 +198,7 @@ namespace API.Controllers
         [HttpPut("notbuy/{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
-        public async Task<IActionResult> NotBuy(Guid RequestHeaderId, Guid id, [FromBody] RequestItemForRejectDto RequestItem)
+        public async Task<IActionResult> NotBuy(Guid requestheaderid, Guid id, [FromBody] BodyDto empity)
         {
             var RequestItemEntity = HttpContext.Items["requestItem"] as RequestItem;
             var currentTime = DateTimeOffset.UtcNow;

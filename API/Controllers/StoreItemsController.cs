@@ -87,13 +87,15 @@ namespace API.Controllers
             }
 
             var storeItemEntity = _mapper.Map<StoreItem>(storeItem);
-            
-            _repository.StoreItem.CreateStoreItemForStoreHeader(storeheaderid, storeItemEntity);
-            storeItemEntity.TotalPrice = storeItemEntity.UnitPrice * storeItemEntity.QtyReceived;
-            storeItemEntity.QtyRemain = storeItemEntity.QtyReceived;
-            await _repository.SaveAsync();
 
             var storeItemToReturn = _mapper.Map<StoreItemDto>(storeItemEntity);
+
+            storeItemEntity.TotalPrice = storeItemEntity.UnitPrice * storeItemEntity.QtyReceived;
+            storeItemEntity.QtyRemain = storeItemEntity.QtyReceived;
+
+            _repository.StoreItem.CreateStoreItemForStoreHeader(storeheaderid, storeItemEntity);
+            await _repository.SaveAsync();
+
 
             return CreatedAtRoute("GetStoreItemForStoreHeader", new { storeheaderid, id = storeItemToReturn.Id }, storeItemToReturn);
         }

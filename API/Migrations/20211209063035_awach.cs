@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace API.Migrations
 {
-    public partial class initial : Migration
+    public partial class awach : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,6 +28,7 @@ namespace API.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsEnabled = table.Column<bool>(type: "bit", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -55,11 +56,59 @@ namespace API.Migrations
                     CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     Address = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    PhoneNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Fax = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Website = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedByUser = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    ModifiedByUser = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ModifiedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Companies", x => x.CompanyId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RequestHeaders",
+                columns: table => new
+                {
+                    RequestHeaderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    BudgetCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BudgetBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BudgetDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    CreatedByUser = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    ModifiedByUser = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ModifiedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RequestHeaders", x => x.RequestHeaderId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StoreHeaders",
+                columns: table => new
+                {
+                    StoreHeaderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SupplierId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    GraNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StoreBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    StoreDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    CreatedByUser = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    ModifiedByUser = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ModifiedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StoreHeaders", x => x.StoreHeaderId);
                 });
 
             migrationBuilder.CreateTable(
@@ -176,7 +225,14 @@ namespace API.Migrations
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
                     Position = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    PhoneNo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Department = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedByUser = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    ModifiedByUser = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ModifiedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -189,38 +245,97 @@ namespace API.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "RequestItems",
+                columns: table => new
+                {
+                    RequestItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Use = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    UnitPrice = table.Column<int>(type: "int", nullable: false),
+                    TotalPrice = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    ApprovedQuantity = table.Column<int>(type: "int", nullable: false),
+                    ApprovedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ApprovedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    DistributeBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DistributeDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    BuyBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BuyDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    StoreItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RequestHeaderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedByUser = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    ModifiedByUser = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ModifiedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RequestItems", x => x.RequestItemId);
+                    table.ForeignKey(
+                        name: "FK_RequestItems_RequestHeaders_RequestHeaderId",
+                        column: x => x.RequestHeaderId,
+                        principalTable: "RequestHeaders",
+                        principalColumn: "RequestHeaderId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StoreItems",
+                columns: table => new
+                {
+                    StoreItemId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ItemSpecification = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Unit = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    QtyOrdered = table.Column<int>(type: "int", nullable: false),
+                    QtyReceived = table.Column<int>(type: "int", nullable: false),
+                    QtyRemain = table.Column<int>(type: "int", nullable: false),
+                    UnitPrice = table.Column<int>(type: "int", nullable: false),
+                    TotalPrice = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    StoreHeaderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedByUser = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    ModifiedByUser = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ModifiedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StoreItems", x => x.StoreItemId);
+                    table.ForeignKey(
+                        name: "FK_StoreItems_StoreHeaders_StoreHeaderId",
+                        column: x => x.StoreHeaderId,
+                        principalTable: "StoreHeaders",
+                        principalColumn: "StoreHeaderId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "bb88014b-59c8-438d-92e5-2b0128eaad7d", "cfe196f7-2105-402a-871b-95fb81f0695c", "Manager", "MANAGER" },
-                    { "1f590313-6d67-4385-9bc3-49ada207a18b", "d38fcc37-9a31-4702-a0a3-9c0ef6ef82ae", "Administrator", "ADMINISTRATOR" }
+                    { "dbbda86d-0e9a-416a-9e9b-f9d9b6305f58", "28d614fa-93ba-4838-a813-9213368f74db", "Administrator", "ADMINISTRATOR" },
+                    { "b351b3e5-cf3c-4c0b-af70-14ca110b2cde", "ed3f1fb3-db6a-426a-928b-c0ecf42cb534", "Purchaser", "PURCHASER" },
+                    { "45b1a17b-6959-402c-bc94-8fa5be8013c7", "1f8364c3-12fe-4b95-8cf9-7b627be83056", "StoreMan", "STOREMAN" },
+                    { "8ac00fc1-f248-4e80-b5db-ac6fd2d9ea64", "8610dafa-f276-4c6e-ae10-0184ac193930", "DepartmentHead", "DEPARTMENTHEAD" },
+                    { "ecdd3b09-b9e5-447c-b7c3-40d4b89d7170", "609f22ae-3be4-40ce-b632-db5d5c18dc9a", "FinanceManager", "FINANCEMANAGER" },
+                    { "4f2d9255-9910-47d1-b063-9f11272f03a3", "26887660-acae-49b2-b277-5f5ba03086c3", "ProcurementManager", "PROCUREMENTMANAGER" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "IsEnabled", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "bb84a19b-a060-4a14-9e74-d6c0ebb89e49", 0, "1b644a8f - 70ce - 4bdd - 91af - b6a774fe8f15", "admin@gmail.com", false, "Administrator", true, "Administrator", true, null, "ADMIN@GMAIL.COM", "ADMINISTRATOR", "AQAAAAEAACcQAAAAEI / XRI6ZeV4JdZWqf9cO9 + cy + qchgfTNS8pudCb60OwF4Z77U2r7oU0bIT3KSJ0wPA ==", "+251-944-69-69-69", false, "AX4V5FQG663Z44N46VMUANNWRVJRMFHW", false, "Administrator" });
 
             migrationBuilder.InsertData(
                 table: "Companies",
-                columns: new[] { "CompanyId", "Address", "Country", "Name" },
-                values: new object[,]
-                {
-                    { new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), "583 Wall Dr. Gwynn Oak, MD 21207", "USA", "IT_Solutions Ltd" },
-                    { new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"), "312 Forest Avenue, BF 923", "USA", "Admin_Solutions Ltd" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Employees",
-                columns: new[] { "EmployeeId", "Age", "CompanyId", "Name", "Position" },
-                values: new object[] { new Guid("80abbca8-664d-4b20-b5de-024705497d4a"), 26, new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), "Sam Raiden", "Software developer" });
-
-            migrationBuilder.InsertData(
-                table: "Employees",
-                columns: new[] { "EmployeeId", "Age", "CompanyId", "Name", "Position" },
-                values: new object[] { new Guid("86dba8c0-d178-41e7-938c-ed49778fb52a"), 30, new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), "Jana McLeaf", "Software developer" });
-
-            migrationBuilder.InsertData(
-                table: "Employees",
-                columns: new[] { "EmployeeId", "Age", "CompanyId", "Name", "Position" },
-                values: new object[] { new Guid("021ca3c1-0deb-4afd-ae94-2159a8479811"), 35, new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"), "Kane Miller", "Administrator" });
+                columns: new[] { "CompanyId", "Address", "Country", "CreatedByUser", "CreatedDate", "Description", "Email", "Fax", "ModifiedByUser", "ModifiedDate", "Name", "PhoneNo", "Website" },
+                values: new object[] { new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"), "Aware around Edna Addis Hotel at Agar Building", "Ethiopia", null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "SACCOS Company", "awach@gmail.com", "34752", null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "Awach SACCOS", "+251-118-12-44-44", "https://www.awach.com" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -265,6 +380,16 @@ namespace API.Migrations
                 name: "IX_Employees_CompanyId",
                 table: "Employees",
                 column: "CompanyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RequestItems_RequestHeaderId",
+                table: "RequestItems",
+                column: "RequestHeaderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StoreItems_StoreHeaderId",
+                table: "StoreItems",
+                column: "StoreHeaderId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -288,6 +413,12 @@ namespace API.Migrations
                 name: "Employees");
 
             migrationBuilder.DropTable(
+                name: "RequestItems");
+
+            migrationBuilder.DropTable(
+                name: "StoreItems");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -295,6 +426,12 @@ namespace API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Companies");
+
+            migrationBuilder.DropTable(
+                name: "RequestHeaders");
+
+            migrationBuilder.DropTable(
+                name: "StoreHeaders");
         }
     }
 }

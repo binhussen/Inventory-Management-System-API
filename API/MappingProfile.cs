@@ -59,8 +59,6 @@ namespace API
 
             CreateMap<RequestItemForApprovementDto, RequestItem>();
 
-            CreateMap<RequestItemForRejectDto,RequestItem>();
-
             CreateMap<RequestItemForDistributeDto, RequestItem>();
             /**/
         }

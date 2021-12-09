@@ -12,7 +12,7 @@ namespace Repository
 {
     public class EmployeeRepository : RepositoryBase<Employee>, IEmployeeRepository
     {
-        Guid secialId = Guid.Parse("f3f9725a-f5dc-4dff-2748-08d995ecf82a");
+        private Guid specialId = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870");
         public EmployeeRepository(RepositoryContext repositoryContext)
             : base(repositoryContext)
         {
@@ -45,9 +45,10 @@ namespace Repository
             Delete(employee);
         }
         /**/
+        /**/
         public async Task<PagedList<Employee>> GetEmployees(EmployeeParameters employeeParameters, bool trackChanges)
         {
-            var employees = await FindByCondition(e => e.CompanyId.Equals(secialId), trackChanges)
+            var employees = await FindByCondition(e => e.CompanyId.Equals(specialId), trackChanges)
                 .Search(employeeParameters.SearchTerm)
                 .Sort(employeeParameters.OrderBy)
                 .ToListAsync();
@@ -58,13 +59,14 @@ namespace Repository
 
         public async Task<Employee> GetEmployeeAsync(Guid id, bool trackChanges)
         {
-            return await FindByCondition(e => e.CompanyId.Equals(secialId) && e.Id.Equals(id), trackChanges)
+
+            return await FindByCondition(e => e.CompanyId.Equals(specialId) && e.Id.Equals(id), trackChanges)
              .SingleOrDefaultAsync();
         }
 
-        public void CreateEmployee(Employee employee)
+        public async void CreateEmployee(Employee employee)
         {
-            employee.CompanyId = secialId;
+            employee.CompanyId = specialId;
             Create(employee);
         }
     }

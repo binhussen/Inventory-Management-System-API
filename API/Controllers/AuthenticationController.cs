@@ -32,7 +32,7 @@ namespace API.Controllers
             _authManager = authManager;
         }
 
-        [HttpPost, Authorize]
+        [HttpPost]//, Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> RegisterUser([FromBody] UserForRegistrationDto userForRegistration)
         {
@@ -79,12 +79,12 @@ namespace API.Controllers
             {
                 return Ok(await _authManager.CreateToken());
             }
-            if (result.IsLockedOut)
+            else if (result.IsLockedOut)
             {
                 _logger.LogWarn($"{nameof(Authenticate)}: Your account is locked out.");
                 return StatusCode(423, "The account is locked out for 5 minuts");
             }
-            if (result.IsNotAllowed)
+            else if (result.IsNotAllowed)
             {
                 _logger.LogWarn($"{nameof(Authenticate)}: Your account is locked Permanently.");
                 return StatusCode(423, "The account is locked Permanently check Administrator");

@@ -182,7 +182,7 @@ namespace API.Controllers
         [HttpPut("rejectbudget/{id}"), Authorize]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateRequestExistsAttribute))]
-        public async Task<IActionResult> BudgetReject(Guid id, [FromBody] RequestItemForRejectDto RequestItem)
+        public async Task<IActionResult> BudgetReject(Guid id, [FromBody] BodyDto empity)
         {
             var requestHeaderEntity = HttpContext.Items["requestHeader"] as RequestHeader;
             var currentTime = DateTimeOffset.UtcNow;

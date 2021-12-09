@@ -89,7 +89,7 @@ namespace API.Extensions
                 // Lockout settings.
                 opt.Lockout.AllowedForNewUsers = true;
                 opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-                opt.Lockout.MaxFailedAccessAttempts = 3;
+                opt.Lockout.MaxFailedAccessAttempts = 5;
             })
                 .AddEntityFrameworkStores<RepositoryContext>()
                 .AddDefaultTokenProviders();

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dddZjs1uuEPX1ELsbWRX0o8n42r81qNkIpnTy6B5qFdrGFhtr+Wri1/57oTf+4qytoCoF2xG53VaMgF84RkD5Q==",
+  "dgSpecHash": "mqOZMs7w6D1Tf1vabcztlGBNDdrEn9vaSZVuajWyM4VyNm8VN7vqZ9IoCvU9doZ6IfkZ547jrRbO2fHvdgN/cA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MHD\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\MHD\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

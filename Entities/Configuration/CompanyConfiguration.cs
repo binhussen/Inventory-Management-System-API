@@ -14,17 +14,16 @@ namespace Entities.Configuration
                 new Company
                 {
                     Id = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
-                    Name = "IT_Solutions Ltd",
-                    Address = "583 Wall Dr. Gwynn Oak, MD 21207",
-                    Country = "USA"
-                },
-                new Company
-                {
-                    Id = new Guid("3d490a70-94ce-4d15-9494-5248280c2ce3"),
-                    Name = "Admin_Solutions Ltd",
-                    Address = "312 Forest Avenue, BF 923",
-                    Country = "USA"
-                }
+                    Name = "Awach SACCOS",
+                    Address = "Aware around Edna Addis Hotel at Agar Building",
+                    PhoneNo = "+251-118-12-44-44",
+                    Email = "awach@gmail.com",
+                    Fax = "34752",
+                    Website="https://www.awach.com",
+                    Description="SACCOS Company",
+                    Country ="Ethiopia"
+
+    }
             );
         }
     }

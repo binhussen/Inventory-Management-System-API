@@ -12,7 +12,7 @@ namespace Repository
 {
     public class CompanyRepository : RepositoryBase<Company>, ICompanyRepository
     {
-        Guid specialId = Guid.Parse("f3f9725a-f5dc-4dff-2748-08d995ecf82a");
+        private Guid specialId = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870");
         public CompanyRepository(RepositoryContext repositoryContext)
             : base(repositoryContext)
         {

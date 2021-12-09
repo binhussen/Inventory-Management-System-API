@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Entities.DataTransferObjects
 {
-    public class RequestItemForRejectDto
+    public class BodyDto
     {
     }
 }

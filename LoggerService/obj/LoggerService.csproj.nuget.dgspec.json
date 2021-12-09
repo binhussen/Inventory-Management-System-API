@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\LoggerService\\LoggerService.csproj": {}
+    "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\LoggerService\\LoggerService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Contracts\\Contracts.csproj": {
+    "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\Contracts\\Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Contracts\\Contracts.csproj",
+        "projectUniqueName": "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\Contracts\\Contracts.csproj",
         "projectName": "Contracts",
-        "projectPath": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Contracts\\Contracts.csproj",
+        "projectPath": "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\Contracts\\Contracts.csproj",
         "packagesPath": "C:\\Users\\MHD\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Contracts\\obj\\",
+        "outputPath": "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\Contracts\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\MHD\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -22,15 +22,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packagesource": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Entities\\Entities.csproj"
+              "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\Entities\\Entities.csproj"
               }
             }
           }
@@ -67,18 +66,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Entities\\Entities.csproj": {
+    "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\Entities\\Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Entities\\Entities.csproj",
+        "projectUniqueName": "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\Entities\\Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Entities\\Entities.csproj",
+        "projectPath": "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\Entities\\Entities.csproj",
         "packagesPath": "C:\\Users\\MHD\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Entities\\obj\\",
+        "outputPath": "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\MHD\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -89,8 +88,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packagesource": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
@@ -140,18 +138,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\LoggerService\\LoggerService.csproj": {
+    "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\LoggerService\\LoggerService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\LoggerService\\LoggerService.csproj",
+        "projectUniqueName": "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\LoggerService\\LoggerService.csproj",
         "projectName": "LoggerService",
-        "projectPath": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\LoggerService\\LoggerService.csproj",
+        "projectPath": "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\LoggerService\\LoggerService.csproj",
         "packagesPath": "C:\\Users\\MHD\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\LoggerService\\obj\\",
+        "outputPath": "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\LoggerService\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\MHD\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -162,15 +160,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://packagesource": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Contracts\\Contracts.csproj": {
-                "projectPath": "C:\\Users\\MHD\\Documents\\Eric\\Last\\11-5\\API\\Contracts\\Contracts.csproj"
+              "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\Contracts\\Contracts.csproj": {
+                "projectPath": "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\Contracts\\Contracts.csproj"
               }
             }
           }
@@ -205,7 +202,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

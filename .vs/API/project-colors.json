@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "76c8fbeb-8b0c-46eb-8f03-1594fa2eb4d6": {
+      "ProjectGuid": "76c8fbeb-8b0c-46eb-8f03-1594fa2eb4d6",
+      "DisplayName": "Entities",
+      "ColorIndex": 0
+    },
+    "031fc8da-08ef-4eb2-b167-d739e2fd3b35": {
+      "ProjectGuid": "031fc8da-08ef-4eb2-b167-d739e2fd3b35",
+      "DisplayName": "API",
+      "ColorIndex": 1
+    },
+    "7e9148c6-0dbc-45d2-a23a-d6f8aefdc741": {
+      "ProjectGuid": "7e9148c6-0dbc-45d2-a23a-d6f8aefdc741",
+      "DisplayName": "Repository",
+      "ColorIndex": 2
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "27d8d277-ca25-4a78-aca3-356497c968a8": {
+      "ProjectGuid": "27d8d277-ca25-4a78-aca3-356497c968a8",
+      "DisplayName": "Contracts",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}
