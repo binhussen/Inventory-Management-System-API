@@ -630,9 +630,9 @@ C:\Users\MHD\Documents\Eric\Last\11-5\API\API\obj\Debug\net5.0\API.dll
 C:\Users\MHD\Documents\Eric\Last\11-5\API\API\obj\Debug\net5.0\ref\API.dll
 C:\Users\MHD\Documents\Eric\Last\11-5\API\API\obj\Debug\net5.0\API.pdb
 C:\Users\MHD\Documents\Eric\Last\11-5\API\API\obj\Debug\net5.0\API.genruntimeconfig.cache
+C:\Users\MHD\Documents\Eric\mms-api\API\bin\Debug\net5.0\nlog.config
 C:\Users\MHD\Documents\Eric\mms-api\API\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\MHD\Documents\Eric\mms-api\API\bin\Debug\net5.0\appsettings.json
-C:\Users\MHD\Documents\Eric\mms-api\API\bin\Debug\net5.0\nlog.config
 C:\Users\MHD\Documents\Eric\mms-api\API\bin\Debug\net5.0\API.StaticWebAssets.xml
 C:\Users\MHD\Documents\Eric\mms-api\API\bin\Debug\net5.0\API.exe
 C:\Users\MHD\Documents\Eric\mms-api\API\bin\Debug\net5.0\API.deps.json

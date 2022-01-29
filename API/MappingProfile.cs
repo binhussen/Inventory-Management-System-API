@@ -61,6 +61,10 @@ namespace API
 
             CreateMap<RequestItemForDistributeDto, RequestItem>();
             /**/
+
+            CreateMap<ReportForCreationDto, Report>();
+            CreateMap<ReportForUpdateDto, Report>();
+            CreateMap<Report, ReportDto>();
         }
     }
 }

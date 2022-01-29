@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "mqOZMs7w6D1Tf1vabcztlGBNDdrEn9vaSZVuajWyM4VyNm8VN7vqZ9IoCvU9doZ6IfkZ547jrRbO2fHvdgN/cA==",
+  "dgSpecHash": "5us/Tu6xdnF999WI9OxsfY8Pa+7GXL37/9dBrqvSK8mMg4n6HxbvS+Heiyp70Lf2ZwQ6TdoTCkjgqWU3CcG/DA==",
   "success": true,
   "projectFilePath": "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\API\\API.csproj",
   "expectedPackageFiles": [
@@ -150,7 +150,8 @@
     "C:\\Users\\MHD\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\MHD\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\MHD\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\MHD\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\MHD\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\MHD\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.13\\microsoft.netcore.app.host.win-x64.5.0.13.nupkg.sha512"
   ],
   "logs": []
 }

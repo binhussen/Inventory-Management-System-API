@@ -35,6 +35,7 @@ namespace Entities
         public DbSet<RequestItem> RequestItems { get; set; }
         public DbSet<StoreHeader> StoreHeaders { get; set; }
         public DbSet<StoreItem> StoreItems { get; set; }
+        public DbSet<Report> Reports { get; set; }
 
         /*audit*/
         public string GetCurrentUsername()

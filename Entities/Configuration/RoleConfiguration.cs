@@ -38,6 +38,16 @@ namespace Entities.Configuration
               {
                   Name = "ProcurementManager",
                   NormalizedName = "PROCUREMENTMANAGER"
+              },
+              new IdentityRole
+              {
+                  Name = "ReportCreater",
+                  NormalizedName = "REPORTCREATER"
+              },
+              new IdentityRole
+              {
+                  Name = "ReportViwer",
+                  NormalizedName = "REPORTVIWER"
               }
             );
         }

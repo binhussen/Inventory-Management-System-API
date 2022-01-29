@@ -138,6 +138,44 @@ namespace API.Migrations
                     b.ToTable("Employees");
                 });
 
+            modelBuilder.Entity("Entities.Models.Report", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("BookNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BookOwner")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Branch")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedByUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("MemeberPhone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModifiedByUser")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("ModifiedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Service")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Reports");
+                });
+
             modelBuilder.Entity("Entities.Models.RequestHeader", b =>
                 {
                     b.Property<Guid>("Id")
@@ -422,7 +460,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "bb84a19b-a060-4a14-9e74-d6c0ebb89e49",
+                            Id = "2642ebc9-6eed-4fc4-9e7b-826505dd1ea3",
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "1b644a8f - 70ce - 4bdd - 91af - b6a774fe8f15",
                             Email = "admin@gmail.com",
@@ -471,45 +509,59 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "dbbda86d-0e9a-416a-9e9b-f9d9b6305f58",
-                            ConcurrencyStamp = "28d614fa-93ba-4838-a813-9213368f74db",
+                            Id = "6810128b-0195-4b33-b81d-58907ea1397a",
+                            ConcurrencyStamp = "c9d154e6-93e9-44ce-a953-ad2cf4f20a74",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "b351b3e5-cf3c-4c0b-af70-14ca110b2cde",
-                            ConcurrencyStamp = "ed3f1fb3-db6a-426a-928b-c0ecf42cb534",
+                            Id = "63353ac0-7576-4fbd-b94a-a081df0d5db2",
+                            ConcurrencyStamp = "181abf0c-1059-4e3d-b59c-d732062a760a",
                             Name = "Purchaser",
                             NormalizedName = "PURCHASER"
                         },
                         new
                         {
-                            Id = "45b1a17b-6959-402c-bc94-8fa5be8013c7",
-                            ConcurrencyStamp = "1f8364c3-12fe-4b95-8cf9-7b627be83056",
+                            Id = "fc4af488-2a52-40c5-8e4c-5fdfc322871f",
+                            ConcurrencyStamp = "7db8012d-b3c1-446a-a65c-a1b3ff05ae59",
                             Name = "StoreMan",
                             NormalizedName = "STOREMAN"
                         },
                         new
                         {
-                            Id = "8ac00fc1-f248-4e80-b5db-ac6fd2d9ea64",
-                            ConcurrencyStamp = "8610dafa-f276-4c6e-ae10-0184ac193930",
+                            Id = "91fa6737-b1df-4e65-834a-73853a66d8e9",
+                            ConcurrencyStamp = "6b914df2-bac1-4acc-96bc-f63d11b73ff7",
                             Name = "DepartmentHead",
                             NormalizedName = "DEPARTMENTHEAD"
                         },
                         new
                         {
-                            Id = "ecdd3b09-b9e5-447c-b7c3-40d4b89d7170",
-                            ConcurrencyStamp = "609f22ae-3be4-40ce-b632-db5d5c18dc9a",
+                            Id = "4dbb0579-260e-4d27-818c-36957c0de517",
+                            ConcurrencyStamp = "a922fff4-afd3-47a8-b718-0a4ed1e94b2d",
                             Name = "FinanceManager",
                             NormalizedName = "FINANCEMANAGER"
                         },
                         new
                         {
-                            Id = "4f2d9255-9910-47d1-b063-9f11272f03a3",
-                            ConcurrencyStamp = "26887660-acae-49b2-b277-5f5ba03086c3",
+                            Id = "642dd6f3-6684-4b42-978e-40f939e05996",
+                            ConcurrencyStamp = "13deea2a-67a2-49ea-a5da-5647073f5bd3",
                             Name = "ProcurementManager",
                             NormalizedName = "PROCUREMENTMANAGER"
+                        },
+                        new
+                        {
+                            Id = "f0c94fe8-7533-402e-a083-98ee8ae524ff",
+                            ConcurrencyStamp = "97e1866d-df1e-4a98-9c4c-dfdecc5b2756",
+                            Name = "ReportCreater",
+                            NormalizedName = "REPORTCREATER"
+                        },
+                        new
+                        {
+                            Id = "df3aba99-d68a-4d6f-9bdb-d4f8398f58b4",
+                            ConcurrencyStamp = "e5f4c840-6f3e-45c1-8387-f5ce8f511135",
+                            Name = "ReportViwer",
+                            NormalizedName = "REPORTVIWER"
                         });
                 });
 

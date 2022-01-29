@@ -53,6 +53,7 @@ namespace API
             services.AddScoped<ValidateItemForRequestExistsAttribute>();
             services.AddScoped<ValidateRequestExistsAttribute>();
             services.AddScoped<ValidateItemForStoreExistsAttribute>();
+            services.AddScoped<ValidateReportExistsAttribute>();
 
             services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

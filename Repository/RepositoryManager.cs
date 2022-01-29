@@ -14,6 +14,7 @@ namespace Repository
         private IStoreHeaderRepository _storeHeaderRepository;
         private IStoreItemRepository _storeItemRepository;
         private IStoreRepository _storeRepository;
+        private IReportRepository _reportRepository;
 
         public RepositoryManager(RepositoryContext repositoryContext)
         {
@@ -92,6 +93,17 @@ namespace Repository
                     _storeRepository = new StoreRepository(_repositoryContext);
 
                 return _storeRepository;
+            }
+        }
+
+        public IReportRepository Report
+        {
+            get
+            {
+                if (_reportRepository == null)
+                    _reportRepository = new ReportRepository(_repositoryContext);
+
+                return _reportRepository;
             }
         }
         public Task SaveAsync() => _repositoryContext.SaveChangesAsync();
