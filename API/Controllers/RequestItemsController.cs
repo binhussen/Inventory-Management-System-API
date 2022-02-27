@@ -31,7 +31,7 @@ namespace API.Controllers
             _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
         }
 
-        [HttpGet, Authorize]
+        [HttpGet, Authorize(Roles = "ProcurementManager, FinanceManager,DepartmentHead,StoreMan,Purchaser")]
         public async Task<IActionResult> GetRequestItemsForRequestHeader(Guid requestheaderid, [FromQuery] RequestItemParameters requestItemParameters)
         {
             var RequestHeader = await _repository.RequestHeader.GetRequestHeaderAsync(requestheaderid, trackChanges: false);
@@ -50,7 +50,7 @@ namespace API.Controllers
             return Ok(RequestItemsDto);
         }
 
-        [HttpGet("{id}", Name = "GetRequestItemForRequestHeader"), Authorize]
+        [HttpGet("{id}", Name = "GetRequestItemForRequestHeader"), Authorize(Roles = "ProcurementManager, FinanceManager,DepartmentHead,StoreMan,Purchaser")]
         public async Task<IActionResult> GetRequestItemForRequestHeader(Guid requestheaderid, Guid id)
         {
             var RequestHeader = await _repository.RequestHeader.GetRequestHeaderAsync(requestheaderid, trackChanges: false);
@@ -72,7 +72,7 @@ namespace API.Controllers
             return Ok(RequestItem);
         }
 
-        [HttpPost, Authorize]
+        [HttpPost, Authorize(Roles = "DepartmentHead")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateRequestItemForRequestHeader(Guid requestheaderid, [FromBody] RequestItemForCreationDto RequestItem)
         {
@@ -94,7 +94,7 @@ namespace API.Controllers
             return CreatedAtRoute("GetRequestItemForRequestHeader", new { requestheaderid, id = RequestItemToReturn.Id }, RequestItemToReturn);
         }
 
-        [HttpDelete("{id}"), Authorize]
+        [HttpDelete("{id}"), Authorize(Roles = "DepartmentHead")]
         [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
         public async Task<IActionResult> DeleteRequestItemForRequestHeader(Guid requestheaderid, Guid id)
         {
@@ -106,7 +106,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}"), Authorize]
+        [HttpPut("{id}"), Authorize(Roles = "DepartmentHead")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
         public async Task<IActionResult> UpdateRequestItemForRequestHeader(Guid requestheaderid, Guid id, [FromBody] RequestItemForUpdateDto RequestItem)
@@ -119,7 +119,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPut("distribute/{id}"), Authorize]
+        [HttpPut("distribute/{id}"), Authorize(Roles = "StoreMan")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
         public async Task<IActionResult> Distribute(Guid requestheaderid, Guid id, [FromBody] RequestItemForDistributeDto RequestItem)
@@ -148,7 +148,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPut("approve/{id}"), Authorize]
+        [HttpPut("approve/{id}"), Authorize(Roles = "ProcurementManager")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
         public async Task<IActionResult> Approve(Guid requestheaderid, Guid id, [FromBody] RequestItemForApprovementDto RequestItem)
@@ -164,7 +164,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPut("reject/{id}"), Authorize]
+        [HttpPut("reject/{id}"), Authorize(Roles = "ProcurementManager")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
         public async Task<IActionResult> Reject(Guid requestheaderid, Guid id, [FromBody] BodyDto empity)
@@ -180,7 +180,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPut("buy/{id}"), Authorize]
+        [HttpPut("buy/{id}"), Authorize(Roles = "Purchaser")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
         public async Task<IActionResult> Buy(Guid requestheaderid, Guid id, [FromBody] BodyDto empity)
@@ -195,7 +195,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPut("notbuy/{id}"), Authorize]
+        [HttpPut("notbuy/{id}"), Authorize(Roles = "Purchaser")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateItemForRequestExistsAttribute))]
         public async Task<IActionResult> NotBuy(Guid requestheaderid, Guid id, [FromBody] BodyDto empity)

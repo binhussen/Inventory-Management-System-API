@@ -34,7 +34,7 @@ namespace API.Controllers
         }
 
 
-        [HttpGet(Name = "GetRequestHeaders"), Authorize]
+        [HttpGet(Name = "GetRequestHeaders"), Authorize(Roles = "ProcurementManager, FinanceManager,DepartmentHead,StoreMan,Purchaser")]
         public async Task<IActionResult> GetRequestHeaders([FromQuery] OrderParameters orderParameters)
         {
             var requestHeaders = await _repository.RequestHeader.GetRequestsAsync(orderParameters,trackChanges:false);
@@ -45,7 +45,7 @@ namespace API.Controllers
             return Ok(requestHeaderDtos);
         }
 
-        [HttpGet("{id}", Name = "RequestHeaderById"), Authorize]
+        [HttpGet("{id}", Name = "RequestHeaderById"), Authorize(Roles = "ProcurementManager, FinanceManager,DepartmentHead,StoreMan,Purchaser")]
         public async Task<IActionResult> GetRequestHeader(Guid id)
         {
             var requestheader = await _repository.RequestHeader.GetRequestHeaderAsync(id, trackChanges: false);
@@ -61,7 +61,7 @@ namespace API.Controllers
             }
         }
 
-        [HttpGet("collection/{ids}", Name = "RequestHeaderCollection"), Authorize]
+        [HttpGet("collection/{ids}", Name = "RequestHeaderCollection"), Authorize(Roles = "ProcurementManager, FinanceManager,DepartmentHead,StoreMan,Purchaser")]
         public async Task<IActionResult> GetRequestHeaderCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))]IEnumerable<Guid> ids)
         {
             if(ids == null)
@@ -90,7 +90,7 @@ namespace API.Controllers
         /// <response code="201">Returns the newly created item</response>
         /// <response code="400">If the item is null</response>
         /// <response code="422">If the model is invalid</response>
-        [HttpPost(Name = "CreateRequestHeader"), Authorize]
+        [HttpPost(Name = "CreateRequestHeader"), Authorize(Roles = "DepartmentHead")]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(422)]
@@ -106,7 +106,7 @@ namespace API.Controllers
 
             return CreatedAtRoute("RequestHeaderById", new { id = requestHeaderToReturn.Id }, requestHeaderToReturn);
         }
-        [HttpPost("collection"), Authorize]
+        [HttpPost("collection"), Authorize(Roles = "DepartmentHead")]
         public async Task<IActionResult> CreateRequestHeaderCollection([FromBody] IEnumerable<RequestHeaderForCreationDto> requestHeaderCollection)
         {
             if(requestHeaderCollection == null)
@@ -129,7 +129,7 @@ namespace API.Controllers
             return CreatedAtRoute("RequestHeaderCollection", new { ids }, requestHeaderCollectionToReturn);
         }
 
-        [HttpDelete("{id}"), Authorize]
+        [HttpDelete("{id}"), Authorize(Roles = "DepartmentHead")]
         [ServiceFilter(typeof(ValidateRequestExistsAttribute))]
         public async Task<IActionResult> DeleteRequestHeader(Guid id)
         {
@@ -141,7 +141,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}"), Authorize]
+        [HttpPut("{id}"), Authorize(Roles = "DepartmentHead")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateRequestExistsAttribute))]
         public async Task<IActionResult> UpdateRequestHeader(Guid id, [FromBody] RequestHeaderForUpdateDto requestHeader)
@@ -163,7 +163,7 @@ namespace API.Controllers
         }
 
 
-        [HttpPut("budget/{id}"), Authorize]
+        [HttpPut("budget/{id}"), Authorize(Roles = "FinanceManager")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateRequestExistsAttribute))]
         public async Task<IActionResult> BudgetCode(Guid id, [FromBody] RequestHeaderForBudgetCodeDto budget)
@@ -179,7 +179,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPut("rejectbudget/{id}"), Authorize]
+        [HttpPut("rejectbudget/{id}"), Authorize(Roles = "FinanceManager")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateRequestExistsAttribute))]
         public async Task<IActionResult> BudgetReject(Guid id, [FromBody] BodyDto empity)
