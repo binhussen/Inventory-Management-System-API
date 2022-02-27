@@ -29,7 +29,7 @@ namespace API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet, Authorize]
+        [HttpGet, Authorize(Roles = "Administrator")]
         public async Task<IActionResult> GetEmployeesForCompany(Guid companyId, [FromQuery] EmployeeParameters employeeParameters)
         {
             if (!employeeParameters.ValidAgeRange)
@@ -51,7 +51,7 @@ namespace API.Controllers
             return Ok(employeesDto);
         }
 
-        [HttpGet("{id}", Name = "GetEmployeeForCompany"), Authorize]
+        [HttpGet("{id}", Name = "GetEmployeeForCompany"), Authorize(Roles = "Administrator")]
         public async Task<IActionResult> GetEmployeeForCompany(Guid companyId, Guid id)
         {
             var company = await _repository.Company.GetCompanyAsync(companyId, trackChanges: false);
@@ -73,7 +73,7 @@ namespace API.Controllers
             return Ok(employee);
         }
 
-        [HttpPost, Authorize]
+        [HttpPost, Authorize(Roles = "Administrator")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateEmployeeForCompany(Guid companyId, [FromBody] EmployeeForCreationDto employee)
         {
@@ -94,7 +94,7 @@ namespace API.Controllers
             return CreatedAtRoute("GetEmployeeForCompany", new { companyId, id = employeeToReturn.Id }, employeeToReturn);
         }
 
-        [HttpDelete("{id}"), Authorize]
+        [HttpDelete("{id}"), Authorize(Roles = "Administrator")]
         [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
         public async Task<IActionResult> DeleteEmployeeForCompany(Guid companyId, Guid id)
         {
@@ -106,7 +106,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}"), Authorize]
+        [HttpPut("{id}"), Authorize(Roles = "Administrator")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
         public async Task<IActionResult> UpdateEmployeeForCompany(Guid companyId, Guid id, [FromBody] EmployeeForUpdateDto employee)
@@ -119,7 +119,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPatch("{id}"), Authorize]
+        [HttpPatch("{id}"), Authorize(Roles = "Administrator")]
         [ServiceFilter(typeof(ValidateEmployeeForCompanyExistsAttribute))]
         public async Task<IActionResult> PartiallyUpdateEmployeeForCompany(Guid companyId, Guid id, [FromBody] JsonPatchDocument<EmployeeForUpdateDto> patchDoc)
         {

@@ -32,7 +32,7 @@ namespace API.Controllers
             _authManager = authManager;
         }
 
-        [HttpPost]//, Authorize]
+        [HttpGet, Authorize(Roles = "Administrator")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> RegisterUser([FromBody] UserForRegistrationDto userForRegistration)
         {

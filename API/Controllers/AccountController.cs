@@ -33,7 +33,8 @@ namespace API.Controllers
             _passwordHash = passwordHash;
         }
 
-        [HttpGet(Name = "users"), Authorize]
+        [HttpGet(Name = "users"), Authorize(Roles = "Administrator")]
+
         public async Task<IActionResult> GetListUsers()
         {
             var users = _repositoryContext.Users.ToList();
@@ -56,7 +57,7 @@ namespace API.Controllers
             return Ok(userDto);
         }
 
-        [HttpPut("{id}"), Authorize]
+        [HttpPut("{id}"), Authorize(Roles = "Administrator")]
         public async Task<IActionResult> UpdateUser(Guid id, [FromBody] UserForUpdate userForUpdate)
         {
             var users = await _userManager.FindByIdAsync(id.ToString());
@@ -83,7 +84,7 @@ namespace API.Controllers
             return BadRequest();
         }
 
-        [HttpPut("role/{id}"), Authorize]
+        [HttpPut("role/{id}"), Authorize(Roles = "Administrator")]
         public async Task<IActionResult> UpdateRole(Guid id, [FromBody] ICollection<string> Roles)
         {
             var users = await _userManager.FindByIdAsync(id.ToString());
@@ -107,7 +108,7 @@ namespace API.Controllers
             return BadRequest();
         }
 
-        [HttpPut("lock/{id}"), Authorize]
+        [HttpPut("lock/{id}"), Authorize(Roles = "Administrator")]
         public async Task<IActionResult> AccountLockedOut(Guid id)
         {
             var users = await _userManager.FindByIdAsync(id.ToString());

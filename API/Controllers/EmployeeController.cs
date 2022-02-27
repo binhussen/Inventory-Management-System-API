@@ -29,7 +29,7 @@ namespace API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet, Authorize]
+        [HttpGet, Authorize(Roles = "Administrator")]
         [HttpHead]
         public async Task<IActionResult> GetEmployees([FromQuery] EmployeeParameters employeeParameters)
         {
@@ -42,7 +42,7 @@ namespace API.Controllers
             return Ok(employee);
         }
 
-        [HttpGet("{id}", Name = "GetEmployee"), Authorize]
+        [HttpGet("{id}", Name = "GetEmployee"), Authorize(Roles = "Administrator")]
         public async Task<IActionResult> GetEmployeeForCompany(Guid id)
         {
             var employeeDb = await _repository.Employee.GetEmployeeAsync(id, trackChanges: false);
@@ -57,7 +57,7 @@ namespace API.Controllers
             return Ok(employee);
         }
 
-        [HttpPost, Authorize]
+        [HttpPost, Authorize(Roles = "Administrator")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateEmployee([FromBody] EmployeeForCreationDto employee)
         {
@@ -71,7 +71,7 @@ namespace API.Controllers
             return CreatedAtRoute("GetEmployee", new { id = employeeToReturn.Id }, employeeToReturn);
         }
 
-        [HttpDelete("{id}"), Authorize]
+        [HttpDelete("{id}"), Authorize(Roles = "Administrator")]
         [ServiceFilter(typeof(ValidateEmployeeExistsAttribute))]
         public async Task<IActionResult> DeleteEmployee( Guid id)
         {
@@ -83,7 +83,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}"), Authorize]
+        [HttpPut("{id}"), Authorize(Roles = "Administrator")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateEmployeeExistsAttribute))]
         public async Task<IActionResult> UpdateEmployee(Guid id, [FromBody] EmployeeForUpdateDto employee)

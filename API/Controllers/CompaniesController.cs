@@ -32,7 +32,7 @@ namespace API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet(Name = "GetCompanies"), Authorize]
+        [HttpGet(Name = "GetCompanies"), Authorize(Roles = "Administrator")]
         public async Task<IActionResult> GetCompanies([FromQuery] CompanyParameters companyParameters)
         {
             var companies = await _repository.Company.GetCompaniesAsync(companyParameters,trackChanges: false);
@@ -44,7 +44,7 @@ namespace API.Controllers
             return Ok(companiesDto);
         }
 
-        [HttpGet("{id}", Name = "CompanyById"), Authorize]
+        [HttpGet("{id}", Name = "CompanyById"), Authorize(Roles = "Administrator")]
         public async Task<IActionResult> GetCompany(Guid id)
         {
             var company = await _repository.Company.GetCompanyAsync(id, trackChanges: false);
@@ -60,7 +60,7 @@ namespace API.Controllers
             }
         }
 
-        [HttpGet("collection/({ids})", Name = "CompanyCollection"), Authorize]
+        [HttpGet("collection/({ids})", Name = "CompanyCollection"), Authorize(Roles = "Administrator")]
         public async Task<IActionResult> GetCompanyCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))]IEnumerable<Guid> ids)
         {
             if(ids == null)
@@ -81,7 +81,7 @@ namespace API.Controllers
             return Ok(companiesToReturn);
         }
 
-        [HttpPost, Authorize]
+        [HttpPost, Authorize(Roles = "Administrator")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateCompany([FromBody]CompanyForCreationDto company)
         {
@@ -95,7 +95,7 @@ namespace API.Controllers
             return CreatedAtRoute("CompanyById", new { id = companyToReturn.Id }, companyToReturn);
         }
 
-        [HttpPost("collection"), Authorize]
+        [HttpPost("collection"), Authorize(Roles = "Administrator")]
         public async Task<IActionResult> CreateCompanyCollection([FromBody] IEnumerable<CompanyForCreationDto> companyCollection)
         {
             if(companyCollection == null)
@@ -118,7 +118,7 @@ namespace API.Controllers
             return CreatedAtRoute("CompanyCollection", new { ids }, companyCollectionToReturn);
         }
 
-        [HttpDelete("{id}"), Authorize]
+        [HttpDelete("{id}"), Authorize(Roles = "Administrator")]
         [ServiceFilter(typeof(ValidateCompanyExistsAttribute))]
         public async Task<IActionResult> DeleteCompany(Guid id)
         {
@@ -131,7 +131,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}"), Authorize]
+        [HttpPut("{id}"), Authorize(Roles = "Administrator")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateCompanyExistsAttribute))]
 
