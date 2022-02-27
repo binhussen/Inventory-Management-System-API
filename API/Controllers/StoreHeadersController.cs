@@ -33,7 +33,7 @@ namespace API.Controllers
             _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
         }
 
-        [HttpGet(Name = "GetStoreHeaders"), Authorize]
+        [HttpGet(Name = "GetStoreHeaders"), Authorize(Roles = "ProcurementManager, FinanceManager,DepartmentHead,StoreMan,Purchaser")]
         public async Task<IActionResult> GetStoreHeaders([FromQuery] StoreItemParameters storeParameters)
         {
             var storeHeaders = await _repository.StoreHeader.GetStoresAsync(storeParameters,trackChanges:false);
@@ -45,7 +45,7 @@ namespace API.Controllers
             return Ok(storeHeaderDtos);
         }
 
-        [HttpGet("{id}", Name = "StoreHeaderById"), Authorize]
+        [HttpGet("{id}", Name = "StoreHeaderById"), Authorize(Roles = "ProcurementManager, FinanceManager,DepartmentHead,StoreMan,Purchaser")]
         public async Task<IActionResult> GetStoreHeader(Guid id)
         {
             var storeHeader = await _repository.StoreHeader.GetStoreHeaderAsync(id, trackChanges: false);
@@ -61,7 +61,7 @@ namespace API.Controllers
             }
         }
 
-        [HttpGet("collection/{ids}", Name = "StoreHeaderCollection"), Authorize]
+        [HttpGet("collection/{ids}", Name = "StoreHeaderCollection"), Authorize(Roles = "ProcurementManager, FinanceManager,DepartmentHead,StoreMan,Purchaser")]
         public async Task<IActionResult> GetStoreHeaderCollection([ModelBinder(BinderType = typeof(ArrayModelBinder))]IEnumerable<Guid> ids)
         {
             if(ids == null)
@@ -90,7 +90,7 @@ namespace API.Controllers
         /// <response code="201">Returns the newly created item</response>
         /// <response code="400">If the item is null</response>
         /// <response code="422">If the model is invalid</response>
-        [HttpPost(Name = "CreateStoreHeader"), Authorize]
+        [HttpPost(Name = "CreateStoreHeader"), Authorize(Roles = "StoreMan,Purchaser")]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         [ProducesResponseType(422)]
@@ -107,7 +107,7 @@ namespace API.Controllers
             return CreatedAtRoute("StoreHeaderById", new { id = storeHeaderToReturn.Id }, storeHeaderToReturn);
         }
 
-        [HttpPost("collection"), Authorize]
+        [HttpPost("collection"), Authorize(Roles = "StoreMan,Purchaser")]
         public async Task<IActionResult> CreateStoreHeaderCollection([FromBody] IEnumerable<StoreHeaderForCreationDto> storeHeaderCollection)
         {
             if(storeHeaderCollection == null)
@@ -130,7 +130,7 @@ namespace API.Controllers
             return CreatedAtRoute("StoreHeaderCollection", new { ids }, storeHeaderCollectionToReturn);
         }
 
-        [HttpDelete("{id}"), Authorize]
+        [HttpDelete("{id}"), Authorize(Roles = "StoreMan,Purchaser")]
         [ServiceFilter(typeof(ValidateStoreExistsAttribute))]
         public async Task<IActionResult> DeleteStoreHeader(Guid id)
         {
@@ -142,7 +142,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}"), Authorize]
+        [HttpPut("{id}"), Authorize(Roles = "StoreMan,Purchaser")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateStoreExistsAttribute))]
         public async Task<IActionResult> UpdateStoreHeader(Guid id, [FromBody] StoreHeaderForUpdateDto storeHeader)
@@ -164,7 +164,7 @@ namespace API.Controllers
         }
 
         /**/
-        [HttpPut("store/{id}"), Authorize]
+        [HttpPut("store/{id}"), Authorize(Roles = "StoreMan,Purchaser")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateStoreExistsAttribute))]
         public async Task<IActionResult> Stores(Guid id, [FromBody] BodyDto empity)

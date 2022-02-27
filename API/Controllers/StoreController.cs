@@ -31,7 +31,7 @@ namespace API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet, Authorize]
+        [HttpGet, Authorize(Roles = "ProcurementManager, FinanceManager,DepartmentHead,StoreMan,Purchaser")]
         public async Task<IActionResult> GetStoreItems([FromQuery] StoreItemParameters storeItemParameters)
         {
             var storesFromDb = await _repository.Store.GetStoresAsync(storeItemParameters, trackChanges: false);

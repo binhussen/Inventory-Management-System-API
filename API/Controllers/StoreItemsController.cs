@@ -30,7 +30,7 @@ namespace API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet, Authorize]
+        [HttpGet, Authorize(Roles = "ProcurementManager, FinanceManager,DepartmentHead,StoreMan,Purchaser")]
         [HttpHead]
         public async Task<IActionResult> GetStoreItemsForStoreHeader(Guid storeheaderid, [FromQuery] StoreItemParameters storeItemParameters)
         {
@@ -53,7 +53,7 @@ namespace API.Controllers
             return Ok(storeItemsDto);
         }
 
-        [HttpGet("{id}", Name = "GetStoreItemForStoreHeader"), Authorize]
+        [HttpGet("{id}", Name = "GetStoreItemForStoreHeader"), Authorize(Roles = "ProcurementManager, FinanceManager,DepartmentHead,StoreMan,Purchaser")]
         public async Task<IActionResult> GetStoreItemForStoreHeader(Guid storeheaderid, Guid id)
         {
             var storeHeader = await _repository.StoreHeader.GetStoreHeaderAsync(storeheaderid, trackChanges: false);
@@ -75,7 +75,7 @@ namespace API.Controllers
             return Ok(storeItem);
         }
 
-        [HttpPost, Authorize]
+        [HttpPost, Authorize(Roles = "StoreMan,Purchaser")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateStoreItemForStoreHeader(Guid storeheaderid, [FromBody] StoreItemForCreationDto storeItem)
         {
@@ -100,7 +100,7 @@ namespace API.Controllers
             return CreatedAtRoute("GetStoreItemForStoreHeader", new { storeheaderid, id = storeItemToReturn.Id }, storeItemToReturn);
         }
 
-        [HttpDelete("{id}"), Authorize]
+        [HttpDelete("{id}"), Authorize(Roles = "StoreMan,Purchaser")]
         [ServiceFilter(typeof(ValidateItemForStoreExistsAttribute))]
         public async Task<IActionResult> DeleteStoreItemForStoreHeader(Guid storeheaderid, Guid id)
         {
@@ -112,7 +112,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}"), Authorize]
+        [HttpPut("{id}"), Authorize(Roles = "StoreMan,Purchaser")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateItemForStoreExistsAttribute))]
         public async Task<IActionResult> UpdateStoreItemForStoreHeader(Guid storeheaderid, Guid id, [FromBody] StoreItemForUpdateDto storeItem)
