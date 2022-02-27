@@ -2,7 +2,6 @@
 using Contracts;
 using Entities;
 using Entities.Models;
-using LoggerService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;

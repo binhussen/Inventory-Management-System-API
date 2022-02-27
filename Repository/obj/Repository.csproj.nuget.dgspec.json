@@ -190,6 +190,10 @@
               "target": "Package",
               "version": "[5.0.10, )"
             },
+            "NLog.Extensions.Logging": {
+              "target": "Package",
+              "version": "[1.7.4, )"
+            },
             "System.Linq.Dynamic.Core": {
               "target": "Package",
               "version": "[1.2.12, )"

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KnTM3Z3+LJoOvZIJmwwzf/Us+C9qjbnqKCYNuS6gdOPtO546rYb1Z9SK2aJ4JY5XGOgmgfTmn2YCgPRPpaBwIQ==",
+  "dgSpecHash": "Tcg5LxwjmpW9mwINTRD07kTdvCrqqQ0Ozo9esEbJZV8VqkXhrzRLucvYJbwgNz0eWryi9xx+2YaWWYvK1w5KMA==",
   "success": true,
   "projectFilePath": "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\Repository\\Repository.csproj",
   "expectedPackageFiles": [
@@ -25,6 +25,8 @@
     "C:\\Users\\MHD\\.nuget\\packages\\microsoft.extensions.options\\5.0.0\\microsoft.extensions.options.5.0.0.nupkg.sha512",
     "C:\\Users\\MHD\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "C:\\Users\\MHD\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\MHD\\.nuget\\packages\\nlog\\4.7.11\\nlog.4.7.11.nupkg.sha512",
+    "C:\\Users\\MHD\\.nuget\\packages\\nlog.extensions.logging\\1.7.4\\nlog.extensions.logging.1.7.4.nupkg.sha512",
     "C:\\Users\\MHD\\.nuget\\packages\\system.collections.immutable\\5.0.0\\system.collections.immutable.5.0.0.nupkg.sha512",
     "C:\\Users\\MHD\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "C:\\Users\\MHD\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.1\\system.diagnostics.diagnosticsource.5.0.1.nupkg.sha512",

@@ -34,7 +34,6 @@
       "API/1.0.0": {
         "dependencies": {
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
-          "LoggerService": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.10",
           "Microsoft.AspNetCore.JsonPatch": "5.0.10",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "5.0.10",
@@ -2095,23 +2094,12 @@
           "Entities.dll": {}
         }
       },
-      "LoggerService/1.0.0": {
-        "dependencies": {
-          "Contracts": "1.0.0",
-          "NLog.Extensions.Logging": "1.7.4"
-        },
-        "runtime": {
-          "LoggerService.dll": {}
-        },
-        "compile": {
-          "LoggerService.dll": {}
-        }
-      },
       "Repository/1.0.0": {
         "dependencies": {
           "Contracts": "1.0.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.EntityFrameworkCore": "5.0.10",
+          "NLog.Extensions.Logging": "1.7.4",
           "System.Linq.Dynamic.Core": "1.2.12"
         },
         "runtime": {
@@ -4826,11 +4814,6 @@
       "sha512": ""
     },
     "Entities/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "LoggerService/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

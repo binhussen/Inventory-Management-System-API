@@ -57,3 +57,4 @@ C:\Users\MHD\Documents\Eric\mms-api\Entities\obj\Debug\net5.0\Entities.csproj.Co
 C:\Users\MHD\Documents\Eric\mms-api\Entities\obj\Debug\net5.0\Entities.dll
 C:\Users\MHD\Documents\Eric\mms-api\Entities\obj\Debug\net5.0\ref\Entities.dll
 C:\Users\MHD\Documents\Eric\mms-api\Entities\obj\Debug\net5.0\Entities.pdb
+C:\Users\MHD\Documents\Eric\mms-api\Entities\obj\Debug\net5.0\Entities.csproj.AssemblyReference.cache
