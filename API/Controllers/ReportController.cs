@@ -29,7 +29,7 @@ namespace API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet, Authorize]
+        [HttpGet, Authorize(Roles = "ReportCreater, ReportViwer")]
         [HttpHead]
         public async Task<IActionResult> GetReports([FromQuery] ReportParameters reportParameters)
         {
@@ -42,7 +42,7 @@ namespace API.Controllers
             return Ok(report);
         }
 
-        [HttpGet("{id}", Name = "GetReport"), Authorize]
+        [HttpGet("{id}", Name = "GetReport"), Authorize(Roles = "ReportCreater, ReportViwer")]
         public async Task<IActionResult> GetReport(Guid id)
         {
             var report = await _repository.Report.GetReportAsync(id, trackChanges: false);
@@ -58,7 +58,7 @@ namespace API.Controllers
             }
         }
 
-        [HttpPost, Authorize]
+        [HttpPost, Authorize(Roles = "ReportCreater")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateReport([FromBody] ReportForCreationDto report)
         {
@@ -72,7 +72,7 @@ namespace API.Controllers
             return CreatedAtRoute("GetReport", new { id = reportToReturn.Id }, reportToReturn);
         }
 
-        [HttpDelete("{id}"), Authorize]
+        [HttpDelete("{id}"), Authorize(Roles = "ReportCreater")]
         [ServiceFilter(typeof(ValidateReportExistsAttribute))]
         public async Task<IActionResult> DeleteReport( Guid id)
         {
@@ -84,7 +84,7 @@ namespace API.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}"), Authorize]
+        [HttpPut("{id}"), Authorize(Roles = "ReportCreater")]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ServiceFilter(typeof(ValidateReportExistsAttribute))]
         public async Task<IActionResult> UpdateReport(Guid id, [FromBody] ReportForUpdateDto report)
