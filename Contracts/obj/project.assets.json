@@ -1337,11 +1337,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\Contracts\\Contracts.csproj",
+      "projectUniqueName": "C:\\Users\\MHD\\Documents\\Works\\Eric\\mms-api\\Contracts\\Contracts.csproj",
       "projectName": "Contracts",
-      "projectPath": "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\Contracts\\Contracts.csproj",
+      "projectPath": "C:\\Users\\MHD\\Documents\\Works\\Eric\\mms-api\\Contracts\\Contracts.csproj",
       "packagesPath": "C:\\Users\\MHD\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\Contracts\\obj\\",
+      "outputPath": "C:\\Users\\MHD\\Documents\\Works\\Eric\\mms-api\\Contracts\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\MHD\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1358,8 +1358,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\Entities\\Entities.csproj": {
-              "projectPath": "C:\\Users\\MHD\\Documents\\Eric\\mms-api\\Entities\\Entities.csproj"
+            "C:\\Users\\MHD\\Documents\\Works\\Eric\\mms-api\\Entities\\Entities.csproj": {
+              "projectPath": "C:\\Users\\MHD\\Documents\\Works\\Eric\\mms-api\\Entities\\Entities.csproj"
             }
           }
         }

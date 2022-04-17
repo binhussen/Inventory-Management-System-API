@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20220128161603_report")]
-    partial class report
+    [Migration("20220417060908_generalize")]
+    partial class generalize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -155,35 +155,11 @@ namespace API.Migrations
                     b.Property<string>("Branch")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CarSaving")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CloseLoan")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CreatedByUser")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTimeOffset>("CreatedDate")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("HomeCarSaving")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HomeSaving")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Interest")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Lejar")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LostBook")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("MemeberOut")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MemeberPhone")
                         .HasColumnType("nvarchar(max)");
@@ -194,13 +170,7 @@ namespace API.Migrations
                     b.Property<DateTimeOffset>("ModifiedDate")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("NormalSaving")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TurntoShare")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Wisdrowal")
+                    b.Property<string>("Service")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -492,7 +462,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2a4b36a9-d8bb-43ed-acb0-444003d23a98",
+                            Id = "fa39cdc7-634e-4ef4-9de6-3bd8a0f52085",
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "1b644a8f - 70ce - 4bdd - 91af - b6a774fe8f15",
                             Email = "admin@gmail.com",
@@ -541,45 +511,59 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "dd5614d1-d4cf-4018-8a2c-1a95c9b1dfce",
-                            ConcurrencyStamp = "3cd3a032-114b-4d0e-ab2b-77b683db187a",
+                            Id = "424d64f1-271b-4c1e-9b87-843b0d318606",
+                            ConcurrencyStamp = "3cbec4d0-0315-401c-b7ea-aa4a795d24ad",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "6bb73dab-68ef-45c7-97cc-d18753654de6",
-                            ConcurrencyStamp = "78668535-4f46-4e84-b05f-fe3f5a79ff08",
+                            Id = "06e743ba-9043-4bd7-83f5-ab61a2304c48",
+                            ConcurrencyStamp = "5adefb5c-bf2e-40aa-87b2-02812bf39af1",
                             Name = "Purchaser",
                             NormalizedName = "PURCHASER"
                         },
                         new
                         {
-                            Id = "3b7a1657-5702-491b-b883-d55a5205f7fe",
-                            ConcurrencyStamp = "5c5e7f49-6b55-42ad-9338-5c63054f45c3",
+                            Id = "9a6ea8d8-3a21-4a70-bb38-2f90589aa8ac",
+                            ConcurrencyStamp = "29445259-a456-4b63-9088-4a87dd3b1ce0",
                             Name = "StoreMan",
                             NormalizedName = "STOREMAN"
                         },
                         new
                         {
-                            Id = "d060dcd6-b089-408d-a65d-9598d29a93b8",
-                            ConcurrencyStamp = "01e1e236-6626-443a-b138-398563b5b290",
+                            Id = "ce6bace9-9a68-4249-b6c6-f7d75de4392b",
+                            ConcurrencyStamp = "03e482f7-36d8-4bde-b22b-6a8585da62bb",
                             Name = "DepartmentHead",
                             NormalizedName = "DEPARTMENTHEAD"
                         },
                         new
                         {
-                            Id = "a8ce2055-1d64-4bf0-a69c-11e6f2cbddf5",
-                            ConcurrencyStamp = "902dd281-6bf7-47a8-9071-15bf3934560f",
+                            Id = "1b7f55bd-27b5-4a7e-b394-f1b59f360f32",
+                            ConcurrencyStamp = "8599946a-6200-457c-858a-a13b3d6bca06",
                             Name = "FinanceManager",
                             NormalizedName = "FINANCEMANAGER"
                         },
                         new
                         {
-                            Id = "db6d76ba-3e37-4922-9469-a0b468822816",
-                            ConcurrencyStamp = "14b0a364-8d8b-43ce-9954-6550402e3ce9",
+                            Id = "6d5ba3cd-ab9d-4784-ba61-73200eeb5899",
+                            ConcurrencyStamp = "7c6e0795-03f2-4710-bac6-836c929b0cc6",
                             Name = "ProcurementManager",
                             NormalizedName = "PROCUREMENTMANAGER"
+                        },
+                        new
+                        {
+                            Id = "d4a4ab5a-0918-46f5-ae59-d34b7fa55926",
+                            ConcurrencyStamp = "18f51c4e-59ab-4ba2-9d2c-e4f8ad263329",
+                            Name = "ReportCreater",
+                            NormalizedName = "REPORTCREATER"
+                        },
+                        new
+                        {
+                            Id = "664609b2-e6d7-4833-b2ba-368d30f54439",
+                            ConcurrencyStamp = "d04b1f95-fea2-40db-89ce-3e662312bb8e",
+                            Name = "ReportViwer",
+                            NormalizedName = "REPORTVIWER"
                         });
                 });
 

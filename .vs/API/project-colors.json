@@ -25,7 +25,12 @@
       "ProjectGuid": "27d8d277-ca25-4a78-aca3-356497c968a8",
       "DisplayName": "Contracts",
       "ColorIndex": 3
+    },
+    "33169ff0-c43f-4a84-bac7-47c2d51d9f66": {
+      "ProjectGuid": "33169ff0-c43f-4a84-bac7-47c2d51d9f66",
+      "DisplayName": "LoggerService",
+      "ColorIndex": 4
     }
   },
-  "NextColorIndex": 4
+  "NextColorIndex": 5
 }

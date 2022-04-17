@@ -460,7 +460,7 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2642ebc9-6eed-4fc4-9e7b-826505dd1ea3",
+                            Id = "fa39cdc7-634e-4ef4-9de6-3bd8a0f52085",
                             AccessFailedCount = 0,
                             ConcurrencyStamp = "1b644a8f - 70ce - 4bdd - 91af - b6a774fe8f15",
                             Email = "admin@gmail.com",
@@ -509,57 +509,57 @@ namespace API.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6810128b-0195-4b33-b81d-58907ea1397a",
-                            ConcurrencyStamp = "c9d154e6-93e9-44ce-a953-ad2cf4f20a74",
+                            Id = "424d64f1-271b-4c1e-9b87-843b0d318606",
+                            ConcurrencyStamp = "3cbec4d0-0315-401c-b7ea-aa4a795d24ad",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
-                            Id = "63353ac0-7576-4fbd-b94a-a081df0d5db2",
-                            ConcurrencyStamp = "181abf0c-1059-4e3d-b59c-d732062a760a",
+                            Id = "06e743ba-9043-4bd7-83f5-ab61a2304c48",
+                            ConcurrencyStamp = "5adefb5c-bf2e-40aa-87b2-02812bf39af1",
                             Name = "Purchaser",
                             NormalizedName = "PURCHASER"
                         },
                         new
                         {
-                            Id = "fc4af488-2a52-40c5-8e4c-5fdfc322871f",
-                            ConcurrencyStamp = "7db8012d-b3c1-446a-a65c-a1b3ff05ae59",
+                            Id = "9a6ea8d8-3a21-4a70-bb38-2f90589aa8ac",
+                            ConcurrencyStamp = "29445259-a456-4b63-9088-4a87dd3b1ce0",
                             Name = "StoreMan",
                             NormalizedName = "STOREMAN"
                         },
                         new
                         {
-                            Id = "91fa6737-b1df-4e65-834a-73853a66d8e9",
-                            ConcurrencyStamp = "6b914df2-bac1-4acc-96bc-f63d11b73ff7",
+                            Id = "ce6bace9-9a68-4249-b6c6-f7d75de4392b",
+                            ConcurrencyStamp = "03e482f7-36d8-4bde-b22b-6a8585da62bb",
                             Name = "DepartmentHead",
                             NormalizedName = "DEPARTMENTHEAD"
                         },
                         new
                         {
-                            Id = "4dbb0579-260e-4d27-818c-36957c0de517",
-                            ConcurrencyStamp = "a922fff4-afd3-47a8-b718-0a4ed1e94b2d",
+                            Id = "1b7f55bd-27b5-4a7e-b394-f1b59f360f32",
+                            ConcurrencyStamp = "8599946a-6200-457c-858a-a13b3d6bca06",
                             Name = "FinanceManager",
                             NormalizedName = "FINANCEMANAGER"
                         },
                         new
                         {
-                            Id = "642dd6f3-6684-4b42-978e-40f939e05996",
-                            ConcurrencyStamp = "13deea2a-67a2-49ea-a5da-5647073f5bd3",
+                            Id = "6d5ba3cd-ab9d-4784-ba61-73200eeb5899",
+                            ConcurrencyStamp = "7c6e0795-03f2-4710-bac6-836c929b0cc6",
                             Name = "ProcurementManager",
                             NormalizedName = "PROCUREMENTMANAGER"
                         },
                         new
                         {
-                            Id = "f0c94fe8-7533-402e-a083-98ee8ae524ff",
-                            ConcurrencyStamp = "97e1866d-df1e-4a98-9c4c-dfdecc5b2756",
+                            Id = "d4a4ab5a-0918-46f5-ae59-d34b7fa55926",
+                            ConcurrencyStamp = "18f51c4e-59ab-4ba2-9d2c-e4f8ad263329",
                             Name = "ReportCreater",
                             NormalizedName = "REPORTCREATER"
                         },
                         new
                         {
-                            Id = "df3aba99-d68a-4d6f-9bdb-d4f8398f58b4",
-                            ConcurrencyStamp = "e5f4c840-6f3e-45c1-8387-f5ce8f511135",
+                            Id = "664609b2-e6d7-4833-b2ba-368d30f54439",
+                            ConcurrencyStamp = "d04b1f95-fea2-40db-89ce-3e662312bb8e",
                             Name = "ReportViwer",
                             NormalizedName = "REPORTVIWER"
                         });

@@ -14,13 +14,13 @@ namespace Entities.Configuration
                 new Company
                 {
                     Id = new Guid("c9d4c053-49b6-410c-bc78-2d54a9991870"),
-                    Name = "Awach SACCOS",
-                    Address = "Aware around Edna Addis Hotel at Agar Building",
-                    PhoneNo = "+251-118-12-44-44",
-                    Email = "awach@gmail.com",
-                    Fax = "34752",
-                    Website="https://www.awach.com",
-                    Description="SACCOS Company",
+                    Name = "Inventory",
+                    Address = "Ethiopia addis ababa",
+                    PhoneNo = "+251-",
+                    Email = "inventory@gmail.com",
+                    Fax = "00000",
+                    Website="https://www.inventory.com",
+                    Description="inventory Company",
                     Country ="Ethiopia"
 
     }
